@@ -564,9 +564,28 @@ img {
   background: transparent;
 }
 
+.hero-mascot,
+.hero-stickers {
+  position: absolute;
+  top: 12%;
+  left: 42%;
+  right: -8%;
+  bottom: -8%;
+  z-index: 3;
+  width: auto;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: 58% 100%;
+  transform: none;
+  filter: drop-shadow(0 28px 60px rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+  user-select: none;
+}
+
 .hero-stage__glow {
   position: absolute;
-  top: 4%;
+  top: 16%;
   left: 48%;
   right: -10%;
   width: auto;
@@ -579,25 +598,6 @@ img {
   filter: blur(18px);
   opacity: 0.85;
   pointer-events: none;
-}
-
-.hero-mascot,
-.hero-stickers {
-  position: absolute;
-  top: -2%;
-  left: 42%;
-  right: -8%;
-  bottom: -4%;
-  z-index: 3;
-  width: auto;
-  height: auto;
-  max-width: none;
-  object-fit: contain;
-  object-position: 58% 100%;
-  transform: none;
-  filter: drop-shadow(0 28px 60px rgba(0, 0, 0, 0.45));
-  pointer-events: none;
-  user-select: none;
 }
 
 .hero-stickers {
@@ -1523,6 +1523,17 @@ img {
 
   .hero-copy {
     margin-top: clamp(0.75rem, 2vw, 1.75rem);
+  }
+
+  .hero-mascot,
+  .hero-stickers {
+    top: clamp(6%, 10vh, 14%);
+    bottom: clamp(-10%, -4vh, -2%);
+    object-position: 58% 100%;
+  }
+
+  .hero-stage__glow {
+    top: clamp(14%, 18vh, 22%);
   }
 
   .section-head {
