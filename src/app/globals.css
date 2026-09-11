@@ -659,8 +659,7 @@ img {
   background: transparent;
 }
 
-.hero-mascot,
-.hero-stickers {
+.hero-mascot {
   position: absolute;
   top: 12%;
   left: 42%;
@@ -674,18 +673,8 @@ img {
   transform: none;
   pointer-events: none;
   user-select: none;
-}
-
-.hero-mascot {
-  z-index: 3;
+  z-index: 2;
   filter: drop-shadow(0 28px 60px rgba(0, 0, 0, 0.45));
-}
-
-.hero-stickers {
-  z-index: 5;
-  filter: none;
-  -webkit-mask-image: radial-gradient(circle 0 at 50% 50%, black 0, transparent 100%);
-  mask-image: radial-gradient(circle 0 at 50% 50%, black 0, transparent 100%);
 }
 
 .hero-stage__glow {
@@ -704,10 +693,6 @@ img {
   opacity: 0.85;
   pointer-events: none;
   z-index: 1;
-}
-
-.hero-stickers--peek {
-  opacity: 0.85;
 }
 
 .skip-link {
@@ -1659,8 +1644,7 @@ img {
     margin-top: clamp(0.75rem, 2vw, 1.75rem);
   }
 
-  .hero-mascot,
-  .hero-stickers {
+  .hero-mascot {
     top: clamp(6%, 10vh, 14%);
     bottom: clamp(-10%, -4vh, -2%);
     object-position: 58% 100%;
@@ -1765,8 +1749,7 @@ img {
     opacity: 0.9;
   }
 
-  .hero-mascot,
-  .hero-stickers {
+  .hero-mascot {
     top: clamp(52px, 9vw, 68px);
     left: auto;
     right: clamp(-174px, -32vw, -106px);
@@ -1777,14 +1760,7 @@ img {
     object-position: center top;
     opacity: 1;
     transform: none;
-  }
-
-  .hero-mascot {
-    z-index: 5;
-  }
-
-  .hero-stickers {
-    z-index: 6;
+    z-index: 2;
   }
 
   .hero-copy {
