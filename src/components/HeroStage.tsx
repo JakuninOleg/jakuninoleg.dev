@@ -8,7 +8,7 @@ export function HeroStage() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className="hero-mascot"
-        src="/mascot/mascot-base.webp?v=gen-clean1"
+        src="/mascot/mascot-base.webp?v=face-clean3"
         alt=""
         width={900}
         height={900}
