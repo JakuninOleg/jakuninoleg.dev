@@ -1734,7 +1734,7 @@ img {
     align-content: end;
     align-items: stretch;
     padding-block: 400px 1.5rem;
-    width: 100%;
+    /* keep .shell gutters — do not set width: 100% here */
   }
 
   .hero-stage {
