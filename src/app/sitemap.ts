@@ -9,6 +9,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routing.locales.map((locale) => ({
     url: `${siteUrl}/${locale}`,
     lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 1,
     alternates: {
       languages: Object.fromEntries(
         routing.locales.map((alt) => [alt, `${siteUrl}/${alt}`]),

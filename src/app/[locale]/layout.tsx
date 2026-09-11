@@ -35,7 +35,14 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "Meta" });
   const title = t("title");
   const description = t("description");
+  const keywords = t("keywords");
   const canonical = `${siteUrl}/${locale}`;
+  const ogImage = {
+    url: "/mascot/mascot-contact.webp",
+    width: 172,
+    height: 172,
+    alt: "Jakunin Oleg",
+  };
 
   return {
     metadataBase: new URL(siteUrl),
@@ -44,6 +51,11 @@ export async function generateMetadata({
       template: `%s · Jakunin Oleg`,
     },
     description,
+    keywords: keywords.split(",").map((item) => item.trim()),
+    authors: [{ name: "Jakunin Oleg", url: siteUrl }],
+    creator: "Jakunin Oleg",
+    publisher: "Jakunin Oleg",
+    category: "technology",
     alternates: {
       canonical,
       languages: Object.fromEntries(
@@ -57,11 +69,24 @@ export async function generateMetadata({
       siteName: "Jakunin Oleg",
       title,
       description,
+      images: [ogImage],
     },
     twitter: {
-      card: "summary_large_image",
+      card: "summary",
       title,
       description,
+      images: [ogImage.url],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
     icons: {
       icon: [

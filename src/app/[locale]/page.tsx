@@ -3,6 +3,7 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { JsonLd } from "@/components/JsonLd";
 import { Reveal } from "@/components/Reveal";
 import { Services } from "@/components/Services";
 import { Stack } from "@/components/Stack";
@@ -15,12 +16,18 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("Nav");
+  const tNav = await getTranslations("Nav");
+  const tMeta = await getTranslations("Meta");
 
   return (
     <>
+      <JsonLd
+        locale={locale}
+        title={tMeta("title")}
+        description={tMeta("description")}
+      />
       <a href="#main" className="skip-link">
-        {t("skipToContent")}
+        {tNav("skipToContent")}
       </a>
       <Header />
       <Reveal />

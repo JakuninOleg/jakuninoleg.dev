@@ -366,6 +366,53 @@ img {
   grid-template-columns: minmax(0, 1fr);
 }
 
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.1rem, 3vw, 1.75rem);
+  z-index: 12;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  transform: translateX(-50%);
+  border: 1px solid rgba(238, 242, 247, 0.28);
+  border-radius: 999px;
+  background: rgba(10, 12, 18, 0.72);
+  color: var(--fg);
+  font-size: 1.05rem;
+  line-height: 1;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.scroll-cue:hover {
+  transform: translateX(-50%) translateY(3px);
+  border-color: color-mix(in srgb, var(--cyan) 42%, transparent);
+  background: rgba(16, 20, 30, 0.9);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-cue span {
+    display: inline-block;
+    animation: scroll-cue-bob 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes scroll-cue-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
 .hero-copy {
   max-width: 620px;
   margin-top: clamp(0.35rem, 1.4vw, 1rem);
@@ -1326,6 +1373,12 @@ img {
   position: relative;
   min-width: 11rem;
   overflow: hidden;
+  margin-top: 0.85rem;
+  margin-bottom: 0.55rem;
+}
+
+.contact-form .form-hint {
+  margin-top: 0.15rem;
 }
 
 .contact-submit.is-sending {
@@ -1465,6 +1518,11 @@ img {
   .hero-content {
     grid-template-columns: minmax(0, 620px);
     gap: 28px;
+    padding-block: clamp(7.5rem, 14vh, 9.5rem) 3.5rem;
+  }
+
+  .hero-copy {
+    margin-top: clamp(0.75rem, 2vw, 1.75rem);
   }
 
   .section-head {
@@ -1655,8 +1713,13 @@ img {
   .service-card,
   .contact-method,
   .btn-main,
-  .btn-side {
+  .btn-side,
+  .scroll-cue {
     transition: none;
+  }
+
+  .scroll-cue span {
+    animation: none !important;
   }
 
   .service-card:hover,

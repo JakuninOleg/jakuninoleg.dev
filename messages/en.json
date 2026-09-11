@@ -1,7 +1,8 @@
 {
   "Meta": {
-    "title": "Jakunin Oleg — websites, web apps, AI features",
-    "description": "Frontend / fullstack developer. Sites, dashboards, AI gateways, automation — interface, logic, and launch."
+    "title": "Jakunin Oleg — programmer, website & web app developer",
+    "description": "Frontend and fullstack developer Jakunin Oleg: websites, landing pages, web apps, MVPs, and AI features. Portfolio, stack, and contact for hire.",
+    "keywords": "programmer, website developer, web developer, frontend developer, fullstack developer, build a website, web app development, landing page, MVP, Jakunin Oleg"
   },
   "Nav": {
     "work": "Work",
@@ -19,9 +20,10 @@
   "Hero": {
     "eyebrow": "Frontend / Fullstack developer",
     "headline": "Building websites, apps, and AI features",
-    "lead": "Landing pages, dashboards, gateways, bots, and automation. I take the interface, the logic, integrations, and getting it live.",
+    "lead": "I create websites, landing pages, dashboards, gateways, bots, and automation. Interface, logic, integrations, and launch — from brief to a working product.",
     "primaryCta": "Discuss a project",
     "secondaryCta": "See work",
+    "scrollDown": "Scroll to work",
     "focusTitle": "My focus",
     "focusTag": "result",
     "focus": [
@@ -67,8 +69,8 @@
   },
   "Services": {
     "kicker": "What you can order",
-    "title": "Interface, logic, and launch — one process",
-    "lead": "I turn a brief, a mock, or a messy idea into a working digital product.",
+    "title": "Website and app development — one process to launch",
+    "lead": "I turn a brief, a mock, or a messy idea into a working digital product — from landing pages to fullstack services.",
     "cta": "See work",
     "items": [
       {
