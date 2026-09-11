@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 /**
  * Fixed mascot + flashlight stickers (Ilya-style).
  * Base character never changes. Reveal layer is stickers-only.
- * Plain <img> keeps absolute CSS layout; assets are precompressed WebP.
+ * Flashlight reveal: desktop pointer only. Mobile shows a soft peek.
  */
 export function HeroStage() {
   const stageRef = useRef<HTMLDivElement>(null);
@@ -18,6 +18,21 @@ export function HeroStage() {
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    const narrow = window.matchMedia("(max-width: 819px)").matches;
+    const staticPeek = reduced || coarse || narrow;
+
+    const clearMask = () => {
+      stickers.style.webkitMaskImage = "none";
+      stickers.style.maskImage = "none";
+      stickers.classList.add("hero-stickers--peek");
+    };
+
+    if (staticPeek) {
+      clearMask();
+      return;
+    }
+
+    stickers.classList.remove("hero-stickers--peek");
 
     const state = {
       targetX: 280,
@@ -36,19 +51,6 @@ export function HeroStage() {
       stickers.style.maskImage = mask;
     };
 
-    if (reduced || coarse) {
-      const paintStatic = () => {
-        applyMask(
-          (stickers.clientWidth || 600) * 0.55,
-          (stickers.clientHeight || 700) * 0.4,
-          coarse ? 260 : 240,
-        );
-      };
-      if (stickers.complete && stickers.naturalWidth > 0) paintStatic();
-      else stickers.addEventListener("load", paintStatic, { once: true });
-      return;
-    }
-
     const onPointer = (event: PointerEvent) => {
       const rect = stickers.getBoundingClientRect();
       state.targetX = event.clientX - rect.left;
@@ -58,7 +60,6 @@ export function HeroStage() {
     const tick = () => {
       if (!state.running) return;
       const width = stickers.clientWidth || 600;
-      const height = stickers.clientHeight || 700;
 
       const ease = 0.12;
       state.x += (state.targetX - state.x) * ease;

@@ -38,6 +38,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
   color-scheme: dark;
 }
 
@@ -689,6 +690,13 @@ img {
   filter: none;
   -webkit-mask-image: radial-gradient(circle 0 at 50% 50%, black 0, transparent 100%);
   mask-image: radial-gradient(circle 0 at 50% 50%, black 0, transparent 100%);
+}
+
+/* Mobile / touch: stickers faintly visible, no flashlight reveal */
+.hero-stickers--peek {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  opacity: 0.42;
 }
 
 .skip-link {
@@ -1696,12 +1704,9 @@ img {
     top: 12px;
   }
 
-  .brand strong {
-    font-size: 0.9rem;
-  }
-
-  .brand span {
-    font-size: 0.68rem;
+  .brand__first,
+  .brand__last {
+    font-size: clamp(1.15rem, 5.2vw, 1.35rem);
   }
 
   .menu-button {
@@ -1759,6 +1764,11 @@ img {
     z-index: 5;
     opacity: 1;
     transform: none;
+  }
+
+  .hero-stickers,
+  .hero-stickers--peek {
+    opacity: 0.4;
   }
 
   .hero-copy {
