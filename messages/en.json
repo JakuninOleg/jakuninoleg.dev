@@ -113,7 +113,7 @@
       "frontend": "Frontend",
       "backend": "Backend",
       "ai": "AI / product",
-      "quality": "Quality / delivery"
+      "quality": "Tests / CI"
     }
   },
   "Contact": {

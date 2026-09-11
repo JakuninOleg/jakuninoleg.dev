@@ -17,6 +17,8 @@ export type ProjectMeta = {
   href?: string;
   repo?: string;
   accent: string;
+  /** How the cover sits in the 16:10 frame */
+  imageFit?: "cover" | "contain";
 };
 
 export const projectsMeta: ProjectMeta[] = [
@@ -45,6 +47,7 @@ export const projectsMeta: ProjectMeta[] = [
     image: "/projects/go-ai.webp",
     repo: "https://github.com/JakuninOleg/Go-Ai",
     accent: "#60A5FA",
+    imageFit: "contain",
   },
   {
     id: "aokemz",

@@ -27,7 +27,9 @@ export async function Work() {
             };
 
             const media = (
-              <div className="case-media">
+              <div
+                className={`case-media${project.imageFit === "contain" ? " case-media--contain" : ""}`}
+              >
                 <Image
                   src={project.image}
                   alt={t("screenshotAlt", { title })}
