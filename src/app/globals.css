@@ -676,19 +676,12 @@ img {
   user-select: none;
 }
 
-.hero-stickers--behind {
-  z-index: 2;
-  filter: none;
-  -webkit-mask-image: radial-gradient(circle 0 at 50% 50%, black 0, transparent 100%);
-  mask-image: radial-gradient(circle 0 at 50% 50%, black 0, transparent 100%);
-}
-
 .hero-mascot {
   z-index: 3;
   filter: drop-shadow(0 28px 60px rgba(0, 0, 0, 0.45));
 }
 
-.hero-stickers--front {
+.hero-stickers {
   z-index: 5;
   filter: none;
   -webkit-mask-image: radial-gradient(circle 0 at 50% 50%, black 0, transparent 100%);
@@ -713,25 +706,8 @@ img {
   z-index: 1;
 }
 
-/* Mobile / touch: soft peek of props (mascot stays fully solid underneath/between) */
 .hero-stickers--peek {
-  -webkit-mask-image: radial-gradient(
-    circle 62% at 54% 40%,
-    black 0%,
-    black 34%,
-    rgba(0, 0, 0, 0.5) 58%,
-    rgba(0, 0, 0, 0.15) 78%,
-    transparent 100%
-  ) !important;
-  mask-image: radial-gradient(
-    circle 62% at 54% 40%,
-    black 0%,
-    black 34%,
-    rgba(0, 0, 0, 0.5) 58%,
-    rgba(0, 0, 0, 0.15) 78%,
-    transparent 100%
-  ) !important;
-  opacity: 0.95;
+  opacity: 0.85;
 }
 
 .skip-link {
@@ -1803,15 +1779,11 @@ img {
     transform: none;
   }
 
-  .hero-stickers--behind {
-    z-index: 2;
-  }
-
   .hero-mascot {
     z-index: 5;
   }
 
-  .hero-stickers--front {
+  .hero-stickers {
     z-index: 6;
   }
 

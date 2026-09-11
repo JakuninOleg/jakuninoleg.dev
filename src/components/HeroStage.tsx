@@ -3,42 +3,38 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Three layers (Ilya depth, without morphing the character):
- * 1) stickers-behind — under the mascot (peek from behind legs/shoulders)
- * 2) mascot-base — never masked, never changes
- * 3) stickers-front — over the mascot, flashlight reveal on desktop
+ * Base mascot never changes.
+ * Stickers layer (real alpha) sits on top; desktop flashlight reveals it.
+ * Mobile: soft static peek — no checkerboard plates.
  */
 export function HeroStage() {
   const stageRef = useRef<HTMLDivElement>(null);
-  const behindRef = useRef<HTMLImageElement>(null);
-  const frontRef = useRef<HTMLImageElement>(null);
+  const stickersRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const stage = stageRef.current;
-    const behind = behindRef.current;
-    const front = frontRef.current;
-    if (!stage || !behind || !front) return;
+    const stickers = stickersRef.current;
+    if (!stage || !stickers) return;
 
-    const layers = [behind, front];
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
     const narrow = window.matchMedia("(max-width: 819px)").matches;
     const staticPeek = reduced || coarse || narrow;
 
-    const setPeek = () => {
-      for (const layer of layers) {
-        layer.style.webkitMaskImage = "none";
-        layer.style.maskImage = "none";
-        layer.classList.add("hero-stickers--peek");
-      }
+    const applyPeek = () => {
+      stickers.style.webkitMaskImage =
+        "radial-gradient(circle 58% at 54% 40%, black 0%, black 30%, rgba(0,0,0,0.45) 58%, transparent 100%)";
+      stickers.style.maskImage =
+        "radial-gradient(circle 58% at 54% 40%, black 0%, black 30%, rgba(0,0,0,0.45) 58%, transparent 100%)";
+      stickers.classList.add("hero-stickers--peek");
     };
 
     if (staticPeek) {
-      setPeek();
+      applyPeek();
       return;
     }
 
-    for (const layer of layers) layer.classList.remove("hero-stickers--peek");
+    stickers.classList.remove("hero-stickers--peek");
 
     const state = {
       targetX: 280,
@@ -53,21 +49,19 @@ export function HeroStage() {
 
     const applyMask = (x: number, y: number, radius: number) => {
       const mask = `radial-gradient(circle ${radius}px at ${x}px ${y}px, black 0%, black 42%, rgba(0,0,0,0.68) 60%, rgba(0,0,0,0.2) 78%, transparent 100%)`;
-      for (const layer of layers) {
-        layer.style.webkitMaskImage = mask;
-        layer.style.maskImage = mask;
-      }
+      stickers.style.webkitMaskImage = mask;
+      stickers.style.maskImage = mask;
     };
 
     const onPointer = (event: PointerEvent) => {
-      const rect = front.getBoundingClientRect();
+      const rect = stickers.getBoundingClientRect();
       state.targetX = event.clientX - rect.left;
       state.targetY = event.clientY - rect.top;
     };
 
     const tick = () => {
       if (!state.running) return;
-      const width = front.clientWidth || 600;
+      const width = stickers.clientWidth || 600;
       const ease = 0.12;
       state.x += (state.targetX - state.x) * ease;
       state.y += (state.targetY - state.y) * ease;
@@ -107,16 +101,16 @@ export function HeroStage() {
     document.addEventListener("visibilitychange", onVisibility);
 
     const boot = () => {
-      state.targetX = (front.clientWidth || 600) * 0.55;
-      state.targetY = (front.clientHeight || 700) * 0.38;
+      state.targetX = (stickers.clientWidth || 600) * 0.55;
+      state.targetY = (stickers.clientHeight || 700) * 0.38;
       state.x = state.targetX;
       state.y = state.targetY;
-      applyMask(state.x, state.y, Math.min((front.clientWidth || 600) * 0.3, 240));
+      applyMask(state.x, state.y, Math.min((stickers.clientWidth || 600) * 0.3, 240));
       start();
     };
 
-    if (front.complete && front.naturalWidth > 0) boot();
-    else front.addEventListener("load", boot, { once: true });
+    if (stickers.complete && stickers.naturalWidth > 0) boot();
+    else stickers.addEventListener("load", boot, { once: true });
 
     return () => {
       stop();
@@ -131,17 +125,6 @@ export function HeroStage() {
       <div className="hero-stage__glow" />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        ref={behindRef}
-        className="hero-stickers hero-stickers--behind"
-        src="/mascot/mascot-stickers-behind.webp"
-        alt=""
-        width={900}
-        height={900}
-        decoding="async"
-        fetchPriority="low"
-      />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
         className="hero-mascot"
         src="/mascot/mascot-base.webp"
         alt=""
@@ -152,9 +135,9 @@ export function HeroStage() {
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        ref={frontRef}
-        className="hero-stickers hero-stickers--front"
-        src="/mascot/mascot-stickers-front.webp"
+        ref={stickersRef}
+        className="hero-stickers"
+        src="/mascot/mascot-stickers.webp"
         alt=""
         width={900}
         height={900}
