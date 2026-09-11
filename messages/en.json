@@ -1,0 +1,152 @@
+{
+  "Meta": {
+    "title": "Jakunin Oleg — websites, web apps, AI features",
+    "description": "Frontend / fullstack developer. Sites, dashboards, AI gateways, automation — interface, logic, and launch."
+  },
+  "Nav": {
+    "work": "Work",
+    "services": "Services",
+    "stack": "Stack",
+    "contact": "Contact",
+    "write": "Discuss a project",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "navLabel": "Primary",
+    "mobileNavLabel": "Mobile"
+  },
+  "Hero": {
+    "eyebrow": "Frontend / Fullstack developer",
+    "headline": "Building websites, apps, and AI features",
+    "lead": "Landing pages, dashboards, gateways, bots, and automation. I take the interface, the logic, integrations, and getting it live.",
+    "primaryCta": "Discuss a project",
+    "secondaryCta": "See work",
+    "focusTitle": "My focus",
+    "focusTag": "result",
+    "focus": [
+      "Understand the brief and propose a working approach",
+      "Build around the key user scenarios",
+      "Ship something people can actually use"
+    ],
+    "role": "Frontend / Fullstack",
+    "watermark": "Developer"
+  },
+  "Work": {
+    "kicker": "Work",
+    "title": "Products already in use",
+    "screenshotAlt": "Screenshot of {title}",
+    "projects": {
+      "okhana": {
+        "tag": "AI · family product",
+        "summary": "Family hub with memory search, roles, and privacy. Answers come from family data — not a generic chat bot.",
+        "result": "Live at okhanahome.com"
+      },
+      "tesla-explorer": {
+        "tag": "maps · routes",
+        "summary": "Trip cabinet for US drives: home and work, charging, Mapbox, route planning through my own AI gateway.",
+        "result": "Auth.js · Neon · Mapbox · Go-Ai"
+      },
+      "go-ai": {
+        "tag": "backend · LLM gateway",
+        "summary": "OpenAI-compatible gateway in Go. Provider secrets stay on the server. Model aliases, SSE streaming, Fly.io.",
+        "result": "Powers Tesla Explorer and other apps"
+      },
+      "aokemz": {
+        "title": "AO KEMZ",
+        "tag": "corporate site",
+        "summary": "Plant website: catalog, news, CMS, forms, PWA. Nuxt in production for a real industrial client.",
+        "result": "Live at aokemz.ru"
+      },
+      "lu4-ai": {
+        "tag": "desktop · OCR · HID",
+        "summary": "Python bot that reads a game HUD with OCR, runs a hunt loop, and drives keyboard/mouse via Arduino Leonardo.",
+        "result": ".exe + hardware config"
+      }
+    }
+  },
+  "Services": {
+    "kicker": "What you can order",
+    "title": "Interface, logic, and launch — one process",
+    "lead": "I turn a brief, a mock, or a messy idea into a working digital product.",
+    "cta": "See work",
+    "items": [
+      {
+        "tag": "WEB",
+        "title": "Websites and landing pages",
+        "text": "A page built for a specific job: clear offer, responsive layout, forms, analytics."
+      },
+      {
+        "tag": "APP",
+        "title": "Web apps and services",
+        "text": "Products with real user flows: accounts, roles, data, payments, integrations."
+      },
+      {
+        "tag": "AI",
+        "title": "AI inside the product",
+        "text": "Chat, RAG, gateway, streaming — wired into the scenario, not bolted on as a widget."
+      },
+      {
+        "tag": "API",
+        "title": "Backend and APIs",
+        "text": "Auth, databases, provider proxies, Docker, deploy — so the UI has something solid behind it."
+      },
+      {
+        "tag": "MVP",
+        "title": "MVP to test the idea",
+        "text": "A first version you can show customers, collect feedback, and decide what to build next."
+      },
+      {
+        "tag": "FIX",
+        "title": "Work on existing code",
+        "text": "I’ll read the legacy, fix the bottleneck, wire CI, and push it to release."
+      }
+    ]
+  },
+  "Stack": {
+    "kicker": "Experience and stack",
+    "title": "Fullstack with a shipping bias",
+    "lead": "I can join a team, own a feature end to end, or take a product from brief to production.",
+    "groups": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "ai": "AI / product",
+      "quality": "Quality / delivery"
+    }
+  },
+  "Contact": {
+    "kicker": "Contact",
+    "title": "Shall we discuss a project or how we work together?",
+    "lead": "Write me directly or leave a short request in the form.",
+    "always": "Always reachable",
+    "alwaysText": "For projects, collaboration, and work offers.",
+    "telegram": "Telegram",
+    "email": "Email",
+    "github": "GitHub",
+    "formTitle": "Send a request",
+    "formLead": "Describe the task, format, and the result you want. I’ll reply and suggest a next step.",
+    "name": "Name",
+    "namePlaceholder": "How should I address you",
+    "emailLabel": "Email",
+    "emailPlaceholder": "name@example.com",
+    "message": "Brief",
+    "messagePlaceholder": "Project, MVP, fix, consulting — and the outcome you want",
+    "submit": "Send message",
+    "sending": "Sending…",
+    "successTitle": "Message sent",
+    "success": "Thanks. I got your message and will get back to you soon.",
+    "sendAnother": "Write another",
+    "error": "Couldn’t send. Write on Telegram or email.",
+    "channelHint": "You can write freely: project, MVP, rework, consulting, or collaboration.",
+    "errors": {
+      "nameRequired": "Enter your name",
+      "nameShort": "Name is too short",
+      "emailRequired": "Enter an email",
+      "emailInvalid": "That doesn’t look like an email",
+      "messageRequired": "Describe the task",
+      "messageShort": "A bit more detail, please",
+      "messageLong": "Keep it under 1500 characters"
+    }
+  },
+  "Footer": {
+    "top": "Back to top"
+  }
+}
