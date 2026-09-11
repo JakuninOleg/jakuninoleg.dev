@@ -12,7 +12,9 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "navLabel": "Primary",
-    "mobileNavLabel": "Mobile"
+    "mobileNavLabel": "Mobile",
+    "socialLabel": "Social and contacts",
+    "skipToContent": "Skip to content"
   },
   "Hero": {
     "eyebrow": "Frontend / Fullstack developer",

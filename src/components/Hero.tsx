@@ -1,10 +1,8 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { HeroStage } from "@/components/HeroStage";
 
-export function Hero() {
-  const t = useTranslations("Hero");
+export async function Hero() {
+  const t = await getTranslations("Hero");
   const focus = t.raw("focus") as string[];
 
   return (
@@ -17,14 +15,10 @@ export function Hero() {
 
       <div className="shell hero-content">
         <div className="hero-copy">
-          <p className="eyebrow reveal-item">{t("eyebrow")}</p>
-          <h1 id="hero-heading" className="reveal-item" style={{ ["--reveal-delay" as string]: "0.06s" }}>
-            {t("headline")}
-          </h1>
-          <p className="lead reveal-item" style={{ ["--reveal-delay" as string]: "0.12s" }}>
-            {t("lead")}
-          </p>
-          <div className="hero-actions reveal-item" style={{ ["--reveal-delay" as string]: "0.18s" }}>
+          <p className="eyebrow">{t("eyebrow")}</p>
+          <h1 id="hero-heading">{t("headline")}</h1>
+          <p className="lead">{t("lead")}</p>
+          <div className="hero-actions">
             <a href="#contact" className="btn-main">
               {t("primaryCta")}
             </a>
@@ -32,7 +26,7 @@ export function Hero() {
               {t("secondaryCta")}
             </a>
           </div>
-          <div className="focus-card reveal-item" style={{ ["--reveal-delay" as string]: "0.24s" }}>
+          <div className="focus-card reveal-item" style={{ ["--reveal-delay" as string]: "0.12s" }}>
             <div className="focus-card__head">
               <strong>{t("focusTitle")}</strong>
               <span className="focus-card__tag">{t("focusTag")}</span>

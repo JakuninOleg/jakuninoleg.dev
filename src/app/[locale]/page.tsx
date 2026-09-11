@@ -1,4 +1,4 @@
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -15,12 +15,16 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("Nav");
 
   return (
     <>
+      <a href="#main" className="skip-link">
+        {t("skipToContent")}
+      </a>
       <Header />
       <Reveal />
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         <Hero />
         <Work />
         <Services />

@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 /**
  * Fixed mascot + flashlight stickers (Ilya-style).
  * Base character never changes. Reveal layer is stickers-only.
+ * Plain <img> keeps absolute CSS layout; assets are precompressed WebP.
  */
 export function HeroStage() {
   const stageRef = useRef<HTMLDivElement>(null);
@@ -35,12 +36,16 @@ export function HeroStage() {
       stickers.style.maskImage = mask;
     };
 
-    if (reduced) {
-      applyMask(
-        (stickers.clientWidth || 600) * 0.55,
-        (stickers.clientHeight || 700) * 0.4,
-        240,
-      );
+    if (reduced || coarse) {
+      const paintStatic = () => {
+        applyMask(
+          (stickers.clientWidth || 600) * 0.55,
+          (stickers.clientHeight || 700) * 0.4,
+          coarse ? 260 : 240,
+        );
+      };
+      if (stickers.complete && stickers.naturalWidth > 0) paintStatic();
+      else stickers.addEventListener("load", paintStatic, { once: true });
       return;
     }
 
@@ -55,16 +60,10 @@ export function HeroStage() {
       const width = stickers.clientWidth || 600;
       const height = stickers.clientHeight || 700;
 
-      if (coarse) {
-        const t = performance.now() * 0.001;
-        state.targetX = width * (0.52 + 0.22 * Math.sin(1.15 * t));
-        state.targetY = height * (0.4 + 0.16 * Math.cos(0.92 * t));
-      }
-
-      const ease = coarse ? 0.18 : 0.12;
+      const ease = 0.12;
       state.x += (state.targetX - state.x) * ease;
       state.y += (state.targetY - state.y) * ease;
-      state.radius = Math.min(width * (coarse ? 0.34 : 0.28), coarse ? 240 : 210);
+      state.radius = Math.min(width * 0.28, 210);
       applyMask(state.x, state.y, state.radius);
       state.raf = requestAnimationFrame(tick);
     };
@@ -96,9 +95,7 @@ export function HeroStage() {
 
     observer.observe(stage);
     const hero = stage.closest(".hero") ?? document;
-    if (!coarse) {
-      hero.addEventListener("pointermove", onPointer as EventListener, { passive: true });
-    }
+    hero.addEventListener("pointermove", onPointer as EventListener, { passive: true });
     document.addEventListener("visibilitychange", onVisibility);
 
     const boot = () => {
@@ -109,16 +106,14 @@ export function HeroStage() {
       start();
     };
 
-    if (stickers.complete) boot();
+    if (stickers.complete && stickers.naturalWidth > 0) boot();
     else stickers.addEventListener("load", boot, { once: true });
 
     return () => {
       stop();
       observer.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
-      if (!coarse) {
-        hero.removeEventListener("pointermove", onPointer as EventListener);
-      }
+      hero.removeEventListener("pointermove", onPointer as EventListener);
     };
   }, []);
 
@@ -128,21 +123,23 @@ export function HeroStage() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className="hero-mascot"
-        src="/mascot/mascot-base.png?v=15"
+        src="/mascot/mascot-base.webp"
         alt=""
-        width={1100}
-        height={1100}
+        width={900}
+        height={900}
         decoding="async"
+        fetchPriority="high"
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         ref={stickersRef}
         className="hero-stickers"
-        src="/mascot/mascot-stickers.png?v=15"
+        src="/mascot/mascot-stickers.webp"
         alt=""
-        width={1100}
-        height={1100}
+        width={900}
+        height={900}
         decoding="async"
+        fetchPriority="low"
       />
     </div>
   );

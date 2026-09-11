@@ -124,7 +124,14 @@ export function Contact() {
             <div className="contact-direct__head">
               <div className="contact-avatar" aria-hidden>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/mascot/mascot-contact.png" alt="" width={172} height={172} />
+                <img
+                  src="/mascot/mascot-contact.webp"
+                  alt=""
+                  width={172}
+                  height={172}
+                  decoding="async"
+                  loading="lazy"
+                />
               </div>
               <div>
                 <h3>{t("always")}</h3>
@@ -176,10 +183,13 @@ export function Contact() {
                     onChange={(e) => onChange("name", e.target.value)}
                     onBlur={() => onBlur("name")}
                     aria-invalid={Boolean(errors.name && touched.name)}
+                    aria-describedby={errors.name && touched.name ? "contact-name-error" : undefined}
                     disabled={status === "sending"}
                   />
                   {errors.name && touched.name ? (
-                    <em className="field-error">{errors.name}</em>
+                    <em id="contact-name-error" className="field-error">
+                      {errors.name}
+                    </em>
                   ) : null}
                 </label>
 
@@ -194,10 +204,13 @@ export function Contact() {
                     onChange={(e) => onChange("email", e.target.value)}
                     onBlur={() => onBlur("email")}
                     aria-invalid={Boolean(errors.email && touched.email)}
+                    aria-describedby={errors.email && touched.email ? "contact-email-error" : undefined}
                     disabled={status === "sending"}
                   />
                   {errors.email && touched.email ? (
-                    <em className="field-error">{errors.email}</em>
+                    <em id="contact-email-error" className="field-error">
+                      {errors.email}
+                    </em>
                   ) : null}
                 </label>
 
@@ -217,10 +230,15 @@ export function Contact() {
                     onChange={(e) => onChange("message", e.target.value)}
                     onBlur={() => onBlur("message")}
                     aria-invalid={Boolean(errors.message && touched.message)}
+                    aria-describedby={
+                      errors.message && touched.message ? "contact-message-error" : undefined
+                    }
                     disabled={status === "sending"}
                   />
                   {errors.message && touched.message ? (
-                    <em className="field-error">{errors.message}</em>
+                    <em id="contact-message-error" className="field-error">
+                      {errors.message}
+                    </em>
                   ) : null}
                 </label>
 

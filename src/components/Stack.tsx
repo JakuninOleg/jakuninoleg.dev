@@ -1,10 +1,8 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { stackGroupsMeta } from "@/content/stack";
 
-export function Stack() {
-  const t = useTranslations("Stack");
+export async function Stack() {
+  const t = await getTranslations("Stack");
 
   return (
     <section id="stack" className="section" aria-labelledby="stack-heading">

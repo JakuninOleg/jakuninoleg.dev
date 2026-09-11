@@ -12,7 +12,9 @@
     "openMenu": "Открыть меню",
     "closeMenu": "Закрыть меню",
     "navLabel": "Навигация",
-    "mobileNavLabel": "Мобильная навигация"
+    "mobileNavLabel": "Мобильная навигация",
+    "socialLabel": "Соцсети и контакты",
+    "skipToContent": "К основному содержимому"
   },
   "Hero": {
     "eyebrow": "Frontend / Fullstack разработчик",

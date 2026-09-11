@@ -5,22 +5,21 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
-const display = Onest({
-  variable: "--font-display",
-  subsets: ["latin", "cyrillic"],
-  weight: ["500", "600", "700", "800"],
-});
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakuninoleg.dev";
 
-const body = Onest({
-  variable: "--font-body",
+const onest = Onest({
+  variable: "--font-onest",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600", "700", "800"],
+  display: "swap",
 });
 
 const mono = JetBrains_Mono({
   variable: "--font-mono",
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   weight: ["400", "500"],
+  display: "swap",
+  preload: false,
 });
 
 export function generateStaticParams() {
@@ -34,20 +33,50 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Meta" });
+  const title = t("title");
+  const description = t("description");
+  const canonical = `${siteUrl}/${locale}`;
+
   return {
+    metadataBase: new URL(siteUrl),
     title: {
-      default: t("title"),
+      default: title,
       template: `%s · Jakunin Oleg`,
     },
-    description: t("description"),
+    description,
+    alternates: {
+      canonical,
+      languages: Object.fromEntries(
+        routing.locales.map((l) => [l, `${siteUrl}/${l}`]),
+      ),
+    },
+    openGraph: {
+      type: "website",
+      locale: locale === "ru" ? "ru_RU" : "en_US",
+      url: canonical,
+      siteName: "Jakunin Oleg",
+      title,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
     icons: {
       icon: [
         { url: "/favicon/favicon.ico", sizes: "any" },
-        { url: "/favicon/favicon.svg", type: "image/svg+xml" },
         { url: "/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" },
       ],
       apple: [{ url: "/favicon/apple-touch-icon.png", sizes: "180x180" }],
     },
+  };
+}
+
+export function generateViewport() {
+  return {
+    themeColor: "#07090f",
+    colorScheme: "dark" as const,
   };
 }
 
@@ -67,7 +96,8 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
+      className={`${onest.variable} ${mono.variable} h-full antialiased`}
+      style={{ colorScheme: "dark" }}
     >
       <body className="min-h-full flex flex-col font-sans">
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>

@@ -1,8 +1,8 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { site } from "@/content/site";
 
-export function Footer() {
-  const t = useTranslations("Footer");
+export async function Footer() {
+  const t = await getTranslations("Footer");
 
   return (
     <footer className="footer">
