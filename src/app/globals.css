@@ -91,9 +91,9 @@ img {
 
 .topbar__inner {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .menu-button {
@@ -113,6 +113,10 @@ img {
     color 0.16s ease,
     transform 0.16s ease,
     border-color 0.16s ease;
+}
+
+.topbar-eyebrow {
+  display: none;
 }
 
 .menu-button:hover {
