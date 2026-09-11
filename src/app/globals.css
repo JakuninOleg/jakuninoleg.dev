@@ -94,10 +94,88 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
+  pointer-events: none;
+}
+
+.brand,
+.topbar-nav,
+.topbar-end,
+.menu-button {
+  pointer-events: auto;
+}
+
+.brand {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+  max-width: min(14rem, calc(100% - 4.5rem));
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 0.45rem 0.85rem;
+  background: rgba(12, 15, 22, 0.74);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(16px);
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.brand strong {
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.brand span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-nav {
+  display: none;
+  align-items: center;
+  gap: 0.15rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.28rem;
+  background: rgba(12, 15, 22, 0.72);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24);
+}
+
+.topbar-nav a {
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 650;
+  transition:
+    color 0.16s ease,
+    background 0.16s ease;
+}
+
+.topbar-nav a:hover {
+  color: var(--fg);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.topbar-end {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-left: auto;
+}
+
+.topbar-locale {
+  display: none;
 }
 
 .menu-button {
-  pointer-events: auto;
   display: grid;
   width: 2.875rem;
   height: 2.875rem;
@@ -173,13 +251,14 @@ img {
 .menu-panel {
   position: fixed;
   top: 18px;
-  left: var(--gutter);
+  right: var(--gutter);
+  left: auto;
   z-index: 39;
   display: grid;
   width: min(calc(100% - var(--gutter) * 2), 17.5rem);
   min-height: 14rem;
   transform: scale(0.18);
-  transform-origin: 23px 23px;
+  transform-origin: calc(100% - 23px) 23px;
   border: 1px solid var(--line);
   border-radius: 1.45rem;
   padding: 4rem 1.35rem 1.35rem;
@@ -1529,6 +1608,23 @@ img {
 }
 
 @media (min-width: 820px) {
+  .topbar-nav {
+    display: inline-flex;
+  }
+
+  .topbar-locale {
+    display: block;
+  }
+
+  .menu-button {
+    display: none;
+  }
+
+  .menu-backdrop,
+  .menu-panel {
+    display: none;
+  }
+
   .hero-content {
     grid-template-columns: minmax(0, 620px);
     gap: 28px;
@@ -1595,36 +1691,12 @@ img {
     top: 12px;
   }
 
-  .topbar-eyebrow {
-    display: inline-flex;
-    pointer-events: none;
-    max-width: min(17.5rem, calc(100% - 4.25rem));
-    margin: 0;
-    border: 1px solid color-mix(in srgb, var(--cyan) 35%, transparent);
-    border-radius: 999px;
-    background:
-      linear-gradient(
-        120deg,
-        color-mix(in srgb, var(--cyan) 18%, transparent),
-        color-mix(in srgb, var(--violet) 16%, transparent)
-      ),
-      rgba(12, 15, 22, 0.78);
-    color: #cffafe;
-    font-size: 0.72rem;
-    font-weight: 650;
-    letter-spacing: 0.03em;
-    line-height: 1.2;
-    padding: 0.45rem 0.75rem;
-    backdrop-filter: blur(14px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .brand strong {
+    font-size: 0.9rem;
   }
 
-  .topbar.is-menu-open .topbar-eyebrow {
-    opacity: 0;
-    pointer-events: none;
+  .brand span {
+    font-size: 0.68rem;
   }
 
   .menu-button {
@@ -1634,10 +1706,11 @@ img {
 
   .menu-panel {
     top: 12px;
-    left: var(--gutter);
+    right: var(--gutter);
+    left: auto;
     width: min(calc(100vw - var(--gutter) * 2), 17rem);
     min-height: 13.5rem;
-    transform-origin: 22px 22px;
+    transform-origin: calc(100% - 22px) 22px;
     padding-top: 3.75rem;
   }
 

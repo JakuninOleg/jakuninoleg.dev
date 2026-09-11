@@ -50,6 +50,13 @@ const playwrightIcon: TechIcon = {
   path: "M23.01 12.0a2.45 2.45 0 0 0-1.53-2.26l-7.5-3.1a2.48 2.48 0 0 0-1.9 0l-7.5 3.1A2.45 2.45 0 0 0 2.99 12v6.28a2.45 2.45 0 0 0 1.53 2.26l7.5 3.1c.6.25 1.28.25 1.88 0l7.5-3.1a2.45 2.45 0 0 0 1.53-2.26Zm-9.1 7.72-6.9-2.85V13.7l6.9 2.86Zm7.2-2.85-6.9 2.85v-3.17l6.9-2.86Zm-15.4-5.12 7.1-2.93 7.1 2.93-7.1 2.93Zm.9 1.74v3.17l2.7 1.12v-3.17Zm11.6 0-2.7 1.12v3.17l2.7-1.12Z",
 };
 
+/** Pipeline glyph — distinct from GitHub Actions */
+const cicdIcon: TechIcon = {
+  title: "CI/CD",
+  hex: "F0B429",
+  path: "M3 5.5A2.5 2.5 0 0 1 5.5 3h1A2.5 2.5 0 0 1 9 5.5v1A2.5 2.5 0 0 1 6.5 9h-1A2.5 2.5 0 0 1 3 6.5v-1Zm8.25.25a.75.75 0 0 1 1.06 0L14 7.44l1.69-1.69a.75.75 0 1 1 1.06 1.06L15.06 8.5l1.69 1.69a.75.75 0 1 1-1.06 1.06L14 9.56l-1.69 1.69a.75.75 0 1 1-1.06-1.06L12.94 8.5l-1.69-1.69a.75.75 0 0 1 0-1.06ZM15 15.5a2.5 2.5 0 0 1 2.5-2.5h1a2.5 2.5 0 0 1 2.5 2.5v1a2.5 2.5 0 0 1-2.5 2.5h-1a2.5 2.5 0 0 1-2.5-2.5v-1ZM3 15.5A2.5 2.5 0 0 1 5.5 13h1A2.5 2.5 0 0 1 9 15.5v1A2.5 2.5 0 0 1 6.5 19h-1A2.5 2.5 0 0 1 3 16.5v-1Zm8.25.25a.75.75 0 0 1 1.06 0L14 17.44l1.69-1.69a.75.75 0 1 1 1.06 1.06L15.06 18.5l1.69 1.69a.75.75 0 1 1-1.06 1.06L14 19.56l-1.69 1.69a.75.75 0 1 1-1.06-1.06L12.94 18.5l-1.69-1.69a.75.75 0 0 1 0-1.06Z",
+};
+
 function fromSimple(icon: { title: string; hex: string; path: string }): TechIcon {
   return { title: icon.title, hex: icon.hex, path: icon.path };
 }
@@ -95,7 +102,7 @@ export const stackGroupsMeta: StackGroupMeta[] = [
       { label: "Playwright", icon: playwrightIcon },
       { label: "ESLint", icon: fromSimple(siEslint) },
       { label: "GitHub Actions", icon: fromSimple(siGithubactions) },
-      { label: "CI/CD", icon: fromSimple(siGithubactions) },
+      { label: "CI/CD", icon: cicdIcon, color: "#F0B429" },
       { label: "Vercel", icon: fromSimple(siVercel), color: "#FFFFFF" },
     ],
   },

@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+import { site } from "@/content/site";
 
 export function Header() {
   const t = useTranslations("Nav");
-  const tHero = useTranslations("Hero");
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -85,22 +85,39 @@ export function Header() {
       className={`topbar${open ? " is-menu-open" : ""}${hidden ? " is-hidden" : ""}`}
     >
       <div className="shell topbar__inner">
-        <button
-          ref={buttonRef}
-          type="button"
-          className={`menu-button${open ? " is-open" : ""}`}
-          aria-expanded={mounted ? open : false}
-          aria-controls="menu-panel"
-          aria-label={open ? t("closeMenu") : t("openMenu")}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="menu-lines" aria-hidden>
-            <span />
-            <span />
-          </span>
-        </button>
+        <a href="#top" className="brand" onClick={() => setOpen(false)}>
+          <strong>{site.name}</strong>
+          <span>{site.role}</span>
+        </a>
 
-        <p className="topbar-eyebrow">{tHero("eyebrow")}</p>
+        <nav className="topbar-nav" aria-label={t("navLabel")}>
+          {links.map((link) => (
+            <a key={link.href} href={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="topbar-end">
+          <div className="topbar-locale">
+            <LocaleSwitcher />
+          </div>
+
+          <button
+            ref={buttonRef}
+            type="button"
+            className={`menu-button${open ? " is-open" : ""}`}
+            aria-expanded={mounted ? open : false}
+            aria-controls="menu-panel"
+            aria-label={open ? t("closeMenu") : t("openMenu")}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className="menu-lines" aria-hidden>
+              <span />
+              <span />
+            </span>
+          </button>
+        </div>
       </div>
 
       <div
@@ -126,7 +143,7 @@ export function Header() {
           <span aria-hidden>×</span>
         </button>
 
-        <nav aria-label={t("navLabel")}>
+        <nav aria-label={t("mobileNavLabel")}>
           {links.map((link) => (
             <a
               key={link.href}
