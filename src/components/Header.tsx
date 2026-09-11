@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
-import { site } from "@/content/site";
 
 export function Header() {
   const t = useTranslations("Nav");
@@ -86,8 +85,8 @@ export function Header() {
     >
       <div className="shell topbar__inner">
         <a href="#top" className="brand" onClick={() => setOpen(false)}>
-          <strong>{site.name}</strong>
-          <span>{site.role}</span>
+          <span className="brand__first">Jakunin</span>
+          <span className="brand__last">Oleg</span>
         </a>
 
         <nav className="topbar-nav" aria-label={t("navLabel")}>
