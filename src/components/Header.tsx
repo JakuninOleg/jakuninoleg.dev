@@ -6,6 +6,7 @@ import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 
 export function Header() {
   const t = useTranslations("Nav");
+  const tHero = useTranslations("Hero");
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -98,6 +99,8 @@ export function Header() {
             <span />
           </span>
         </button>
+
+        <p className="topbar-eyebrow">{tHero("eyebrow")}</p>
       </div>
 
       <div

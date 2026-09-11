@@ -1595,6 +1595,38 @@ img {
     top: 12px;
   }
 
+  .topbar-eyebrow {
+    display: inline-flex;
+    pointer-events: none;
+    max-width: min(17.5rem, calc(100% - 4.25rem));
+    margin: 0;
+    border: 1px solid color-mix(in srgb, var(--cyan) 35%, transparent);
+    border-radius: 999px;
+    background:
+      linear-gradient(
+        120deg,
+        color-mix(in srgb, var(--cyan) 18%, transparent),
+        color-mix(in srgb, var(--violet) 16%, transparent)
+      ),
+      rgba(12, 15, 22, 0.78);
+    color: #cffafe;
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    padding: 0.45rem 0.75rem;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .topbar.is-menu-open .topbar-eyebrow {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .menu-button {
     width: 2.75rem;
     height: 2.75rem;
@@ -1621,7 +1653,7 @@ img {
   .hero-content {
     align-content: end;
     align-items: stretch;
-    padding-block: 440px 1.5rem;
+    padding-block: 400px 1.5rem;
   }
 
   .hero-stage {
@@ -1629,7 +1661,7 @@ img {
   }
 
   .hero-stage__glow {
-    top: clamp(110px, 24vw, 150px);
+    top: clamp(72px, 16vw, 110px);
     left: auto;
     right: clamp(-250px, -46vw, -156px);
     width: clamp(640px, 176vw, 800px);
@@ -1638,7 +1670,7 @@ img {
 
   .hero-mascot,
   .hero-stickers {
-    top: clamp(78px, 14vw, 98px);
+    top: clamp(52px, 9vw, 68px);
     left: auto;
     right: clamp(-174px, -32vw, -106px);
     bottom: auto;
@@ -1674,12 +1706,7 @@ img {
   }
 
   .hero-copy .eyebrow {
-    position: absolute;
-    top: -358px;
-    left: 0;
-    z-index: 13;
-    margin: 0;
-    white-space: nowrap;
+    display: none;
   }
 
   .hero-copy h1 {
