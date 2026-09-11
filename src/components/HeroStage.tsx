@@ -3,68 +3,68 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Fixed mascot + flashlight stickers (Ilya-style).
- * Base character never changes. Reveal layer is stickers-only.
- * Flashlight reveal: desktop pointer only. Mobile shows a soft peek.
+ * Dual-layer mascot like ilyadotgr:
+ * - base: clean character
+ * - reveal: full composite (props in front + behind) with flashlight mask
+ * Desktop: pointer flashlight. Mobile: soft static peek of the reveal layer.
  */
 export function HeroStage() {
   const stageRef = useRef<HTMLDivElement>(null);
-  const stickersRef = useRef<HTMLImageElement>(null);
+  const revealRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const stage = stageRef.current;
-    const stickers = stickersRef.current;
-    if (!stage || !stickers) return;
+    const reveal = revealRef.current;
+    if (!stage || !reveal) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
     const narrow = window.matchMedia("(max-width: 819px)").matches;
     const staticPeek = reduced || coarse || narrow;
 
-    const clearMask = () => {
-      stickers.style.webkitMaskImage = "none";
-      stickers.style.maskImage = "none";
-      stickers.classList.add("hero-stickers--peek");
+    const clearToPeek = () => {
+      reveal.style.webkitMaskImage = "none";
+      reveal.style.maskImage = "none";
+      reveal.classList.add("hero-reveal--peek");
     };
 
     if (staticPeek) {
-      clearMask();
+      clearToPeek();
       return;
     }
 
-    stickers.classList.remove("hero-stickers--peek");
+    reveal.classList.remove("hero-reveal--peek");
 
     const state = {
       targetX: 280,
       targetY: 240,
       x: 280,
       y: 240,
-      radius: 200,
+      radius: 220,
       running: false,
       visible: true,
       raf: 0,
     };
 
     const applyMask = (x: number, y: number, radius: number) => {
-      const mask = `radial-gradient(circle ${radius}px at ${x}px ${y}px, black 0%, black 42%, rgba(0,0,0,0.7) 58%, rgba(0,0,0,0.2) 78%, transparent 100%)`;
-      stickers.style.webkitMaskImage = mask;
-      stickers.style.maskImage = mask;
+      const mask = `radial-gradient(circle ${radius}px at ${x}px ${y}px, black 0%, black 42%, rgba(0,0,0,0.68) 60%, rgba(0,0,0,0.2) 78%, transparent 100%)`;
+      reveal.style.webkitMaskImage = mask;
+      reveal.style.maskImage = mask;
     };
 
     const onPointer = (event: PointerEvent) => {
-      const rect = stickers.getBoundingClientRect();
+      const rect = reveal.getBoundingClientRect();
       state.targetX = event.clientX - rect.left;
       state.targetY = event.clientY - rect.top;
     };
 
     const tick = () => {
       if (!state.running) return;
-      const width = stickers.clientWidth || 600;
-
+      const width = reveal.clientWidth || 600;
       const ease = 0.12;
       state.x += (state.targetX - state.x) * ease;
       state.y += (state.targetY - state.y) * ease;
-      state.radius = Math.min(width * 0.28, 210);
+      state.radius = Math.min(width * 0.3, 240);
       applyMask(state.x, state.y, state.radius);
       state.raf = requestAnimationFrame(tick);
     };
@@ -100,15 +100,16 @@ export function HeroStage() {
     document.addEventListener("visibilitychange", onVisibility);
 
     const boot = () => {
-      state.targetX = (stickers.clientWidth || 600) * 0.58;
-      state.targetY = (stickers.clientHeight || 700) * 0.38;
+      state.targetX = (reveal.clientWidth || 600) * 0.55;
+      state.targetY = (reveal.clientHeight || 700) * 0.38;
       state.x = state.targetX;
       state.y = state.targetY;
+      applyMask(state.x, state.y, Math.min((reveal.clientWidth || 600) * 0.3, 240));
       start();
     };
 
-    if (stickers.complete && stickers.naturalWidth > 0) boot();
-    else stickers.addEventListener("load", boot, { once: true });
+    if (reveal.complete && reveal.naturalWidth > 0) boot();
+    else reveal.addEventListener("load", boot, { once: true });
 
     return () => {
       stop();
@@ -133,9 +134,9 @@ export function HeroStage() {
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        ref={stickersRef}
-        className="hero-stickers"
-        src="/mascot/mascot-stickers.webp"
+        ref={revealRef}
+        className="hero-reveal"
+        src="/mascot/mascot-reveal.webp"
         alt=""
         width={900}
         height={900}

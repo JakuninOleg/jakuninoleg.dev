@@ -650,7 +650,7 @@ img {
 }
 
 .hero-mascot,
-.hero-stickers {
+.hero-reveal {
   position: absolute;
   top: 12%;
   left: 42%;
@@ -685,18 +685,32 @@ img {
   pointer-events: none;
 }
 
-.hero-stickers {
+.hero-reveal {
   z-index: 5;
   filter: none;
   -webkit-mask-image: radial-gradient(circle 0 at 50% 50%, black 0, transparent 100%);
   mask-image: radial-gradient(circle 0 at 50% 50%, black 0, transparent 100%);
 }
 
-/* Mobile / touch: stickers faintly visible, no flashlight reveal */
-.hero-stickers--peek {
-  -webkit-mask-image: none !important;
-  mask-image: none !important;
-  opacity: 0.42;
+/* Mobile / touch: soft peek — props in front and behind without flashlight */
+.hero-reveal--peek {
+  -webkit-mask-image: radial-gradient(
+    circle 58% at 54% 38%,
+    black 0%,
+    black 28%,
+    rgba(0, 0, 0, 0.55) 52%,
+    rgba(0, 0, 0, 0.18) 72%,
+    transparent 100%
+  ) !important;
+  mask-image: radial-gradient(
+    circle 58% at 54% 38%,
+    black 0%,
+    black 28%,
+    rgba(0, 0, 0, 0.55) 52%,
+    rgba(0, 0, 0, 0.18) 72%,
+    transparent 100%
+  ) !important;
+  opacity: 0.92;
 }
 
 .skip-link {
@@ -1649,7 +1663,7 @@ img {
   }
 
   .hero-mascot,
-  .hero-stickers {
+  .hero-reveal {
     top: clamp(6%, 10vh, 14%);
     bottom: clamp(-10%, -4vh, -2%);
     object-position: 58% 100%;
@@ -1755,7 +1769,7 @@ img {
   }
 
   .hero-mascot,
-  .hero-stickers {
+  .hero-reveal {
     top: clamp(52px, 9vw, 68px);
     left: auto;
     right: clamp(-174px, -32vw, -106px);
@@ -1769,9 +1783,8 @@ img {
     transform: none;
   }
 
-  .hero-stickers,
-  .hero-stickers--peek {
-    opacity: 0.4;
+  .hero-reveal {
+    z-index: 6;
   }
 
   .hero-copy {
@@ -1839,9 +1852,10 @@ img {
     left: auto;
     bottom: auto;
     z-index: 12;
+    flex-shrink: 0;
     width: 3.1rem;
     height: 3.1rem;
-    margin: 1.5rem auto 1.25rem;
+    margin: 1.5rem auto 1.35rem;
     transform: none;
     border-color: rgba(238, 242, 247, 0.38);
     background: rgba(10, 12, 18, 0.88);
@@ -1852,10 +1866,6 @@ img {
   .scroll-cue:hover,
   .scroll-cue:active {
     transform: translateY(2px);
-  }
-
-  .hero-content {
-    padding-bottom: 0;
   }
 
   .hero-watermark {
