@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
-import { site } from "@/content/site";
 
 export function Header() {
   const t = useTranslations("Nav");
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const panelRef = useRef<HTMLElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const links = [
     { href: "#services", label: t("services") },
@@ -17,14 +19,11 @@ export function Header() {
     { href: "#stack", label: t("stack") },
   ];
 
-  const socials = [
-    { href: site.github, label: "GitHub", external: true },
-    { href: `mailto:${site.email}`, label: "Email", external: false },
-    { href: site.telegram, label: site.telegramHandle, external: true },
-  ];
-
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
@@ -41,10 +40,52 @@ export function Header() {
     };
   }, [open]);
 
+  useEffect(() => {
+    let lastY = window.scrollY;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (open) {
+        setHidden(false);
+        lastY = y;
+        return;
+      }
+
+      if (y < 40) {
+        setHidden(false);
+      } else if (y > lastY + 8) {
+        setHidden(true);
+      } else if (y < lastY - 8) {
+        setHidden(false);
+      }
+      lastY = y;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const onPointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+      if (panelRef.current?.contains(target)) return;
+      if (buttonRef.current?.contains(target)) return;
+      setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [open]);
+
   return (
-    <header className={`topbar${open ? " is-menu-open" : ""}`}>
+    <header
+      className={`topbar${open ? " is-menu-open" : ""}${hidden ? " is-hidden" : ""}`}
+    >
       <div className="shell topbar__inner">
         <button
+          ref={buttonRef}
           type="button"
           className={`menu-button${open ? " is-open" : ""}`}
           aria-expanded={mounted ? open : false}
@@ -57,51 +98,51 @@ export function Header() {
             <span />
           </span>
         </button>
-
-        <div className="brand-stack">
-          <a href="#top" className="brand" onClick={() => setOpen(false)}>
-            <span className="brand__mark" aria-hidden>
-              JO
-            </span>
-            <span className="brand__text">
-              <strong>{site.name}</strong>
-              <span>{site.role}</span>
-            </span>
-          </a>
-          <div className="brand-socials" aria-label={t("socialLabel")}>
-            {socials.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noreferrer" : undefined}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <div className="brand-locale">
-            <LocaleSwitcher />
-          </div>
-        </div>
       </div>
 
+      <div
+        className={`menu-backdrop${open ? " is-open" : ""}`}
+        aria-hidden={!open}
+        onClick={() => setOpen(false)}
+      />
+
       <aside
+        ref={panelRef}
         id="menu-panel"
         className={`menu-panel${open ? " is-open" : ""}`}
         aria-hidden={!open}
         {...(!open ? ({ inert: true } as React.HTMLAttributes<HTMLElement>) : {})}
       >
+        <button
+          type="button"
+          className="menu-panel__close"
+          aria-label={t("closeMenu")}
+          tabIndex={open ? 0 : -1}
+          onClick={() => setOpen(false)}
+        >
+          <span aria-hidden>×</span>
+        </button>
+
         <nav aria-label={t("navLabel")}>
           {links.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              tabIndex={open ? 0 : -1}
+            >
               {link.label}
             </a>
           ))}
         </nav>
         <div className="menu-panel__tools">
           <LocaleSwitcher />
-          <a href="#contact" className="menu-panel__cta" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+          <a
+            href="#contact"
+            className="menu-panel__cta"
+            onClick={() => setOpen(false)}
+            tabIndex={open ? 0 : -1}
+          >
             {t("write")}
           </a>
         </div>
