@@ -39,10 +39,6 @@ export async function Hero() {
           </div>
         </div>
       </div>
-
-      <a href="#work" className="scroll-cue" aria-label={t("scrollDown")}>
-        <span aria-hidden>↓</span>
-      </a>
     </section>
   );
 }
