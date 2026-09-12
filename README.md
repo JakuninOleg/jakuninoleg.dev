@@ -6,7 +6,7 @@ Frontend / Fullstack · [jakuninoleg.dev](https://jakuninoleg.dev/)
 
 ## En
 
-Personal site of developer **Oleg Yakunin**.
+Personal site of developer **Oleg Jakunin**
 
 He builds sites, landings, web apps, backends, and AI features inside products — from brief to production.
 
