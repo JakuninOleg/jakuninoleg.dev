@@ -163,12 +163,8 @@ export function Contact() {
 
             {status === "success" ? (
               <div className="contact-success contact-success--embedded" role="status" aria-live="polite">
-                <div className="contact-success__check" aria-hidden />
                 <h3>{t("successTitle")}</h3>
                 <p>{t("success")}</p>
-                <button type="button" className="btn-side" onClick={() => setStatus("idle")}>
-                  {t("sendAnother")}
-                </button>
               </div>
             ) : (
               <form className="contact-form contact-form--embedded" onSubmit={onSubmit} noValidate>
