@@ -125,7 +125,7 @@ export function Contact() {
               <div className="contact-avatar" aria-hidden>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/mascot/mascot-contact.webp"
+                  src="/mascot/mascot-contact.webp?v=bust2"
                   alt=""
                   width={172}
                   height={172}
