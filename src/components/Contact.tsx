@@ -92,6 +92,9 @@ export function Contact() {
     }
 
     setStatus("sending");
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -163,6 +166,7 @@ export function Contact() {
 
             {status === "success" ? (
               <div className="contact-success contact-success--embedded" role="status" aria-live="polite">
+                <div className="contact-success__check" aria-hidden />
                 <h3>{t("successTitle")}</h3>
                 <p>{t("success")}</p>
               </div>
@@ -173,17 +177,19 @@ export function Contact() {
                   <p>{t("formLead")}</p>
                 </div>
 
-                <label className="hp-field" aria-hidden="true">
-                  <span>Company</span>
-                  <input
-                    name="company"
-                    type="text"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    value={honeypot}
-                    onChange={(e) => setHoneypot(e.target.value)}
-                  />
-                </label>
+                <div className="hp-field" aria-hidden="true">
+                  <label>
+                    <span>Company</span>
+                    <input
+                      name="company"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </label>
+                </div>
 
                 <label className={errors.name && touched.name ? "is-invalid" : undefined}>
                   <span>{t("name")}</span>
