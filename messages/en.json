@@ -141,6 +141,7 @@
     "sendAnother": "Write another",
     "error": "Couldn’t send. Write on Telegram or email.",
     "channelHint": "You can write freely: project, MVP, rework, consulting, or collaboration.",
+    "consentLabel": "I agree to <consent>personal data processing</consent> and the <privacy>privacy policy</privacy>",
     "errors": {
       "nameRequired": "Enter your name",
       "nameShort": "Name is too short",
@@ -148,10 +149,22 @@
       "emailInvalid": "That doesn’t look like an email",
       "messageRequired": "Describe the task",
       "messageShort": "A bit more detail, please",
-      "messageLong": "Keep it under 1500 characters"
+      "messageLong": "Keep it under 1500 characters",
+      "consentRequired": "Consent is required"
     }
   },
   "Footer": {
-    "top": "Back to top"
+    "top": "Back to top",
+    "legalLabel": "Legal",
+    "privacy": "Personal data processing policy",
+    "consent": "Consent to personal data processing",
+    "cookies": "Cookie policy"
+  },
+  "Legal": {
+    "back": "← Back to site",
+    "ruOnlyNote": "This document is provided in Russian.",
+    "privacy": { "nav": "Personal data processing policy" },
+    "consent": { "nav": "Consent to personal data processing" },
+    "cookies": { "nav": "Cookie policy" }
   }
 }

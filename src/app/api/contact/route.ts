@@ -10,6 +10,7 @@ type Body = {
   message?: string;
   locale?: string;
   company?: string; // honeypot — must stay empty
+  consent?: boolean;
 };
 
 const WINDOW_MS = 60_000;
@@ -90,8 +91,9 @@ export async function POST(request: Request) {
   const email = String(body.email ?? "").trim().slice(0, 160);
   const message = String(body.message ?? "").trim().slice(0, 1500);
   const locale = body.locale === "en" ? "en" : "ru";
+  const consent = body.consent === true;
 
-  if (!name || !email || !message || !isEmail(email)) {
+  if (!name || !email || !message || !isEmail(email) || !consent) {
     return NextResponse.json({ ok: false, error: "validation" }, { status: 400 });
   }
 

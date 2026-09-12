@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { site } from "@/content/site";
 
 type Status = "idle" | "sending" | "success" | "error";
-type Field = "name" | "email" | "message";
+type Field = "name" | "email" | "message" | "consent";
 
 type Errors = Partial<Record<Field, string>>;
 
@@ -20,6 +20,7 @@ export function Contact() {
   const [errors, setErrors] = useState<Errors>({});
   const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
   const [values, setValues] = useState({ name: "", email: "", message: "" });
+  const [consent, setConsent] = useState(false);
   const [honeypot, setHoneypot] = useState("");
 
   const messageMax = 1500;
@@ -52,7 +53,7 @@ export function Contact() {
     [t],
   );
 
-  function validate(next = values): Errors {
+  function validate(next = values, nextConsent = consent): Errors {
     const nextErrors: Errors = {};
     if (!next.name.trim()) nextErrors.name = t("errors.nameRequired");
     else if (next.name.trim().length < 2) nextErrors.name = t("errors.nameShort");
@@ -63,6 +64,8 @@ export function Contact() {
     if (!next.message.trim()) nextErrors.message = t("errors.messageRequired");
     else if (next.message.trim().length < 12) nextErrors.message = t("errors.messageShort");
     else if (next.message.length > messageMax) nextErrors.message = t("errors.messageLong");
+
+    if (!nextConsent) nextErrors.consent = t("errors.consentRequired");
 
     return nextErrors;
   }
@@ -84,7 +87,7 @@ export function Contact() {
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const nextErrors = validate();
-    setTouched({ name: true, email: true, message: true });
+    setTouched({ name: true, email: true, message: true, consent: true });
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length) {
       setStatus("idle");
@@ -105,11 +108,13 @@ export function Contact() {
           message: values.message.trim(),
           locale,
           company: honeypot,
+          consent: true,
         }),
       });
       if (!res.ok) throw new Error("fail");
       setStatus("success");
       setValues({ name: "", email: "", message: "" });
+      setConsent(false);
       setHoneypot("");
       setTouched({});
       setErrors({});
@@ -260,6 +265,41 @@ export function Contact() {
                     </em>
                   ) : null}
                 </label>
+
+                <label
+                  className={`contact-consent${errors.consent && touched.consent ? " is-invalid" : ""}`}
+                >
+                  <input
+                    type="checkbox"
+                    name="consent"
+                    checked={consent}
+                    onChange={(e) => {
+                      setConsent(e.target.checked);
+                      if (touched.consent || status === "error") {
+                        setErrors(validate(values, e.target.checked));
+                      }
+                      if (status === "error") setStatus("idle");
+                    }}
+                    onBlur={() => {
+                      setTouched((prev) => ({ ...prev, consent: true }));
+                      setErrors(validate());
+                    }}
+                    disabled={status === "sending"}
+                  />
+                  <span>
+                    {t.rich("consentLabel", {
+                      consent: (chunks) => (
+                        <a href={`/${locale}/legal/consent`}>{chunks}</a>
+                      ),
+                      privacy: (chunks) => (
+                        <a href={`/${locale}/legal/privacy`}>{chunks}</a>
+                      ),
+                    })}
+                  </span>
+                </label>
+                {errors.consent && touched.consent ? (
+                  <em className="field-error">{errors.consent}</em>
+                ) : null}
 
                 <button
                   type="submit"
