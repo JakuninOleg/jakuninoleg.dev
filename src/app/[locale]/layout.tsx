@@ -38,10 +38,11 @@ export async function generateMetadata({
   const keywords = t("keywords");
   const canonical = `${siteUrl}/${locale}`;
   const ogImage = {
-    url: "/mascot/mascot-contact.webp",
-    width: 172,
-    height: 172,
-    alt: "Jakunin Oleg",
+    url: "/og.png",
+    width: 1200,
+    height: 630,
+    alt: "Jakunin Oleg — Frontend / Fullstack",
+    type: "image/png",
   };
 
   return {
@@ -72,10 +73,10 @@ export async function generateMetadata({
       images: [ogImage],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description,
-      images: [ogImage.url],
+      images: ["/og.png"],
     },
     robots: {
       index: true,

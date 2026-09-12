@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
     const dayCache = "public, max-age=86400, stale-while-revalidate=604800";
     return [
       {
+        source: "/og.png",
+        headers: [{ key: "Cache-Control", value: dayCache }],
+      },
+      {
         source: "/mascot/:path*",
         headers: [{ key: "Cache-Control", value: dayCache }],
       },
