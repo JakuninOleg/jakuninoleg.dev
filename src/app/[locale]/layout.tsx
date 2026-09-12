@@ -37,8 +37,9 @@ export async function generateMetadata({
   const description = t("description");
   const keywords = t("keywords");
   const canonical = `${siteUrl}/${locale}`;
+  // Query busts Telegram's sticky OG image cache after WebpageBot refreshes.
   const ogImage = {
-    url: "/og.png",
+    url: "/og.png?v=20260912",
     width: 1200,
     height: 630,
     alt: "Jakunin Oleg — Frontend / Fullstack",
@@ -76,7 +77,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["/og.png"],
+      images: ["/og.png?v=20260912"],
     },
     robots: {
       index: true,
