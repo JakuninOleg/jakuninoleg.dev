@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { site } from "@/content/site";
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -15,10 +15,12 @@ function isEmail(value: string) {
 
 export function Contact() {
   const t = useTranslations("Contact");
+  const locale = useLocale();
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Errors>({});
   const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
   const [values, setValues] = useState({ name: "", email: "", message: "" });
+  const [honeypot, setHoneypot] = useState("");
 
   const messageMax = 1500;
   const messageLen = values.message.length;
@@ -98,11 +100,14 @@ export function Contact() {
           name: values.name.trim(),
           email: values.email.trim(),
           message: values.message.trim(),
+          locale,
+          company: honeypot,
         }),
       });
       if (!res.ok) throw new Error("fail");
       setStatus("success");
       setValues({ name: "", email: "", message: "" });
+      setHoneypot("");
       setTouched({});
       setErrors({});
     } catch {
@@ -125,7 +130,7 @@ export function Contact() {
               <div className="contact-avatar" aria-hidden>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/mascot/mascot-contact.webp?v=bust2"
+                  src="/mascot/mascot-contact.webp"
                   alt=""
                   width={172}
                   height={172}
@@ -171,6 +176,18 @@ export function Contact() {
                   <h3>{t("formTitle")}</h3>
                   <p>{t("formLead")}</p>
                 </div>
+
+                <label className="hp-field" aria-hidden="true">
+                  <span>Company</span>
+                  <input
+                    name="company"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </label>
 
                 <label className={errors.name && touched.name ? "is-invalid" : undefined}>
                   <span>{t("name")}</span>

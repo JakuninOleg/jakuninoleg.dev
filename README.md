@@ -1,31 +1,66 @@
-# Oleg Jakunin — Portfolio
+# Jakunin Oleg
 
-Personal portfolio (v2 interaction pass): Next.js, React, Tailwind, GSAP ready.
+Frontend / Fullstack · [jakuninoleg.dev](https://jakuninoleg.dev/)
 
-## Run
+---
 
-```bash
-npm install
-npm run dev
-```
+## En
 
-Open http://localhost:3001 (or 3000).
+Personal site of developer **Oleg Yakunin**.
 
-## What matches the ilyadotgr reference
+He builds sites, landings, web apps, backends, and AI features inside products — from brief to production.
 
-- Dark `oklch` system + cyan / pink / yellow accents + Onest
-- Full-viewport hero with grid, watermark `DEVELOPER`, glass cards
-- Dual-layer voxel mascot + radial `mask-image` flashlight on pointer
-- Soft ambient glows that follow the cursor
+### On the site
 
-## Content
+- Live projects you can open
+- What you can order
+- Stack
+- Contact form, Telegram, email, GitHub
 
-`src/content/site.ts`
+### Format
 
-## Agent skills installed
+Full project, a piece of work inside a team, or fixes on an existing codebase.
 
-Personal (`~/.cursor/skills`):
+Site language switch: **En** / **Ru**.
 
-- `build-awwwards-quality-sites`, `landing-page`, `design-first-ui-prompting`
-- `gsap`, `gsap-react`, `gsap-core`, `gsap-scrolltrigger`, …
-- `interactive-portfolio`, `ilyadotgr-style-portfolio`
+---
+
+## Ru
+
+Личный сайт разработчика **Якунина Олега**.
+
+Собирает сайты, лендинги, кабинеты, backend и AI-фичи в продукте — от брифа до прода.
+
+### На сайте
+
+- Живые проекты, которые можно открыть
+- Что можно заказать
+- Стек
+- Форма, Telegram, email, GitHub
+
+### Формат
+
+Проект целиком, участок в команде или доработка уже существующего кода.
+
+Язык сайта: **En** / **Ru**.
+
+---
+
+## Projects
+
+| | En | Ru |
+| --- | --- | --- |
+| **Okhana** | Family hub with memory search | Семейный хаб с поиском по памяти |
+| **Tesla Explorer** | Trip cabinet + Mapbox + AI routes | Кабинет поездок + карты + AI-маршруты |
+| **Go-Ai** | OpenAI-compatible gateway in Go | LLM-шлюз на Go |
+| **AO KEMZ** | Factory site in production | Сайт завода в проде |
+| **Lu4-AI** | Python bot: OCR + hardware | Python-бот: OCR и железо |
+
+---
+
+## Contact
+
+- [jakuninoleg.dev](https://jakuninoleg.dev/)
+- Telegram [@Sainttss](https://t.me/Sainttss)
+- [oleg.kemz@gmail.com](mailto:oleg.kemz@gmail.com)
+- GitHub [JakuninOleg](https://github.com/JakuninOleg)

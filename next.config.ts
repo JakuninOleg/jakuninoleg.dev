@@ -15,19 +15,20 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["simple-icons"],
   },
   async headers() {
-    const longCache = "public, max-age=31536000, immutable";
+    const yearCache = "public, max-age=31536000, immutable";
+    const dayCache = "public, max-age=86400, stale-while-revalidate=604800";
     return [
       {
         source: "/mascot/:path*",
-        headers: [{ key: "Cache-Control", value: longCache }],
+        headers: [{ key: "Cache-Control", value: dayCache }],
       },
       {
         source: "/projects/:path*",
-        headers: [{ key: "Cache-Control", value: longCache }],
+        headers: [{ key: "Cache-Control", value: yearCache }],
       },
       {
         source: "/favicon/:path*",
-        headers: [{ key: "Cache-Control", value: longCache }],
+        headers: [{ key: "Cache-Control", value: yearCache }],
       },
     ];
   },
