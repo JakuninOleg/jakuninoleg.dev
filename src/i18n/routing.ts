@@ -4,6 +4,8 @@ export const routing = defineRouting({
   locales: ["en", "ru"],
   defaultLocale: "en",
   localePrefix: "always",
+  // Cookie → Accept-Language → defaultLocale (next-intl default, kept explicit)
+  localeDetection: true,
 });
 
 export type Locale = (typeof routing.locales)[number];
