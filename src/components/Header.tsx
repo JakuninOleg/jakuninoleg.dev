@@ -13,8 +13,9 @@ export function Header() {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const links = [
-    { href: "#services", label: t("services") },
+    { href: "#solutions", label: t("solutions") },
     { href: "#work", label: t("work") },
+    { href: "#services", label: t("services") },
     { href: "#contact", label: t("contact") },
     { href: "#stack", label: t("stack") },
   ];

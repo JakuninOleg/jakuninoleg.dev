@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { Reveal } from "@/components/Reveal";
 import { ScrollStep } from "@/components/ScrollStep";
 import { Services } from "@/components/Services";
+import { Solutions } from "@/components/Solutions";
 import { Stack } from "@/components/Stack";
 import { Work } from "@/components/Work";
 
@@ -34,6 +35,7 @@ export default async function HomePage({
       <Reveal />
       <main id="main" className="flex-1">
         <Hero />
+        <Solutions />
         <Work />
         <Services />
         <Contact />

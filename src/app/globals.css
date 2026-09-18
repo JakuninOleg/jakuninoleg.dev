@@ -790,6 +790,7 @@ img {
 }
 
 #work.section,
+#solutions.section,
 #services.section,
 #contact.section,
 #stack.section {
@@ -988,6 +989,193 @@ img {
   border-color: color-mix(in srgb, #34d399 40%, transparent);
   background: color-mix(in srgb, #34d399 14%, transparent);
   color: #a7f3d0;
+}
+
+.solutions {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+.solution {
+  --accent: var(--cyan);
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 1.75rem);
+  align-items: start;
+}
+
+.solution__intro,
+.solution__details {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.solution__media {
+  position: relative;
+}
+
+.solution__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.solution__tag,
+.solution__badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.32rem 0.65rem;
+}
+
+.solution__tag {
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: color-mix(in srgb, var(--accent) 55%, white);
+}
+
+.solution__badge {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.solution__intro h3 {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.55rem, 3.4vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.solution__hook {
+  margin: 0;
+  color: color-mix(in srgb, var(--fg) 92%, var(--accent));
+  font-size: 1.08rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.solution__text {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 40rem;
+}
+
+.solution__points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.solution__points li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: color-mix(in srgb, var(--fg) 88%, var(--muted));
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.solution__points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 99px;
+  background: var(--accent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.solution__stack {
+  margin-top: 0.15rem;
+}
+
+.solution__actions {
+  display: grid;
+  gap: 0.55rem;
+  justify-items: start;
+  margin-block: 1.15rem 0.35rem;
+}
+
+.solution__note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  max-width: 32rem;
+}
+
+.solution-shot {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 0.15rem);
+  background: #07090d;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.28);
+}
+
+.solution-shot img,
+.solution-shot__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: top center;
+}
+
+@media (min-width: 820px) {
+  .solution {
+    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-areas:
+      "media intro"
+      "media details";
+    column-gap: clamp(1.75rem, 3vw, 2.75rem);
+    row-gap: 1rem;
+    align-items: start;
+  }
+
+  .solution__media {
+    grid-area: media;
+    align-self: center;
+  }
+
+  .solution__intro {
+    grid-area: intro;
+  }
+
+  .solution__details {
+    grid-area: details;
+  }
+
+  .solution--flip {
+    grid-template-areas:
+      "intro media"
+      "details media";
+  }
+
+  .solution__intro h3 {
+    max-width: 16ch;
+  }
+}
+
+@media (max-width: 819px) {
+  .solution__actions .btn-main {
+    width: 100%;
+  }
 }
 
 .services,
@@ -1697,8 +1885,10 @@ img {
 .footer-legal {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.55rem;
   padding-top: 0.35rem;
+  text-align: center;
   border-top: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
 }
 
@@ -1894,6 +2084,7 @@ img {
   .footer-legal {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 0.75rem 1.35rem;
   }
 }
@@ -2111,6 +2302,7 @@ img {
   .contact-method:hover {
     transform: none;
   }
+
 
   .contact-shake,
   .submit-shimmer,
