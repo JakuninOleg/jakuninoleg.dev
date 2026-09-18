@@ -6,6 +6,7 @@
   },
   "Nav": {
     "work": "Work",
+    "solutions": "Solutions",
     "services": "Services",
     "stack": "Stack",
     "contact": "Contact",
@@ -65,6 +66,45 @@
         "tag": "desktop · OCR · HID",
         "summary": "Python bot that reads a game HUD with OCR, runs a hunt loop, and drives keyboard/mouse via Arduino Leonardo.",
         "result": ".exe + hardware config"
+      }
+    }
+  },
+  "Solutions": {
+    "kicker": "Ready-made paths",
+    "title": "Start with the job, then the stack",
+    "lead": "Not a generic website — a concrete product: a Payload catalog or a Medusa store.",
+    "offers": {
+      "catalog": {
+        "tag": "Catalog · CMS",
+        "badge": "Payload + Next.js",
+        "title": "Need a catalog site? We build it on Payload CMS",
+        "hook": "You edit content yourself. The storefront stays fast and sharp on Next.js.",
+        "text": "Product or service cards, filters, media, news, lead forms. An admin shaped for real work: add an item — it shows up on the site.",
+        "points": [
+          "Admin tailored to your content: collections, fields, roles, media library",
+          "Public catalog on Next.js — SEO, speed, responsive UI",
+          "Draft previews before publish",
+          "Lead forms, integrations, and deploy included"
+        ],
+        "cta": "I want a Payload catalog",
+        "note": "A fit for manufacturing, distributors, services, and B2B showcases.",
+        "imageAlt": "Example catalog website on Payload and Next.js"
+      },
+      "shop": {
+        "tag": "Shop · Commerce",
+        "badge": "Medusa + Next.js",
+        "title": "Need an online store? We ship it on Medusa",
+        "hook": "Cart, orders, payments, admin — not a landing page with a Buy button.",
+        "text": "Headless commerce on Medusa: SKUs, variants, stock, checkout. Storefront on Next.js. Payments for your market — Robokassa, YooKassa, Stripe, and other providers.",
+        "points": [
+          "Catalog, cart, checkout, order statuses in admin",
+          "Payments: Robokassa, YooKassa, Stripe — what the business actually needs",
+          "Shipping, promos, customer emails — for a real launch path",
+          "From shop MVP to full commerce"
+        ],
+        "cta": "I want a Medusa shop",
+        "note": "For brands, D2C, and wholesale storefronts with real orders.",
+        "imageAlt": "Example online store on Medusa and Next.js"
       }
     }
   },
@@ -163,8 +203,14 @@
   "Legal": {
     "back": "← Back to site",
     "ruOnlyNote": "This document is provided in Russian.",
-    "privacy": { "nav": "Personal data processing policy" },
-    "consent": { "nav": "Consent to personal data processing" },
-    "cookies": { "nav": "Cookie policy" }
+    "privacy": {
+      "nav": "Personal data processing policy"
+    },
+    "consent": {
+      "nav": "Consent to personal data processing"
+    },
+    "cookies": {
+      "nav": "Cookie policy"
+    }
   }
 }

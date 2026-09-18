@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
-const SECTION_IDS = ["work", "services", "contact", "stack"] as const;
+const SECTION_IDS = ["solutions", "work", "services", "contact", "stack"] as const;
 
 function sectionTop(el: HTMLElement) {
   return el.getBoundingClientRect().top + window.scrollY;
