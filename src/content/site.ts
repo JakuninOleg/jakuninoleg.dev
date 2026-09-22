@@ -23,6 +23,14 @@ export type ProjectMeta = {
 
 export const projectsMeta: ProjectMeta[] = [
   {
+    id: "oj-cms",
+    title: "OJ CMS",
+    stack: ["Payload", "CMS", "Media", "Preview"],
+    image: "/projects/oj-cms-wide.webp",
+    href: "https://oj-cms.vercel.app/admin",
+    accent: "#5EEAD4",
+  },
+  {
     id: "okhana",
     title: "Okhana",
     stack: ["Next.js", "Clerk", "Drizzle", "Postgres", "RAG"],
@@ -44,24 +52,24 @@ export const projectsMeta: ProjectMeta[] = [
     id: "go-ai",
     title: "Go-Ai",
     stack: ["Go", "Docker", "Fly.io", "SSE", "OpenAI-compatible"],
-    image: "/projects/go-ai.webp",
+    image: "/projects/go-ai-v2.webp",
     repo: "https://github.com/JakuninOleg/Go-Ai",
     accent: "#60A5FA",
-    imageFit: "contain",
   },
   {
     id: "aokemz",
     title: "AO KEMZ",
     stack: ["Nuxt", "Vue", "Contentful", "Tailwind"],
-    image: "/projects/aokemz.webp",
-    href: "https://www.aokemz.ru",
+    image: "/projects/aokemz-v2.webp",
+    href: "https://aokemz-nuxt3-dev-codex.vercel.app/",
     accent: "#FB923C",
+    imageFit: "contain",
   },
   {
     id: "lu4-ai",
     title: "Lu4-AI",
     stack: ["Python", "OCR", "Arduino", "HID"],
-    image: "/projects/lu4-ai.webp",
+    image: "/projects/lu4-ai-v2.webp",
     accent: "#C084FC",
   },
 ];

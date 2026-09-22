@@ -1072,6 +1072,52 @@ img {
   max-width: 40rem;
 }
 
+.solution__author {
+  margin: 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--steel);
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+.solution--cms {
+  --accent: var(--steel);
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.solution--cms .solution__intro h3 {
+  max-width: 18ch;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.solution-shot__caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.solution-shot__caption a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  color: var(--steel);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.solution-shot__caption a:hover {
+  color: var(--fg);
+}
+
 .solution__points {
   margin: 0;
   padding: 0;

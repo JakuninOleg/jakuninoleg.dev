@@ -27,7 +27,7 @@ export async function Solutions() {
             return (
               <article
                 key={solution.id}
-                className={`solution reveal-item${index % 2 === 1 ? " solution--flip" : ""}`}
+                className={`solution reveal-item${solution.demoHref ? " solution--cms" : ""}${index % 2 === 1 ? " solution--flip" : ""}`}
                 style={style}
               >
                 <div className="solution__intro">
@@ -38,6 +38,9 @@ export async function Solutions() {
                   <h3>{t(`offers.${solution.id}.title`)}</h3>
                   <p className="solution__hook">{t(`offers.${solution.id}.hook`)}</p>
                   <p className="solution__text">{t(`offers.${solution.id}.text`)}</p>
+                  {solution.demoHref && (
+                    <p className="solution__author">{t(`offers.${solution.id}.author`)}</p>
+                  )}
                 </div>
 
                 <div className="solution__media">
@@ -45,11 +48,19 @@ export async function Solutions() {
                     <Image
                       src={solution.image}
                       alt={t(`offers.${solution.id}.imageAlt`)}
-                      width={1600}
-                      height={900}
+                      width={solution.demoHref ? 1438 : 1600}
+                      height={solution.demoHref ? 1224 : 900}
                       sizes="(max-width: 819px) 100vw, 55vw"
                       className="solution-shot__img"
                     />
+                    {solution.demoHref && (
+                      <figcaption className="solution-shot__caption">
+                        <span>{t(`offers.${solution.id}.caption`)}</span>
+                        <a href={solution.demoHref} target="_blank" rel="noreferrer">
+                          {t(`offers.${solution.id}.demoCta`)} <span aria-hidden="true">↗</span>
+                        </a>
+                      </figcaption>
+                    )}
                   </figure>
                 </div>
 

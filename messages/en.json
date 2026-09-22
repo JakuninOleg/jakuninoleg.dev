@@ -54,41 +54,52 @@
       "go-ai": {
         "tag": "backend · LLM gateway",
         "summary": "OpenAI-compatible gateway in Go. Provider secrets stay on the server. Model aliases, SSE streaming, Fly.io.",
-        "result": "Powers Tesla Explorer and other apps"
+        "result": "Powers Tesla Explorer and other apps",
+        "imageAlt": "Go-Ai illustration: server equipment and network connections"
       },
       "aokemz": {
         "title": "AO KEMZ",
         "tag": "corporate site",
-        "summary": "Plant website: catalog, news, CMS, forms, PWA. Nuxt in production for a real industrial client.",
-        "result": "Live at aokemz.ru"
+        "summary": "Industrial company website with an equipment catalog, production facilities, documents, news and technical inquiries. Updated design built with Nuxt.",
+        "result": "Explore the updated website"
       },
       "lu4-ai": {
         "tag": "desktop · OCR · HID",
         "summary": "Python bot that reads a game HUD with OCR, runs a hunt loop, and drives keyboard/mouse via Arduino Leonardo.",
-        "result": ".exe + hardware config"
+        "result": ".exe + hardware config",
+        "imageAlt": "Lu4-AI illustration: a microcontroller board connected to a laptop"
+      },
+      "oj-cms": {
+        "tag": "My product · CMS",
+        "summary": "I built OJ CMS on Payload: pages, news, media and roles in an interface designed for everyday content work.",
+        "result": "Explore the OJ CMS interface",
+        "imageAlt": "OJ CMS interface with pages, news, media, publication status and website preview"
       }
     }
   },
   "Solutions": {
     "kicker": "Ready-made paths",
     "title": "Start with the job, then the stack",
-    "lead": "Not a generic website — a concrete product: a Payload catalog or a Medusa store.",
+    "lead": "A catalog website with my OJ CMS, or an online store on Medusa. Built around what you sell and how your team works.",
     "offers": {
       "catalog": {
-        "tag": "Catalog · CMS",
-        "badge": "Payload + Next.js",
-        "title": "Need a catalog site? We build it on Payload CMS",
-        "hook": "You edit content yourself. The storefront stays fast and sharp on Next.js.",
-        "text": "Product or service cards, filters, media, news, lead forms. An admin shaped for real work: add an item — it shows up on the site.",
+        "tag": "Catalog & content management",
+        "badge": "Built by me",
+        "title": "OJ CMS for your website",
+        "hook": "Update your website yourself, from a news post to a new catalog item.",
+        "text": "I built OJ CMS to make everyday content work straightforward. Pages, news and media live in one interface, with published content and work in progress clearly marked.",
+        "author": "For your project, I’ll configure the catalog structure and fields, connect the website and add inquiry forms.",
         "points": [
-          "Admin tailored to your content: collections, fields, roles, media library",
-          "Public catalog on Next.js — SEO, speed, responsive UI",
-          "Draft previews before publish",
-          "Lead forms, integrations, and deploy included"
+          "Manage text and images in one clear interface",
+          "Drafts and preview before publishing",
+          "Access and roles for your team",
+          "Catalog, filters and inquiries tailored to your business"
         ],
-        "cta": "I want a Payload catalog",
-        "note": "A fit for manufacturing, distributors, services, and B2B showcases.",
-        "imageAlt": "Example catalog website on Payload and Next.js"
+        "cta": "Discuss a site with OJ CMS",
+        "note": "My CMS built on Payload. For company websites, manufacturers and service catalogs.",
+        "imageAlt": "OJ CMS interface with pages, news, media, publication status and website preview",
+        "caption": "Inside OJ CMS",
+        "demoCta": "Open OJ CMS"
       },
       "shop": {
         "tag": "Shop · Commerce",

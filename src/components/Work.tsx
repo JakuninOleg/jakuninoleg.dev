@@ -32,7 +32,7 @@ export async function Work() {
               >
                 <Image
                   src={project.image}
-                  alt={t("screenshotAlt", { title })}
+                  alt={t.has(`projects.${project.id}.imageAlt`) ? t(`projects.${project.id}.imageAlt`) : t("screenshotAlt", { title })}
                   width={1280}
                   height={800}
                   sizes="(max-width: 819px) 100vw, 55vw"

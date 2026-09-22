@@ -3,14 +3,16 @@ export type SolutionMeta = {
   accent: string;
   stack: string[];
   image: string;
+  demoHref?: string;
 };
 
 export const solutionsMeta: SolutionMeta[] = [
   {
     id: "catalog",
     accent: "#22d3ee",
-    stack: ["Next.js", "Payload CMS", "Postgres", "Media", "Preview"],
-    image: "/solutions/catalog-site.png",
+    stack: ["OJ CMS", "Next.js", "Payload"],
+    image: "/solutions/oj-cms.webp",
+    demoHref: "https://oj-cms.vercel.app/admin",
   },
   {
     id: "shop",
