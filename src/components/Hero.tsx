@@ -1,8 +1,9 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { HeroStage } from "@/components/HeroStage";
 
 export async function Hero() {
   const t = await getTranslations("Hero");
+  const locale = await getLocale();
   const focus = t.raw("focus") as string[];
 
   return (
@@ -22,7 +23,7 @@ export async function Hero() {
             <a href="#contact" className="btn-main">
               {t("primaryCta")}
             </a>
-            <a href="#work" className="btn-side">
+            <a href={`/${locale}/work`} className="btn-side">
               {t("secondaryCta")}
             </a>
           </div>

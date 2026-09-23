@@ -52,9 +52,7 @@ Site language switch: **En** / **Ru**.
 | --- | --- | --- |
 | **Okhana** | Family hub with memory search | Семейный хаб с поиском по памяти |
 | **Tesla Explorer** | Trip cabinet + Mapbox + AI routes | Кабинет поездок + карты + AI-маршруты |
-| **Go-Ai** | OpenAI-compatible gateway in Go | LLM-шлюз на Go |
 | **AO KEMZ** | Factory site in production | Сайт завода в проде |
-| **Lu4-AI** | Python bot: OCR + hardware | Python-бот: OCR и железо |
 
 ---
 

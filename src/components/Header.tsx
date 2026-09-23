@@ -2,27 +2,27 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useParams, usePathname } from "next/navigation";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 
 export function Header() {
   const t = useTranslations("Nav");
+  const pathname = usePathname();
+  const { locale } = useParams<{ locale: string }>();
+  const home = pathname === `/${locale}` || pathname === `/${locale}/`;
+  const homeAnchor = (hash: string) => home ? hash : `/${locale}${hash}`;
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [hidden, setHidden] = useState(false);
   const panelRef = useRef<HTMLElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const links = [
-    { href: "#solutions", label: t("solutions") },
-    { href: "#work", label: t("work") },
-    { href: "#services", label: t("services") },
-    { href: "#contact", label: t("contact") },
-    { href: "#stack", label: t("stack") },
+    { href: homeAnchor("#solutions"), label: t("solutions") },
+    { href: `/${locale}/work`, label: t("work") },
+    { href: homeAnchor("#services"), label: t("services") },
+    { href: homeAnchor("#contact"), label: t("contact") },
+    { href: homeAnchor("#stack"), label: t("stack") },
   ];
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -85,7 +85,7 @@ export function Header() {
       className={`topbar${open ? " is-menu-open" : ""}${hidden ? " is-hidden" : ""}`}
     >
       <div className="shell topbar__inner">
-        <a href="#top" className="brand" onClick={() => setOpen(false)}>
+        <a href={homeAnchor("#top")} className="brand" onClick={() => setOpen(false)}>
           <span className="brand__first">Jakunin</span>
           <span className="brand__last">Oleg</span>
         </a>
@@ -107,7 +107,7 @@ export function Header() {
             ref={buttonRef}
             type="button"
             className={`menu-button${open ? " is-open" : ""}`}
-            aria-expanded={mounted ? open : false}
+            aria-expanded={open}
             aria-controls="menu-panel"
             aria-label={open ? t("closeMenu") : t("openMenu")}
             onClick={() => setOpen((v) => !v)}
@@ -158,7 +158,7 @@ export function Header() {
         <div className="menu-panel__tools">
           <LocaleSwitcher />
           <a
-            href="#contact"
+            href={homeAnchor("#contact")}
             className="menu-panel__cta"
             onClick={() => setOpen(false)}
             tabIndex={open ? 0 : -1}
