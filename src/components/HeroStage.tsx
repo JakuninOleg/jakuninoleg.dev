@@ -176,27 +176,37 @@ export function HeroStage() {
   return (
     <div ref={stageRef} className="hero-stage" aria-hidden="true">
       <div className="hero-stage__glow" />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="hero-mascot"
-        src="/mascot/mascot-base.webp"
-        alt=""
-        width={1024}
-        height={1024}
-        decoding="async"
-        fetchPriority="high"
-      />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        ref={revealRef}
-        className="hero-reveal"
-        src="/mascot/mascot-reveal.webp"
-        alt=""
-        width={1024}
-        height={1024}
-        decoding="async"
-        fetchPriority="low"
-      />
+      <picture>
+        <source
+          media="(max-width: 819px)"
+          srcSet="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+        />
+        <img
+          className="hero-mascot"
+          src="/mascot/mascot-base.webp"
+          alt=""
+          width={1024}
+          height={1024}
+          decoding="async"
+          fetchPriority="high"
+        />
+      </picture>
+      <picture>
+        <source
+          media="(max-width: 819px)"
+          srcSet="/mascot/mascot-reveal-mobile.webp"
+        />
+        <img
+          ref={revealRef}
+          className="hero-reveal"
+          src="/mascot/mascot-reveal.webp"
+          alt=""
+          width={1024}
+          height={1024}
+          decoding="async"
+          fetchPriority="low"
+        />
+      </picture>
     </div>
   );
 }

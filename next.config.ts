@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/mascot/:path*",
-        headers: [{ key: "Cache-Control", value: dayCache }],
+        headers: [{ key: "Cache-Control", value: yearCache }],
       },
       {
         source: "/projects/:path*",
