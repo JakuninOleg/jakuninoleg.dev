@@ -1257,6 +1257,8 @@
   position: relative;
   min-width: 11rem;
   overflow: hidden;
+  border: 0;
+  appearance: none;
   margin-top: 0.85rem;
   margin-bottom: 0.55rem;
 }
