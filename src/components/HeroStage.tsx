@@ -178,7 +178,7 @@ export function HeroStage() {
         />
         <img
           className="hero-mascot"
-          src="/mascot/mascot-base.webp"
+          src="/mascot/mascot-base-fast.webp"
           alt=""
           width={1024}
           height={1024}
@@ -194,7 +194,7 @@ export function HeroStage() {
         <img
           ref={revealRef}
           className="hero-reveal"
-          src="/mascot/mascot-reveal.webp"
+          src="/mascot/mascot-reveal-fast.webp"
           alt=""
           width={1024}
           height={1024}

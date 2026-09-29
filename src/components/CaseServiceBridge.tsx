@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { serviceArt } from "@/content/service-art";
+import { serviceArt, serviceCardArt } from "@/content/service-art";
 import styles from "./CaseServiceBridge.module.css";
 
 const copy = {
@@ -34,7 +34,7 @@ export function CaseServiceBridge({ locale, route }: { locale: string; route: Br
           <p>{item.text}</p>
           <span className={styles.action}>{language === "ru" ? "Посмотреть услугу" : "Explore the service"} <span aria-hidden="true">↗</span></span>
         </div>
-        <div className={styles.art}><Image src={art.src} alt={art.alt[language]} fill sizes="(max-width: 700px) 100vw, 42vw" /></div>
+        <div className={styles.art}><Image src={serviceCardArt(route)} alt={art.alt[language]} fill sizes="(max-width: 700px) 100vw, 42vw" /></div>
       </Link>
     </aside>
   );

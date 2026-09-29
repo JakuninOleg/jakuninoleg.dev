@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
-import { serviceArt } from "@/content/service-art";
+import { serviceArt, serviceCardArt } from "@/content/service-art";
 import { serviceRoutes } from "@/content/service-routes";
 import { serviceTimelines } from "@/content/project-estimator";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -99,7 +99,7 @@ export default async function ServicesPage({ params }: Props) {
                     <div className={styles.cardTop}><span>{String(index + 1).padStart(2, "0")}</span><span>{service.tag}</span></div>
                     {artwork && index !== 6 ? (
                       <div className={styles.cardArt}>
-                        <Image src={artwork.src} alt={artwork.alt[locale === "en" ? "en" : "ru"]} fill sizes="(max-width: 650px) 100vw, (max-width: 1000px) 45vw, 28vw" />
+                        <Image src={serviceCardArt(route)} alt={artwork.alt[locale === "en" ? "en" : "ru"]} fill sizes="(max-width: 650px) 100vw, (max-width: 1000px) 45vw, 28vw" />
                       </div>
                     ) : index !== 6 ? (
                       <div className={styles.cardMark} aria-hidden="true">{route === "web-applications" ? "APP" : route === "design-redesign" ? "REDO" : route === "seo-positioning" ? "SEO" : "AI"}</div>
