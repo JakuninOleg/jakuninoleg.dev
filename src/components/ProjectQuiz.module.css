@@ -60,20 +60,17 @@
 @media (max-width: 560px) { .panel { padding: 1.2rem; border-radius: 1rem; }.kindGrid, .choiceGrid, .resultNumbers { grid-template-columns: 1fr; }.kindCard { min-height: 7.5rem; }.aside { grid-template-columns: 1fr; }.mascot { max-height: 15rem; overflow: hidden; }.mascot img { max-width: 18rem; }.mascot > span { right: 1rem; bottom: .5rem; }.liveQuote { border-left: 0; border-top: 1px solid #577c8a; }.resultNumbers strong { font-size: clamp(1.45rem, 7vw, 2rem); } }
 @media (prefers-reduced-motion: reduce) { .progressTrack span, .kindCard, .choice, .next { transition: none; }.kindCard:hover, .choice:hover, .next:hover { transform: none; } }
 @media (max-width: 560px) {
-  .panelWithAdvance { padding-bottom: 6rem; }
+  .panelWithAdvance { padding-bottom: 1.2rem; }
   .desktopAdvance { display: none; }
   .mobileAdvance {
-    position: fixed;
-    z-index: 40;
-    right: max(1rem, env(safe-area-inset-right));
+    position: sticky;
+    z-index: 20;
     bottom: max(1rem, env(safe-area-inset-bottom));
-    left: max(1rem, env(safe-area-inset-left));
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: .75rem;
-    max-width: 30rem;
-    margin-inline: auto;
+    margin-top: 1rem;
     padding: .65rem;
     border: 1px solid #f4bb45;
     border-radius: 1rem;
