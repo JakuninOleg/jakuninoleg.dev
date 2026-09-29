@@ -1,0 +1,10 @@
+.page { flex: 1; background: #09151f; color: #f3f7f9; }
+.hero { padding: clamp(8rem, 11vw, 11rem) 0 clamp(3rem, 6vw, 6rem); background: radial-gradient(circle at 82% 38%, #193e52 0, transparent 32%), linear-gradient(#ffffff07 1px, transparent 1px), #09151f; background-size: auto, 100% 5rem, auto; }
+.kicker { margin: clamp(3rem, 5vw, 5rem) 0 1rem; color: #83d9e6; font: 700 .73rem var(--font-mono), monospace; letter-spacing: .12em; }
+.hero h1 { max-width: 15ch; margin: 0; font: 800 clamp(3.6rem, 7vw, 8rem)/.95 var(--font-display), sans-serif; letter-spacing: -.07em; text-wrap: balance; }
+.hero h1 em { color: #f4bb45; font-style: normal; }
+.heroBottom { display: flex; justify-content: space-between; align-items: end; gap: 2rem; max-width: 75rem; margin-top: 2rem; }
+.heroBottom p { max-width: 39rem; margin: 0; color: #b9ced7; font-size: clamp(1rem, 1.4vw, 1.2rem); line-height: 1.6; }
+.heroBottom a { flex: none; color: #87e1eb; font-weight: 750; }
+.heroBottom a:hover { color: #f4bb45; }
+@media (max-width: 650px) { .heroBottom { display: block; }.heroBottom a { display: inline-block; margin-top: 1.2rem; } }

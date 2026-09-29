@@ -7,3 +7,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Визуальный язык услуг
+
+Маскот и сцены услуг описаны в `docs/mascot-art-direction.md`. При добавлении новой иллюстрации сохраняй действие, предмет и узнаваемость героя; не заменяй реальные скриншоты выполненных работ сгенерированными сценами.

@@ -1,26 +1,11 @@
-import { Onest, JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { CookieConsent } from "@/components/CookieConsent";
 import "../globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakuninoleg.dev";
-
-const onest = Onest({
-  variable: "--font-onest",
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "600", "700", "800"],
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  display: "swap",
-  preload: false,
-});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -123,11 +108,12 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${onest.variable} ${mono.variable} h-full antialiased`}
+      className="h-full antialiased"
       style={{ colorScheme: "dark" }}
     >
       <body className="min-h-full flex flex-col font-sans">
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <CookieConsent locale={locale} />
       </body>
     </html>
   );

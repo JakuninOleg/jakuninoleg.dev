@@ -31,13 +31,6 @@ export function HeroStage() {
       reveal.classList.remove("hero-reveal--peek", "hero-reveal--full");
     };
 
-    const setFull = () => {
-      resetClasses();
-      reveal.classList.add("hero-reveal--full");
-      reveal.style.webkitMaskImage = "none";
-      reveal.style.maskImage = "none";
-    };
-
     const setPeek = () => {
       resetClasses();
       reveal.classList.add("hero-reveal--peek");
@@ -146,7 +139,9 @@ export function HeroStage() {
       stopMode = undefined;
 
       if (mqNarrow.matches) {
-        setFull();
+        // Mobile CSS already shows the full image; avoid repainting the LCP image on hydration.
+        resetClasses();
+        clearInlineMask();
         return;
       }
 
@@ -204,7 +199,7 @@ export function HeroStage() {
           width={1024}
           height={1024}
           decoding="async"
-          fetchPriority="low"
+          fetchPriority="high"
         />
       </picture>
     </div>

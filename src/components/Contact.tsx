@@ -1,8 +1,9 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { site } from "@/content/site";
+import { privacyBlogPath } from "@/content/blog";
 
 type Status = "idle" | "sending" | "success" | "error";
 type Field = "name" | "email" | "message" | "consent";
@@ -25,6 +26,26 @@ export function Contact() {
 
   const messageMax = 1500;
   const messageLen = values.message.length;
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash !== "#contact" && hash !== "#contact-form") return;
+
+    // Sections above use content-visibility, so their heights settle after route navigation.
+    let secondFrame = 0;
+    const firstFrame = requestAnimationFrame(() => {
+      const target = document.getElementById(hash.slice(1));
+      target?.scrollIntoView({ behavior: "instant", block: "start" });
+      secondFrame = requestAnimationFrame(() => {
+        target?.scrollIntoView({ behavior: "instant", block: "start" });
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(firstFrame);
+      cancelAnimationFrame(secondFrame);
+    };
+  }, []);
 
   const methods = useMemo(
     () => [
@@ -176,7 +197,7 @@ export function Contact() {
                 <p>{t("success")}</p>
               </div>
             ) : (
-              <form className="contact-form contact-form--embedded" onSubmit={onSubmit} noValidate>
+              <form id="contact-form" className="contact-form contact-form--embedded" onSubmit={onSubmit} noValidate>
                 <div className="contact-form__intro">
                   <h3>{t("formTitle")}</h3>
                   <p>{t("formLead")}</p>
@@ -300,6 +321,7 @@ export function Contact() {
                 {errors.consent && touched.consent ? (
                   <em className="field-error">{errors.consent}</em>
                 ) : null}
+                <p className="contact-legal-guide"><a href={privacyBlogPath(locale)}>{locale === "en" ? "How I plan forms and personal data for a website ↗" : "Как продумать форму и персональные данные на сайте ↗"}</a></p>
 
                 <button
                   type="submit"

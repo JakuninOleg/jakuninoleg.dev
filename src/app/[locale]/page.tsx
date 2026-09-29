@@ -1,5 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Contact } from "@/components/Contact";
+import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
@@ -8,8 +9,10 @@ import { Reveal } from "@/components/Reveal";
 import { ScrollStep } from "@/components/ScrollStep";
 import { Services } from "@/components/Services";
 import { Solutions } from "@/components/Solutions";
-import { Stack } from "@/components/Stack";
 import { Work } from "@/components/Work";
+import { BlogFeature } from "@/components/BlogFeature";
+import { HomeCalculator } from "@/components/HomeCalculator";
+import "../home.css";
 
 export default async function HomePage({
   params,
@@ -35,11 +38,13 @@ export default async function HomePage({
       <Reveal />
       <main id="main" className="flex-1">
         <Hero />
-        <Solutions />
-        <Work />
         <Services />
+        <HomeCalculator locale={locale} />
+        <Work />
+        <About />
+        <Solutions />
+        <BlogFeature />
         <Contact />
-        <Stack />
       </main>
       <Footer />
       <ScrollStep />
