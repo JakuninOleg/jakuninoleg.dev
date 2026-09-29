@@ -944,13 +944,18 @@ body:has(.product-case-page) .topbar .brand {
 
   .hero-mascot,
   .hero-reveal {
-    top: clamp(0%, 1vh, 3%);
-    bottom: clamp(-12%, -6vh, -4%);
-    object-position: 58% 46%;
+    top: 2rem;
+    left: auto;
+    right: clamp(-3.5rem, calc((100vw - var(--max)) / 2 - 36rem), 20rem);
+    bottom: auto;
+    width: auto;
+    height: calc(100% - 4rem);
+    object-position: center;
+    transform: none;
   }
 
   .hero-stage__glow {
-    top: clamp(8%, 12vh, 16%);
+    top: 3rem;
   }
 
   .section-head {
