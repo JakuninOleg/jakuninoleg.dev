@@ -31,9 +31,7 @@
     "aboutCta": "Обо мне и подходе",
     "scopeLabel": "Что входит в работу",
     "scope": ["Позиционирование", "Дизайн", "Разработка", "SEO"],
-    "scrollDown": "К следующему блоку",
     "scrollPrompt": "Листайте вниз",
-    "scrollUp": "Наверх",
     "focusTitle": "Мой фокус",
     "focusTag": "результат",
     "focus": [
@@ -41,8 +39,7 @@
       "Собрать продукт вокруг ключевых сценариев",
       "Довести проект до запуска и реального использования"
     ],
-    "role": "Frontend / Fullstack",
-    "watermark": "Developer"
+    "role": "Frontend / Fullstack"
   },
   "Work": {
     "kicker": "Работы",

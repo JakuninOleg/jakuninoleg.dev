@@ -6,7 +6,6 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { Reveal } from "@/components/Reveal";
-import { ScrollStep } from "@/components/ScrollStep";
 import { Services } from "@/components/Services";
 import { Solutions } from "@/components/Solutions";
 import { Work } from "@/components/Work";
@@ -47,7 +46,6 @@ export default async function HomePage({
         <Contact />
       </main>
       <Footer />
-      <ScrollStep />
     </>
   );
 }

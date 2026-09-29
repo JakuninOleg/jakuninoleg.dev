@@ -31,9 +31,7 @@
     "aboutCta": "About me and my approach",
     "scopeLabel": "What I can cover",
     "scope": ["Positioning", "Design", "Development", "SEO"],
-    "scrollDown": "Go to next section",
     "scrollPrompt": "Scroll down",
-    "scrollUp": "Back to top",
     "focusTitle": "My focus",
     "focusTag": "result",
     "focus": [
@@ -41,8 +39,7 @@
       "Build around the key user scenarios",
       "Ship something people can actually use"
     ],
-    "role": "Frontend / Fullstack",
-    "watermark": "Developer"
+    "role": "Frontend / Fullstack"
   },
   "Work": {
     "kicker": "Work",

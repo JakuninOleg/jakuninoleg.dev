@@ -8,10 +8,6 @@ export async function Hero() {
 
   return (
     <section className="hero" id="top" aria-labelledby="hero-heading">
-      <p className="hero-watermark" aria-hidden="true">
-        {t("watermark")}
-      </p>
-
       <p className="hero-mobile-identity" aria-hidden="true">{t("eyebrow")}</p>
       <HeroStage />
 
