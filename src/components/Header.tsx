@@ -17,11 +17,12 @@ export function Header() {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const links = [
-    { href: homeAnchor("#solutions"), label: t("solutions") },
+    { href: `/${locale}/services`, label: t("services") },
     { href: `/${locale}/work`, label: t("work") },
-    { href: homeAnchor("#services"), label: t("services") },
+    { href: homeAnchor("#about"), label: t("about") },
+    { href: `/${locale}/oj-cms`, label: t("solutions") },
+    { href: `/${locale}/blog`, label: t("blog") },
     { href: homeAnchor("#contact"), label: t("contact") },
-    { href: homeAnchor("#stack"), label: t("stack") },
   ];
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import { HeroStage } from "@/components/HeroStage";
 export async function Hero() {
   const t = await getTranslations("Hero");
   const locale = await getLocale();
-  const focus = t.raw("focus") as string[];
+  const scope = t.raw("scope") as string[];
 
   return (
     <section className="hero" id="top" aria-labelledby="hero-heading">
@@ -13,11 +13,12 @@ export async function Hero() {
       </p>
 
       <HeroStage />
+      <p className="hero-mobile-identity" aria-hidden="true">{t("eyebrow")}</p>
 
       <div className="shell hero-content">
         <div className="hero-copy">
           <p className="eyebrow">{t("eyebrow")}</p>
-          <h1 id="hero-heading">{t("headline")}</h1>
+          <h1 id="hero-heading">{t.rich("headline", { keep: (chunks) => <span className="hero-keep">{chunks}</span> })}</h1>
           <p className="lead">{t("lead")}</p>
           <div className="hero-actions">
             <a href="#contact" className="btn-main">
@@ -27,17 +28,10 @@ export async function Hero() {
               {t("secondaryCta")}
             </a>
           </div>
-          <div className="focus-card reveal-item" style={{ ["--reveal-delay" as string]: "0.12s" }}>
-            <div className="focus-card__head">
-              <strong>{t("focusTitle")}</strong>
-              <span className="focus-card__tag">{t("focusTag")}</span>
-            </div>
-            <ul className="focus-list">
-              {focus.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
+          <a href="#about" className="hero-about-link">{t("aboutCta")} <span aria-hidden="true">↗</span></a>
+          <ul className="hero-scope" aria-label={t("scopeLabel")}>
+            {scope.map((item) => <li key={item}>{item}</li>)}
+          </ul>
         </div>
       </div>
     </section>

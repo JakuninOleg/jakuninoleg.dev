@@ -31,8 +31,8 @@ export default async function WorkPage({ params }: Props) {
     const title = t.has(`projects.${project.id}.title`) ? t(`projects.${project.id}.title`) : project.title;
     return (
       <Link key={project.id} href={`/${locale}/work/${project.id}`} className={`portfolio-card reveal-item${isFeatured ? " portfolio-card--featured" : ""}`} style={{ ["--accent" as string]: project.accent, ["--reveal-delay" as string]: `${index * 0.04}s` }}>
-        <div className="portfolio-card__image">
-          <Image src={project.image} alt={t.has(`projects.${project.id}.imageAlt`) ? t(`projects.${project.id}.imageAlt`) : t("screenshotAlt", { title })} width={project.id === "aokemz" ? 1265 : 1280} height={project.id === "aokemz" ? 712 : 800} sizes={isFeatured ? "(max-width: 800px) 100vw, 60vw" : "(max-width: 800px) 100vw, 42vw"} priority={isFeatured} />
+        <div className={`portfolio-card__image${project.imageFit === "contain" ? " portfolio-card__image--contain" : ""}${project.id === "vne-shablona" ? " portfolio-card__image--paper" : ""}`}>
+          <Image src={project.image} alt={t.has(`projects.${project.id}.imageAlt`) ? t(`projects.${project.id}.imageAlt`) : t("screenshotAlt", { title })} width={project.id === "aokemz" ? 1265 : project.id === "vne-shablona" ? 1831 : 1280} height={project.id === "aokemz" ? 712 : project.id === "vne-shablona" ? 859 : 800} sizes={isFeatured ? "(max-width: 800px) 100vw, 60vw" : "(max-width: 800px) 100vw, 42vw"} priority={isFeatured} />
           <span className="portfolio-card__number">{String(index + 1).padStart(2, "0")}</span>
         </div>
         <div className="portfolio-card__copy">

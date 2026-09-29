@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { KemzCase } from "@/components/KemzCase";
+import { CaseServiceBridge } from "@/components/CaseServiceBridge";
 import { Reveal } from "@/components/Reveal";
 import { projectsMeta } from "@/content/site";
 import { projectStories } from "@/content/project-stories";
@@ -13,7 +13,7 @@ import { projectStories } from "@/content/project-stories";
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export function generateStaticParams() {
-  return ["ru", "en"].flatMap((locale) => projectsMeta.map((project) => ({ locale, slug: project.id })));
+  return ["ru", "en"].flatMap((locale) => projectsMeta.filter((project) => project.id !== "aokemz" && project.id !== "vne-shablona").map((project) => ({ locale, slug: project.id })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -22,12 +22,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project) return {};
   const t = await getTranslations({ locale, namespace: "Work" });
   const title = t.has(`projects.${slug}.title`) ? t(`projects.${slug}.title`) : project.title;
-  const description = t(`projects.${slug}.summary`);
+  const specific = slug === "aokemz" || slug === "vne-shablona";
+  const seo = specific ? await getTranslations({ locale, namespace: slug === "aokemz" ? "Portfolio.kemz" : "VneCase" }) : null;
+  const productSeo: Record<string, { ru: [string, string]; en: [string, string] }> = {
+    okhana: { ru: ["Охана — семейный AI-помощник, задачи и приватность | Кейс Олега Якунина", "Как я разработал семейный веб-сервис Охана: заметки, поручения, календарь, AI-ассистент и доступ к данным по ролям."], en: ["Okhana — family AI assistant and private workspace | Case study", "How I built Okhana: a family web app with notes, tasks, calendar, an AI assistant, and access-aware data queries."] },
+    "tesla-explorer": { ru: ["Tesla Explorer — редизайн и планирование поездок | Кейс Олега Якунина", "Редизайн Tesla Explorer: маршрутный веб-сервис с личным кабинетом, картой Mapbox и AI-планированием поездок."], en: ["Tesla Explorer — redesign and trip planning | Case study", "Tesla Explorer redesign: a trip planning web app with a personal workspace, Mapbox routes, and AI-assisted itineraries."] },
+    "oj-cms": { ru: ["OJ CMS — авторская CMS на Payload | Кейс Олега Якунина", "Как я создал OJ CMS: понятная редакторская панель, страницы, новости, медиатека, черновики, роли и публикация."], en: ["OJ CMS — a custom Payload CMS | Case study", "How I built OJ CMS: an editorial dashboard for pages, news, media, drafts, roles, and publishing."] },
+  };
+  const language = locale === "en" ? "en" : "ru";
+  const pageTitle = seo ? seo("seoTitle") : productSeo[slug]?.[language][0] ?? `${title} — ${locale === "ru" ? "кейс" : "case study"}`;
+  const description = seo ? seo("seoDescription") : productSeo[slug]?.[language][1] ?? t(`projects.${slug}.summary`);
   return {
-    title: `${title} — ${locale === "ru" ? "кейс" : "case study"}`,
+    title: pageTitle,
     description,
     alternates: { canonical: `/${locale}/work/${slug}`, languages: { ru: `/ru/work/${slug}`, en: `/en/work/${slug}` } },
-    openGraph: { title, description, images: [project.image] },
+    openGraph: { title: pageTitle, description, images: [project.image] },
   };
 }
 
@@ -39,8 +48,9 @@ export default async function CasePage({ params }: Props) {
   const t = await getTranslations("Work");
   const p = await getTranslations("Portfolio");
   const n = await getTranslations("Nav");
-  if (slug === "aokemz") {
-    return <><a href="#main" className="skip-link">{n("skipToContent")}</a><Header /><Reveal /><main id="main" className="case-page flex-1"><KemzCase locale={locale} /></main><Footer /></>;
+  if (slug === "okhana" || slug === "tesla-explorer" || slug === "oj-cms") {
+    const { ProductCase } = await import("@/components/ProductCases");
+    return <><a href="#main" className="skip-link">{n("skipToContent")}</a><Header /><Reveal /><main id="main" className="case-page product-case-page flex-1"><ProductCase locale={locale} project={slug} /></main><Footer /></>;
   }
   const title = t.has(`projects.${slug}.title`) ? t(`projects.${slug}.title`) : project.title;
   const imageAlt = t.has(`projects.${slug}.imageAlt`) ? t(`projects.${slug}.imageAlt`) : t("screenshotAlt", { title });
@@ -119,6 +129,7 @@ export default async function CasePage({ params }: Props) {
             <div className="case-story__content"><h2 id="case-about">{p("whatBuilt")}</h2><h3>{p("caseTask")}</h3><p>{story.task}</p><h3>{p("caseSolution")}</h3><p>{story.solution}</p><h3>{p("caseResult")}</h3><p>{story.result}</p><h3>{p("technology")}</h3><div className="case-stack">{project.stack.map((tech) => <span key={tech}>{tech}</span>)}</div>{project.href && <a className="case-story__link" href={project.href} target="_blank" rel="noreferrer">{p("visitSite")} ↗</a>}</div>
           </section>
         )}
+        {slug === "oj-cms" && <CaseServiceBridge locale={locale} route="cms" />}
         <div className="shell case-next"><span>{p("nextProject")}</span><Link href={`/${locale}/work/${next.id}`}>{nextTitle} <span aria-hidden>↗</span></Link></div>
       </main>
       <Footer />

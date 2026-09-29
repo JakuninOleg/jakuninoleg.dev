@@ -20,5 +20,6 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/(en|ru)/:path*", "/(en|ru)"],
+  // Include unknown paths so next-intl adds a locale before the localized 404 route runs.
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };

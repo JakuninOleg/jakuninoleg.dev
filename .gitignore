@@ -48,3 +48,4 @@ tmp-*.png
 tmp-*.css
 tmp-*.js
 tmp-*.txt
+/design-previews/

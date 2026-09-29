@@ -17,7 +17,7 @@ export async function Solutions() {
         </div>
 
         <div className="solutions">
-          {solutionsMeta.map((solution, index) => {
+          {solutionsMeta.filter((solution) => solution.id === "catalog").map((solution, index) => {
             const points = t.raw(`offers.${solution.id}.points`) as string[];
             const style = {
               ["--accent" as string]: solution.accent,

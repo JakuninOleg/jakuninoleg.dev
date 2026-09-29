@@ -9,7 +9,7 @@ export const projectStories: Record<"ru" | "en", Record<string, Story>> = {
     },
     okhana: {
       task: "Организовать личное пространство семьи, где поиск и ответы опираются на её собственные данные.",
-      solution: "Собрал семейный хаб с ролями, приватностью и поиском по памяти. В основе — Next.js, база Postgres и RAG-сценарий.",
+      solution: "Собрал семейный хаб с ролями, приватностью и поиском по заметкам с проверкой доступа. В основе — Next.js и Postgres.",
       result: "Работающий сервис доступен на okhanahome.com.",
     },
     "tesla-explorer": {
@@ -26,7 +26,7 @@ export const projectStories: Record<"ru" | "en", Record<string, Story>> = {
     },
     okhana: {
       task: "Create a private family space where search and answers use the family's own information.",
-      solution: "I built a family hub with roles, privacy, and memory search, using Next.js, Postgres, and a RAG flow.",
+      solution: "I built a family hub with roles, privacy, and permission-aware note search using Next.js and Postgres.",
       result: "The working service is available at okhanahome.com.",
     },
     "tesla-explorer": {

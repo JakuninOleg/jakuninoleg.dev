@@ -1,0 +1,13 @@
+.wrap { padding: clamp(2rem, 4vw, 4rem) 0; background: #08141e; }
+.bridge { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); align-items: center; gap: clamp(1.5rem, 4vw, 4rem); min-height: 19rem; overflow: hidden; border: 1px solid rgba(118, 204, 230, .32); border-radius: .8rem; background: radial-gradient(circle at 75% 55%, #1a3c52, #0b1c29 68%); color: #f3f8fb; transition: border-color .2s ease, transform .2s ease; }
+.bridge:hover { transform: translateY(-3px); border-color: #77d9ed; }
+.bridge:focus-visible { outline: 3px solid #77d9ed; outline-offset: 4px; }
+.copy { padding: clamp(1.5rem, 3vw, 3rem) 0 clamp(1.5rem, 3vw, 3rem) clamp(1.5rem, 3vw, 3rem); }
+.kicker { color: #77d9ed; font: 700 .7rem/1.5 var(--font-mono), monospace; letter-spacing: .09em; text-transform: uppercase; }
+.copy h2 { max-width: 16ch; margin: 1.2rem 0 .8rem; font: 800 clamp(1.75rem, 3vw, 3rem)/1.05 var(--font-display), sans-serif; letter-spacing: -.045em; }
+.copy p { max-width: 32rem; margin: 0; color: #b9ccd6; line-height: 1.55; }
+.action { display: inline-flex; align-items: center; gap: 1rem; margin-top: 1.5rem; color: #9ce7f1; font-weight: 750; }
+.art { position: relative; align-self: stretch; min-height: 18rem; }
+.art img { object-fit: contain; object-position: center; }
+@media (max-width: 700px) { .bridge { grid-template-columns: 1fr; gap: 0; } .copy { padding: 1.5rem 1.5rem 0; } .art { min-height: 15rem; } }
+@media (prefers-reduced-motion: reduce) { .bridge { transition: none; } }
