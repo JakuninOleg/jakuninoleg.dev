@@ -12,14 +12,14 @@ export async function Hero() {
         {t("watermark")}
       </p>
 
-      <HeroStage />
       <p className="hero-mobile-identity" aria-hidden="true">{t("eyebrow")}</p>
+      <HeroStage />
 
       <div className="shell hero-content">
         <div className="hero-copy">
           <p className="eyebrow">{t("eyebrow")}</p>
-          <h1 id="hero-heading">{t.rich("headline", { keep: (chunks) => <span className="hero-keep">{chunks}</span> })}</h1>
-          <p className="lead">{t("lead")}</p>
+          <h1 id="hero-heading"><span className="hero-headline-desktop">{t.rich("headline", { keep: (chunks) => <span className="hero-keep">{chunks}</span> })}</span><span className="hero-headline-mobile">{t("headlineMobile")}</span></h1>
+          <p className="lead"><span className="hero-lead-desktop">{t("lead")}</span><span className="hero-lead-mobile">{t("leadMobile")}</span></p>
           <div className="hero-actions">
             <a href="#contact" className="btn-main">
               {t("primaryCta")}

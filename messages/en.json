@@ -23,7 +23,9 @@
   "Hero": {
     "eyebrow": "Oleg Jakunin · fullstack developer",
     "headline": "I build websites and <keep>web apps</keep> end to end",
+    "headlineMobile": "Websites and web apps",
     "lead": "From brand positioning and design concepts to a working product: interface, CMS, integrations, SEO foundations, and launch.",
+    "leadMobile": "From idea and design to code, CMS and launch. Built personally around your goals.",
     "primaryCta": "Discuss a project",
     "secondaryCta": "See work",
     "aboutCta": "About me and my approach",

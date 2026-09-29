@@ -1502,55 +1502,45 @@
     display: flex;
     flex-direction: column;
     min-height: 100svh;
+    padding-top: 4.65rem;
   }
 
   .hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: min(62%, 34rem);
-    z-index: 5;
-    pointer-events: none;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(5, 7, 14, 0.42) 34%,
-      rgba(5, 7, 14, 0.78) 68%,
-      rgba(5, 7, 14, 0.92) 100%
-    );
+    content: none;
   }
 
   .hero-content {
-    align-content: end;
-    align-items: stretch;
-    padding-block: 400px 1.5rem;
-    /* keep .shell gutters — do not set width: 100% here */
+    display: block;
+    min-height: 0;
+    padding-block: 0 1.5rem;
   }
 
   .hero-stage {
+    position: relative;
+    inset: auto;
     z-index: 4;
+    flex: none;
+    width: 100%;
+    height: clamp(21rem, 105vw, 27rem);
+    overflow: hidden;
   }
 
   .hero-stage__glow {
-    top: clamp(72px, 16vw, 110px);
-    left: auto;
-    right: clamp(-250px, -46vw, -156px);
-    width: clamp(640px, 176vw, 800px);
-    opacity: 0.9;
+    display: none;
   }
 
   .hero-mascot,
   .hero-reveal {
-    top: clamp(52px, 9vw, 68px);
-    left: auto;
-    right: clamp(-174px, -32vw, -106px);
+    top: -.5rem;
+    left: 50%;
+    right: auto;
     bottom: auto;
-    width: clamp(580px, 160vw, 730px);
+    width: clamp(22rem, 116vw, 30rem);
     height: auto;
     max-height: none;
     object-position: center top;
     opacity: 1;
-    transform: none;
+    transform: translateX(-50%);
   }
 
   .hero-mascot {
@@ -1569,27 +1559,11 @@
     z-index: 12;
     max-width: 100%;
     margin-top: 0;
-    padding: 0.85rem 0.2rem 0.35rem;
-    isolation: isolate;
+    padding: 0;
   }
 
   .hero-copy::before {
-    content: "";
-    position: absolute;
-    inset: -0.35rem -0.85rem -0.55rem;
-    z-index: -1;
-    border-radius: 1.6rem;
-    background:
-      linear-gradient(
-        165deg,
-        rgba(8, 10, 18, 0.28) 0%,
-        rgba(8, 10, 18, 0.72) 38%,
-        rgba(8, 10, 18, 0.86) 100%
-      );
-    box-shadow: 0 0 40px 18px rgba(5, 7, 14, 0.35);
-    backdrop-filter: blur(14px) saturate(1.05);
-    -webkit-backdrop-filter: blur(14px) saturate(1.05);
-    pointer-events: none;
+    content: none;
   }
 
   .hero-copy .eyebrow {
@@ -1635,19 +1609,11 @@
   }
 
   .scroll-step {
-    bottom: 16px;
-    width: 2.875rem;
-    height: 2.875rem;
-  }
-
-  .scroll-step svg {
-    width: 1.2rem;
-    height: 1.2rem;
+    display: none;
   }
 
   .hero-watermark {
-    font-size: clamp(2.6rem, 14vw, 4.5rem);
-    bottom: 1.25rem;
+    display: none;
     opacity: 0.45;
   }
 }
@@ -1692,6 +1658,11 @@
 
 
 .hero-mobile-identity {
+  display: none;
+}
+
+.hero-headline-mobile,
+.hero-lead-mobile {
   display: none;
 }
 
@@ -2146,36 +2117,43 @@
 
 @media (max-width: 819px) {
   .hero-mobile-identity {
-    position: absolute;
-    top: 6.3rem;
-    left: var(--gutter);
-    z-index: 12;
+    position: relative;
+    z-index: 6;
     display: block;
-    max-width: calc(100% - 2 * var(--gutter));
-    margin: 0;
+    width: min(100% - var(--gutter) * 2, var(--max));
+    margin: 0 auto .25rem;
     color: var(--fg);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    text-shadow: 0 2px 12px var(--bg);
-  }
-
-  .hero-content {
-    padding-top: clamp(17rem, 76vw, 21rem);
   }
 
   .hero-copy h1 {
-    max-width: 18ch;
-    font-size: clamp(1.85rem, 8.4vw, 2.5rem);
+    max-width: 22ch;
+    font-size: clamp(1.8rem, 7.7vw, 2.35rem);
   }
 
-  .hero-scope {
-    gap: 0.4rem 0.75rem;
-    margin-top: 2rem;
+  .hero-headline-desktop,
+  .hero-lead-desktop {
+    display: none;
   }
 
-  .hero-scope li + li::before {
-    margin-right: 0.75rem;
+  .hero-headline-mobile,
+  .hero-lead-mobile {
+    display: inline;
   }
+
+  .hero-copy .lead {
+    max-width: 100%;
+    margin-top: .7rem;
+    font-size: .94rem;
+    line-height: 1.45;
+  }
+
+  .hero-actions {
+    margin-top: .9rem;
+  }
+
+  .hero-scope { display: none; }
 
   .services-layout,
   .about-head,
