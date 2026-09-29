@@ -18,7 +18,7 @@
 .kemz-kicker { color: var(--kemz-cyan); font: 700 .78rem var(--font-mono),monospace; letter-spacing: .12em; text-transform: uppercase; }
 .kemz-case h2 { font-size: clamp(2.15rem,4.2vw,4.4rem); font-weight: 700; line-height: 1.02; letter-spacing: -.055em; }
 .kemz-hero { position: relative; isolation: isolate; overflow: clip; padding-top: clamp(7.5rem,10vw,9rem); border-bottom: 1px solid var(--kemz-line); background: var(--kemz-bg); }
-.kemz-hero__landscape { z-index: -2; object-fit: cover; object-position: center 52%; opacity: .44; }
+.kemz-hero__landscape { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; object-fit: cover; object-position: center 52%; opacity: .44; }
 .kemz-hero::before { content: ""; position: absolute; z-index: -1; inset: 0; background: var(--kemz-photo-shade); }
 .kemz-hero__inner { display: grid; grid-template-columns: minmax(18rem,.44fr) minmax(0,1fr); align-items: center; gap: clamp(1rem,3vw,3rem); min-height: 31rem; }
 .kemz-hero__copy { z-index: 2; padding: 0 0 3rem; }
@@ -34,6 +34,7 @@
 .kemz-hero__tablet { position: relative; z-index: 1; width: 94%; aspect-ratio: 1265 / 712; padding: .65rem; border: 1px solid #4b5e6e; border-radius: 1.25rem; background: #101920; box-shadow: 0 36px 90px rgba(0,0,0,.55); transform: perspective(1300px) rotateY(-7deg) rotateZ(-2deg); transform-origin: center; }
 .kemz-hero__tablet::after { content: ""; position: absolute; left: 50%; top: .15rem; width: .23rem; height: .23rem; border-radius: 50%; background: #526474; }
 .kemz-hero__screen { width: 100%; height: 100%; overflow: hidden; border-radius: .65rem; background: var(--kemz-panel); }
+.kemz-hero__screen picture { display: block; width: 100%; height: 100%; }
 .kemz-hero__screen img { display: block; width: calc(100% + 13px); max-width: none; height: 100%; object-fit: cover; object-position: left top; }
 .kemz-hero__phone { position: absolute; z-index: 3; right: -.1rem; bottom: .5rem; width: clamp(8.2rem,13vw,11rem); aspect-ratio: 390 / 844; padding: .38rem; border: 1px solid #60717d; border-radius: 1.45rem; background: #0b1218; box-shadow: 0 22px 55px rgba(0,0,0,.65); transform: rotate(4deg); }
 .kemz-hero__phone::before { content: ""; position: absolute; z-index: 2; top: .38rem; left: 39%; width: 22%; height: .28rem; border-radius: 0 0 .4rem .4rem; background: #0b1218; }

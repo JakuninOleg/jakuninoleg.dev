@@ -10,7 +10,8 @@ import { ServiceLeadForm } from "@/components/ServiceLeadForm";
 import { BlogContextLink } from "@/components/BlogContextLink";
 import { serviceFaqExtra } from "@/content/service-faq-extra";
 import { FaqList } from "../[slug]/FaqList";
-import { serviceArt } from "@/content/service-art";
+import { serviceCardArt } from "@/content/service-art";
+import { serviceCardBlur } from "@/content/service-art-blur";
 import { serviceTimelines } from "@/content/project-estimator";
 import styles from "./page.module.css";
 
@@ -94,7 +95,7 @@ export default async function ProductCataloguesPage({ params }: Props) {
 
         <section className={styles.faq} aria-labelledby="catalog-faq-title"><div className={`shell ${styles.faqInner}`}><div><p className={styles.kicker}>FAQ</p><h2 id="catalog-faq-title">{locale === "en" ? "Catalog questions" : "Частые вопросы о сайте-каталоге"}</h2></div><FaqList items={serviceFaqExtra[locale === "en" ? "en" : "ru"]["product-catalogues"]} /></div></section>
 
-        <nav className={styles.related} aria-label={locale === "en" ? "Other website formats" : "Другие форматы сайтов"}><div className="shell"><p className={styles.kicker}>{locale === "en" ? "ANOTHER FORMAT" : "ДРУГОЙ ФОРМАТ"}</p><h2>{locale === "en" ? "What if a catalog is not enough?" : "Если каталога недостаточно"}</h2><p>{locale === "en" ? "One focused offer, online checkout or a custom workflow each call for a different kind of site." : "Для одного предложения подойдёт лендинг, для покупки онлайн — магазин, для личного кабинета — приложение."}</p><div className={styles.relatedLinks}>{(["landing-pages", "online-stores", "web-applications"] as const).map((item) => <Link key={item} href={`/${locale}/services/${item}`}><span>{item === "landing-pages" ? (locale === "en" ? "Landing pages" : "Сайты-лендинги") : item === "online-stores" ? (locale === "en" ? "Online stores" : "Интернет-магазины") : (locale === "en" ? "Web applications" : "Веб-приложения")}</span><Image src={serviceArt[item].src} alt="" width={320} height={220} sizes="(max-width: 650px) 45vw, 20vw" /><b aria-hidden="true">↗</b></Link>)}</div></div></nav>
+        <nav className={styles.related} aria-label={locale === "en" ? "Other website formats" : "Другие форматы сайтов"}><div className="shell"><p className={styles.kicker}>{locale === "en" ? "ANOTHER FORMAT" : "ДРУГОЙ ФОРМАТ"}</p><h2>{locale === "en" ? "What if a catalog is not enough?" : "Если каталога недостаточно"}</h2><p>{locale === "en" ? "One focused offer, online checkout or a custom workflow each call for a different kind of site." : "Для одного предложения подойдёт лендинг, для покупки онлайн — магазин, для личного кабинета — приложение."}</p><div className={styles.relatedLinks}>{(["landing-pages", "online-stores", "web-applications"] as const).map((item) => <Link key={item} href={`/${locale}/services/${item}`}><span>{item === "landing-pages" ? (locale === "en" ? "Landing pages" : "Сайты-лендинги") : item === "online-stores" ? (locale === "en" ? "Online stores" : "Интернет-магазины") : (locale === "en" ? "Web applications" : "Веб-приложения")}</span><Image src={serviceCardArt(item)} alt="" width={960} height={660} sizes="(max-width: 650px) 45vw, 20vw" placeholder="blur" blurDataURL={serviceCardBlur[item]} /><b aria-hidden="true">↗</b></Link>)}</div></div></nav>
 
         <BlogContextLink locale={locale} context="catalog" />
         <ServiceLeadForm locale={locale} service={locale === "en" ? "Product catalog website" : "Сайт-каталог"} title={t("finalTitle")} lead={t("finalText")} />

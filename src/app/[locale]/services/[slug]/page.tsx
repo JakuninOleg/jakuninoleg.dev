@@ -9,7 +9,8 @@ import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
 import { ServiceGlyph } from "@/components/ServiceGlyph";
 import { siMailchimp, siMeilisearch, siPaypal, siResend, siStripe } from "simple-icons";
-import { serviceArt } from "@/content/service-art";
+import { serviceArt, serviceCardArt } from "@/content/service-art";
+import { relatedCardBlur, serviceCardBlur } from "@/content/service-art-blur";
 import { serviceFaqExtra } from "@/content/service-faq-extra";
 import { servicePages } from "@/content/service-pages";
 import { serviceRoutes, type ServiceRoute } from "@/content/service-routes";
@@ -27,9 +28,10 @@ const colors: Record<ServiceRoute, string> = {
   cms: "#69d9d0", "ai-solutions": "#aa9ef3",
 };
 const relatedCardArt: Partial<Record<ServiceRoute, { src: string; width: number; height: number }>> = {
-  "landing-pages": { src: "/service-art/related-landing.webp", width: 1487, height: 1058 },
-  "product-catalogues": { src: "/service-art/related-catalog.webp", width: 1536, height: 1024 },
-  "web-applications": { src: "/service-art/related-app.webp", width: 1536, height: 1024 },
+  "landing-pages": { src: "/service-art/cards/related-landing.webp", width: 720, height: 512 },
+  "product-catalogues": { src: "/service-art/cards/related-catalog.webp", width: 720, height: 480 },
+  "online-stores": { src: "/service-art/cards/related-store.webp", width: 720, height: 480 },
+  "web-applications": { src: "/service-art/cards/related-app.webp", width: 720, height: 480 },
 };
 const relatedByRoute: Record<ServiceRoute, ServiceRoute[]> = {
   "landing-pages": ["product-catalogues", "online-stores", "web-applications"],
@@ -148,7 +150,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       <nav className={styles.related} aria-label={isRu ? "Другие услуги" : "Other services"}><div className="shell"><p className={styles.kicker}>{isRu ? "МОЖНО ПО-ДРУГОМУ" : "ANOTHER ROUTE"}</p><div className={styles.relatedHead}><h2>{related.title}</h2><p>{related.text}</p></div><div className={styles.relatedGrid}>{relatedRoutes.map((item, index) => {
         const artwork = relatedCardArt[item];
-        return <Link key={item} href={`/${locale}/services/${item}`}><span className={styles.relatedIndex}>0{index + 1} / {String(serviceRoutes.indexOf(item) + 1).padStart(2, "0")}</span><Image className={artwork ? styles.relatedArtworkFeature : styles.relatedArtwork} src={artwork?.src ?? serviceArt[item].src} alt="" width={artwork?.width ?? 360} height={artwork?.height ?? 260} sizes="(max-width: 650px) 100vw, 33vw" /><span className={styles.relatedTitle}>{serviceTitles[serviceRoutes.indexOf(item)].title}</span><span className={styles.relatedArrow} aria-hidden="true">↗</span></Link>;
+        return <Link key={item} href={`/${locale}/services/${item}`}><span className={styles.relatedIndex}>0{index + 1} / {String(serviceRoutes.indexOf(item) + 1).padStart(2, "0")}</span><Image className={artwork ? styles.relatedArtworkFeature : styles.relatedArtwork} src={artwork?.src ?? serviceCardArt(item)} alt="" width={artwork?.width ?? 960} height={artwork?.height ?? 960} sizes="(max-width: 650px) 100vw, 33vw" placeholder="blur" blurDataURL={relatedCardBlur[item] ?? serviceCardBlur[item]} /><span className={styles.relatedTitle}>{serviceTitles[serviceRoutes.indexOf(item)].title}</span><span className={styles.relatedArrow} aria-hidden="true">↗</span></Link>;
       })}</div><Link href={`/${locale}/services`} className={styles.relatedAll}>{isRu ? "Все направления" : "All services"} ↗</Link></div></nav>
 
       {(["landing-pages", "online-stores", "seo-positioning", "cms"] as ServiceRoute[]).includes(route) && <BlogContextLink locale={locale} context={route === "landing-pages" ? "landing" : route === "online-stores" ? "store" : route === "cms" ? "cms" : "seo"} />}

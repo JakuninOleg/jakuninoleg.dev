@@ -91,7 +91,10 @@ export async function KemzCase({ locale }: { locale: string }) {
   return (
     <article className="kemz-case">
       <section className="kemz-hero" aria-labelledby="kemz-title">
-        <Image className="kemz-hero__landscape" src="/projects/kemz/quarry.webp" alt="" fill sizes="100vw" priority />
+        <picture>
+          <source media="(max-width: 900px)" srcSet="/projects/kemz/quarry-mobile.webp" />
+          <img className="kemz-hero__landscape" src="/projects/kemz/quarry.webp" alt="" fetchPriority="high" decoding="async" />
+        </picture>
         <div className="shell kemz-hero__inner">
           <div className="kemz-hero__copy">
             <Link href={`/${locale}/work`} className="kemz-back">← {p("backCatalog")}</Link>
@@ -101,7 +104,7 @@ export async function KemzCase({ locale }: { locale: string }) {
             <a className="kemz-button" href="#kemz-archive">{p("kemz.heroButton")} <span aria-hidden>↗</span></a>
           </div>
           <div className="kemz-hero__art">
-            <div className="kemz-hero__tablet" aria-label={p("kemz.caption")}><div className="kemz-hero__screen"><Image src="/projects/aokemz-v2.webp" alt={p("kemz.caption")} width={1265} height={712} sizes="(max-width: 900px) 80vw, 60vw" loading="eager" fetchPriority="high" /></div></div>
+            <div className="kemz-hero__tablet" aria-label={p("kemz.caption")}><div className="kemz-hero__screen"><picture><source media="(max-width: 900px)" srcSet="/projects/aokemz-v2-mobile.webp" /><img src="/projects/aokemz-v2.webp" alt={p("kemz.caption")} width={1265} height={712} decoding="async" /></picture></div></div>
             <KemzPhonePreview locale={locale} />
             <span className="kemz-hero__art-index" aria-hidden>01</span>
           </div>

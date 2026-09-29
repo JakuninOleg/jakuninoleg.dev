@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
-import { serviceArt } from "@/content/service-art";
+import { serviceArt, serviceCardArt } from "@/content/service-art";
+import { serviceCardBlur } from "@/content/service-art-blur";
 import { serviceRoutes } from "@/content/service-routes";
 import { serviceTimelines } from "@/content/project-estimator";
 
@@ -24,11 +25,13 @@ export async function Services() {
       >
         <div className={`service-scene service-scene--${route}`}>
           <Image
-            src={artwork.src}
+            src={serviceCardArt(route)}
             alt={artwork.alt[locale === "en" ? "en" : "ru"]}
             fill
             sizes="(max-width: 520px) 100vw, (max-width: 840px) 90vw, 42vw"
             className="service-scene__image"
+            placeholder="blur"
+            blurDataURL={serviceCardBlur[route]}
           />
           <span className="service-scene__stamp" aria-hidden="true">JO / WORKSHOP</span>
         </div>
