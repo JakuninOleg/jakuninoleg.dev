@@ -1010,6 +1010,13 @@ body:has(.product-case-page) .topbar .brand {
     top: 12px;
   }
 
+  .brand {
+    padding: .38rem .55rem;
+    border-radius: 999px;
+    background: #0a1924ee;
+    box-shadow: 0 3px 14px #0003;
+  }
+
   .brand__first,
   .brand__last {
     font-size: clamp(1.15rem, 5.2vw, 1.35rem);

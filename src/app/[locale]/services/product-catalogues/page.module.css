@@ -144,3 +144,16 @@
 .relatedLinks a b { position: relative; z-index: 2; color: #79d8e6; }
 @media (max-width: 900px) { .routeStory, .platformInner, .processHead { grid-template-columns: 1fr; } .routeArt { min-height: min(70vw, 34rem); } .systemList { margin-top: 0; } .systemArt { min-height: min(65vw, 30rem); } .processHead > p { padding-bottom: 1rem; } }
 @media (max-width: 650px) { .routeArt { min-height: 80vw; } .routeGrid li { grid-template-columns: 2.5rem 1fr; gap: .7rem; } .systemArt { min-height: 75vw; } .platformVisual { height: 85vw; } .processImage { min-height: 16rem; } .processImage span { top: 2rem; left: 1.5rem; transform: none; font-size: 1.8rem; } .processImage img { width: 72% !important; opacity: .78; } .relatedLinks a { min-height: 12rem; } }
+@media (max-width: 900px) {
+  .systemInner { grid-template-columns: minmax(0, 1fr); }
+  .systemHead h2, .systemHead > p:last-child { max-width: 100%; }
+  .systemList { margin-top: 0; }
+}
+@media (max-width: 650px) {
+  .processImage { display: flex; flex-direction: column; min-height: 0; padding: 1.5rem 1.2rem 0; }
+  .processImage span { position: relative; inset: auto; z-index: 1; max-width: 100%; transform: none; font-size: clamp(1.65rem, 7vw, 2.2rem); }
+  .processImage img { position: relative !important; inset: auto !important; display: block; align-self: flex-end; width: 100% !important; height: auto !important; aspect-ratio: 3 / 2; margin-top: .5rem; object-fit: contain; opacity: 1; }
+  .relatedLinks a { min-height: 14rem; }
+  .relatedLinks a img { right: 0; bottom: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .relatedLinks a span { padding: .3rem .4rem; background: #0b1d2ad9; }
+}

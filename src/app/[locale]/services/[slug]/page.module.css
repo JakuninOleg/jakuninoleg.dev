@@ -215,3 +215,16 @@
 .compareGrid article:not(:first-child)::before { content: "АЛЬТЕРНАТИВА"; display: block; margin-bottom: 1.6rem; color: #92aab8; font: 750 .68rem var(--font-mono),monospace; letter-spacing: .1em; }
 @media (max-width: 900px) { .commerceScene { grid-template-columns: 1fr; } .commerceScene img { max-width: 37rem; margin: 0 auto -3rem; } }
 @media (max-width: 650px) { .includedLanding .includedGrid article { min-height: 17rem; } .relatedGrid a { min-height: 13rem; } .commerceScene { min-height: 0; } .commerceScene img { margin-bottom: -2rem; } }
+@media (max-width: 900px) {
+  .heroLanding .heroGrid { grid-template-columns: minmax(0, 1fr); }
+  .heroLanding .heroVisual { width: 100%; max-width: 42rem; margin-top: 0; }
+  .heroLanding .heroCopy { min-width: 0; }
+}
+@media (max-width: 650px) {
+  .heroLanding h1 { max-width: 100%; }
+  .includedLanding .includedGrid article { min-height: 0; }
+  .includedLanding .includedDetail { position: relative; inset: auto; flex: none; order: 1; width: 100%; height: 11rem; margin: .5rem 0 .75rem; opacity: 1; mask-image: none; }
+  .includedLanding .includedDetail img { object-position: center; }
+  .includedLanding .includedGrid h3 { order: 2; margin-top: 0; }
+  .includedLanding .includedGrid p { order: 3; }
+}

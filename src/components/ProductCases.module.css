@@ -30,7 +30,6 @@
 .okHeroArt,.teslaHeroArt,.cmsHeroArt { position: relative; min-height: 510px; }
 .okHeroArt,.teslaHeroArt { display: flex; align-items: center; min-height: 510px; }
 .okHeroArt .okHeroCapture { width: 100%; max-width: 620px; margin: 0; border: 1px solid #ffffff50; border-radius: 1rem; overflow: hidden; background: #f8f7f3; box-shadow: 0 24px 60px #071c1b55; }
-.okHeroArt .okHeroCapture img { display: block; width: 100%; height: auto; }
 .teslaHeroArt .teslaPreview { width: 100%; transform: perspective(1400px) rotateY(-5deg) rotate(-2deg); box-shadow: 0 30px 80px #0008; }
 .teslaHeroArt { min-height: 540px; }
 .cmsHeroArt { display: flex; align-items: center; }
@@ -74,7 +73,6 @@
 .feature p { max-width: 32rem; color: #4b5a58; font-size: .93rem; line-height: 1.55; }
 .demoWrap { margin-top: 2rem; }
 .okDetailCapture { width: min(100%, 800px); margin: 2rem auto 0; overflow: hidden; border: 1px solid #ded8d0; border-radius: 1rem; background: #f8f7f3; box-shadow: 0 20px 50px #1b34251c; }
-.okDetailCapture img { display: block; width: 100%; height: auto; }
 .okDetailCapture figcaption { padding: .8rem 1rem; color: #64736e; font: 700 .65rem var(--font-mono),monospace; letter-spacing: .08em; text-transform: uppercase; }
 .demoCaption { display: block; margin-top: 1rem; color: #64736e; font: 700 .65rem var(--font-mono),monospace; letter-spacing: .08em; text-transform: uppercase; }
 .okPreview { position: relative; display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,.8fr); gap: 1rem; align-items: end; padding: 2rem; border: 1px solid #aec7bc; border-radius: 1.3rem; background: radial-gradient(circle at 88% 25%,#f7ddc3,transparent 38%),#cee2d8; }
@@ -191,3 +189,12 @@
 .okMessages { display: flex; flex: 1; flex-direction: column; gap: .4rem; padding: .6rem; }.okBubble { max-width: 80%; margin: 0; padding: .45rem .6rem; border-radius: .75rem; background: #193f39; font-size: .65rem; }.okBubbleReply { display: flex; align-items: start; gap: .35rem; max-width: 90%; padding: 0; background: transparent; color: #30443d; }.okBubbleReply img { flex: 0 0 23px; width: 23px; height: 23px; }.okBubbleReply span { padding-top: .2rem; line-height: 1.4; }
 .okComposer { align-items: center; gap: .5rem; margin: .25rem .6rem .6rem; padding: .4rem .55rem; background: #faf8f3; }.okComposer svg { flex: 0 0 15px; width: 15px; height: 15px; color: #d68e6d; }.okComposer > span { flex: 1; }.okComposer b { display: grid; place-items: center; width: 23px; height: 23px; border-radius: 50%; background: #1a4941; }.okComposer b svg { width: 13px; height: 13px; color: #fff; }
 @media (max-width: 700px) { .okPreview { min-height: 440px; }.okTopbar { height: 42px; }.okDashboard { display: block; min-height: 390px; padding: .5rem; }.okSidebar { display: none; }.okMain { min-height: 390px; }.okhana .outcomeGrid,.tesla .outcomeGrid { grid-template-columns: 1fr; }.okhana .outcomeVisual,.tesla .outcomeVisual { min-height: 300px; }.okhana .outcomeMascot,.tesla .outcomeMascot { width: 108%; margin: 0 -4% -1rem; } }
+@media (max-width: 420px) {
+  .okDemoBar { gap: .3rem; padding-inline: .4rem; }
+  .okDemoBrand { min-width: 0; gap: .2rem; }
+  .okDemoBrand img { flex: 0 0 22px; width: 22px; height: 22px; }
+  .okDemoBrand strong { font-size: .68rem; white-space: nowrap; }
+  .okDemoControls { flex: none; gap: .15rem; }
+  .okDemoControls span { padding-inline: .2rem; }
+  .okDemoControls b { padding-inline: .3rem; }
+}

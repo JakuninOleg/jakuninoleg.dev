@@ -60,3 +60,9 @@
 @media (max-width: 760px) { .layout { grid-template-columns: 1fr; }.aside { position: static; grid-row: 1; display: grid; grid-template-columns: 1fr 1fr; }.asideTop { grid-column: 1 / -1; }.mascot { min-height: 0; }.mascot > span { bottom: .6rem; }.liveQuote { display: flex; flex-direction: column; justify-content: center; border-top: 0; border-left: 1px solid #577c8a; }.panel { grid-row: 2; } }
 @media (max-width: 560px) { .panel { padding: 1.2rem; border-radius: 1rem; }.kindGrid, .choiceGrid, .resultNumbers { grid-template-columns: 1fr; }.kindCard { min-height: 7.5rem; }.aside { grid-template-columns: 1fr; }.mascot { max-height: 15rem; overflow: hidden; }.mascot img { max-width: 18rem; }.mascot > span { right: 1rem; bottom: .5rem; }.liveQuote { border-left: 0; border-top: 1px solid #577c8a; }.resultNumbers strong { font-size: clamp(1.45rem, 7vw, 2rem); } }
 @media (prefers-reduced-motion: reduce) { .progressTrack span, .kindCard, .choice, .next { transition: none; }.kindCard:hover, .choice:hover, .next:hover { transform: none; } }
+@media (max-width: 560px) {
+  .questionHead :is(h2, h3), .result :is(h2, h3) { max-width: 100%; font-size: clamp(1.9rem, 9vw, 2.65rem); overflow-wrap: anywhere; }
+  .resultNumbers > div { min-width: 0; padding: 1rem; }
+  .resultNumbers strong { font-size: clamp(1.3rem, 5.6vw, 1.7rem); line-height: 1.22; overflow-wrap: anywhere; }
+  .resultNumbers strong small { font-size: .62em; }
+}

@@ -81,10 +81,20 @@ export function ProjectQuiz({ locale, embedded = false }: { locale: string; embe
   const [features, setFeatures] = useState<string[]>([]);
   const [cms, setCms] = useState<CmsMode>("none");
   const [materials, setMaterials] = useState<MaterialState>("ready");
+  const [cmsChosen, setCmsChosen] = useState(false);
+  const [materialsChosen, setMaterialsChosen] = useState(false);
   const project = projects.find((item) => item.id === kind);
   const startingChoices = kind === "ai" ? aiStartChoices : kind === "seo" ? seoStartChoices : startChoices;
   const quote = useMemo(() => kind ? calculateEstimate({ kind, start, scope, features, cms, materials }) : null, [kind, start, scope, features, cms, materials]);
   const progress = Math.min(step, 5) / 5 * 100;
+
+  function advanceTo(nextStep: number) {
+    setStep(nextStep);
+    requestAnimationFrame(() => panelRef.current?.scrollIntoView({
+      block: "start",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+    }));
+  }
 
   function chooseKind(value: ProjectKind) {
     setKind(value);
@@ -93,6 +103,9 @@ export function ProjectQuiz({ locale, embedded = false }: { locale: string; embe
     setFeatures([]);
     setCms("none");
     setMaterials("ready");
+    setCmsChosen(false);
+    setMaterialsChosen(false);
+    advanceTo(1);
   }
 
   function toggleFeature(id: string) {
@@ -103,6 +116,8 @@ export function ProjectQuiz({ locale, embedded = false }: { locale: string; embe
     setStep(0);
     setKind(null);
     setFeatures([]);
+    setCmsChosen(false);
+    setMaterialsChosen(false);
     requestAnimationFrame(() => panelRef.current?.scrollIntoView({
       block: "start",
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
@@ -131,15 +146,15 @@ export function ProjectQuiz({ locale, embedded = false }: { locale: string; embe
 
           {step === 0 && <div className={styles.kindGrid}>{projects.map((item, index) => <button key={item.id} type="button" className={`${styles.kindCard} ${kind === item.id ? styles.active : ""}`} aria-pressed={kind === item.id} onClick={() => chooseKind(item.id)}><span className={styles.optionIndex}>{String(index + 1).padStart(2, "0")}</span><strong>{item.title[language]}</strong><small>{item.short[language]}</small><span className={styles.optionArrow} aria-hidden="true">↗</span></button>)}</div>}
 
-          {step === 1 && <div className={styles.choiceGrid}>{startingChoices.map((item) => <button key={item.id} type="button" className={`${styles.choice} ${start === item.id ? styles.active : ""}`} aria-pressed={start === item.id} onClick={() => setStart(item.id)}><strong>{item.label[language]}</strong><small>{item.detail[language]}</small></button>)}</div>}
+          {step === 1 && <div className={styles.choiceGrid}>{startingChoices.map((item) => <button key={item.id} type="button" className={`${styles.choice} ${start === item.id ? styles.active : ""}`} aria-pressed={start === item.id} onClick={() => { setStart(item.id); advanceTo(2); }}><strong>{item.label[language]}</strong><small>{item.detail[language]}</small></button>)}</div>}
 
-          {step === 2 && project && <div className={styles.choiceGrid}>{project.scopes.map((item) => <button key={item.id} type="button" className={`${styles.choice} ${scope === item.id ? styles.active : ""}`} aria-pressed={scope === item.id} onClick={() => setScope(item.id)}><strong>{item.label[language]}</strong><small>{item.price ? `+ ${money(item.price, language)}` : t.basic}</small></button>)}</div>}
+          {step === 2 && project && <div className={styles.choiceGrid}>{project.scopes.map((item) => <button key={item.id} type="button" className={`${styles.choice} ${scope === item.id ? styles.active : ""}`} aria-pressed={scope === item.id} onClick={() => { setScope(item.id); advanceTo(3); }}><strong>{item.label[language]}</strong><small>{item.price ? `+ ${money(item.price, language)}` : t.basic}</small></button>)}</div>}
 
           {step === 3 && project && <div className={styles.choiceGrid}>{project.features.map((item) => <button key={item.id} type="button" className={`${styles.choice} ${features.includes(item.id) ? styles.active : ""}`} aria-pressed={features.includes(item.id)} onClick={() => toggleFeature(item.id)}><strong>{item.label[language]}</strong><small>+ {money(item.price, language)}</small><span className={styles.check} aria-hidden="true">{features.includes(item.id) ? "✓" : "+"}</span></button>)}</div>}
 
-          {step === 4 && project && <div className={styles.lastStep}><div><h3>{language === "ru" ? (kind === "ai" ? "Данные и примеры уже есть?" : kind === "seo" ? "Есть доступы и материалы?" : "Тексты, фото и данные готовы?") : "Are the materials ready?"}</h3><div className={styles.choiceGrid}>{materialChoices.map((item) => <button key={item.id} type="button" className={`${styles.choice} ${materials === item.id ? styles.active : ""}`} aria-pressed={materials === item.id} onClick={() => setMaterials(item.id)}><strong>{item.label[language]}</strong><small>{item.detail[language]}</small></button>)}</div></div>{project.cms === "optional" && <div><h3>{t.cms}</h3><div className={styles.choiceGrid}>{cmsChoices.map((item) => <button key={item.id} type="button" className={`${styles.choice} ${cms === item.id ? styles.active : ""}`} aria-pressed={cms === item.id} onClick={() => setCms(item.id)}><strong>{item.label[language]}</strong><small>{item.detail[language]}</small></button>)}</div></div>}{project.cms === "included" && <p className={styles.includedNote}>{t.includedCms}</p>}</div>}
+          {step === 4 && project && <div className={styles.lastStep}><div><h3>{language === "ru" ? (kind === "ai" ? "Данные и примеры уже есть?" : kind === "seo" ? "Есть доступы и материалы?" : "Тексты, фото и данные готовы?") : "Are the materials ready?"}</h3><div className={styles.choiceGrid}>{materialChoices.map((item) => <button key={item.id} type="button" className={`${styles.choice} ${materialsChosen && materials === item.id ? styles.active : ""}`} aria-pressed={materialsChosen && materials === item.id} onClick={() => { setMaterials(item.id); setMaterialsChosen(true); if (project.cms !== "optional" || cmsChosen) advanceTo(5); }}><strong>{item.label[language]}</strong><small>{item.detail[language]}</small></button>)}</div></div>{project.cms === "optional" && <div><h3>{t.cms}</h3><div className={styles.choiceGrid}>{cmsChoices.map((item) => <button key={item.id} type="button" className={`${styles.choice} ${cmsChosen && cms === item.id ? styles.active : ""}`} aria-pressed={cmsChosen && cms === item.id} onClick={() => { setCms(item.id); setCmsChosen(true); if (materialsChosen) advanceTo(5); }}><strong>{item.label[language]}</strong><small>{item.detail[language]}</small></button>)}</div></div>}{project.cms === "included" && <p className={styles.includedNote}>{t.includedCms}</p>}</div>}
 
-          <div className={styles.controls}>{step > 0 ? <button type="button" className={styles.back} onClick={() => setStep((value) => value - 1)}>← {t.back}</button> : <span />}<button type="button" className={styles.next} disabled={!kind} onClick={() => setStep((value) => value + 1)}>{step === 4 ? t.result : t.next} <span aria-hidden="true">↗</span></button></div>
+          <div className={styles.controls}>{step > 0 ? <button type="button" className={styles.back} onClick={() => setStep((value) => value - 1)}>← {t.back}</button> : <span />}{step === 3 && <button type="button" className={styles.next} onClick={() => advanceTo(4)}>{t.next} <span aria-hidden="true">↗</span></button>}</div>
         </> : quote && project && <div className={styles.result}>
           <p className={styles.kicker}>05 / OJ ESTIMATE</p><QuestionHeading>{t.estimate}</QuestionHeading><p className={styles.resultLead}>{t.estimateLead}</p>
           <div className={styles.resultNumbers}><div><span>{t.price}</span><strong>{money(quote.minimum, language)} <i>—</i> {money(quote.maximum, language)}</strong></div><div><span>{t.time}</span><strong>{quote.days[0]}–{quote.days[1]} <small>{t.days}</small></strong></div></div>
