@@ -29,6 +29,7 @@ export async function Hero() {
             </a>
           </div>
           <a href="#about" className="hero-about-link">{t("aboutCta")} <span aria-hidden="true">↗</span></a>
+          <a href="#services" className="hero-scroll-cue">{t("scrollPrompt")} <span aria-hidden="true">↓</span></a>
           <ul className="hero-scope" aria-label={t("scopeLabel")}>
             {scope.map((item) => <li key={item}>{item}</li>)}
           </ul>

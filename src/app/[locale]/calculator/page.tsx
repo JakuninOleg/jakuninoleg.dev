@@ -35,7 +35,7 @@ export default async function CalculatorPage({ params }: Props) {
     <main id="main" className={styles.page}>
       <section className={styles.hero} aria-labelledby="calculator-title"><div className="shell">
         <Breadcrumbs locale={locale} items={[{ label: ru ? "Услуги" : "Services", href: `/${locale}/services` }, { label: ru ? "Калькулятор" : "Calculator" }]} />
-        <p className={styles.kicker}>OJ / {ru ? "МАСТЕРСКАЯ ПРОЕКТА" : "PROJECT WORKSHOP"}</p>
+        <p className={styles.kicker}>{ru ? "КАЛЬКУЛЯТОР СТОИМОСТИ" : "PROJECT COST CALCULATOR"}</p>
         <h1 id="calculator-title">{ru ? <>Давайте прикинем <em>ваш проект</em></> : <>Let&apos;s plan <em>your project</em></>}</h1>
         <div className={styles.heroBottom}><p>{ru ? "Пять коротких шагов: выберите формат, масштаб и нужные функции. Я покажу ориентир по стоимости и срокам, а вы сможете прислать мне расчёт для точной сметы." : "Five short steps: choose the format, scope and features. See a price and timeline guide, then send the estimate for a firm quote."}</p><Link href={`/${locale}/services`}>{ru ? "Все услуги" : "All services"} ↗</Link></div>
       </div></section>

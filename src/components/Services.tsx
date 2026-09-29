@@ -33,7 +33,6 @@ export async function Services() {
             placeholder="blur"
             blurDataURL={serviceCardBlur[route]}
           />
-          <span className="service-scene__stamp" aria-hidden="true">JO / WORKSHOP</span>
         </div>
         <div className="service-row__copy">
           <span className="service-row__tag">{service.tag}</span>

@@ -32,6 +32,7 @@
     "scopeLabel": "What I can cover",
     "scope": ["Positioning", "Design", "Development", "SEO"],
     "scrollDown": "Go to next section",
+    "scrollPrompt": "Scroll down",
     "scrollUp": "Back to top",
     "focusTitle": "My focus",
     "focusTag": "result",

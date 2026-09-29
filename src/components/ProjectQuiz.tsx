@@ -42,7 +42,7 @@ const cmsChoices: { id: CmsMode; label: Record<QuizLocale, string>; detail: Reco
 
 const labels = {
   ru: {
-    step: "ШАГ", of: "ИЗ", next: "Дальше", back: "Назад", result: "Посмотреть расчёт", restart: "Рассчитать другой проект",
+    step: "ШАГ", of: "ИЗ", next: "Дальше", back: "Назад", result: "Посмотреть расчёт", restart: "Рассчитать другой проект", continueHint: "Для продолжения нажмите «Дальше».",
     questions: ["Что хотите сделать?", "С чего начинаем?", "Какой объём нужен?", "Что ещё должно работать?", "Что уже подготовлено?"],
     helpers: ["Выберите ближайший формат. Детали можно уточнить после расчёта.", "Это влияет на объём переноса и доработки.", "Выберите ближайший масштаб первой версии.", "Можно отметить несколько пунктов или пропустить этот шаг.", "Последний шаг: материалы и управление контентом."],
     cms: "Нужно самим обновлять контент?", includedCms: "Базовое управление контентом уже входит в этот формат. Сложные роли и редактор обсудим отдельно.",
@@ -51,10 +51,10 @@ const labels = {
     price: "Стоимость", time: "Срок", selected: "Что учтено", basic: "Базовый формат", noExtras: "Без дополнительных функций", cmsLine: "CMS для самостоятельного обновления", contentLine: "Помощь с материалами", sourceLine: "Перенос без исходников",
     disclaimer: "Это ориентир, а не публичная оферта: цена и срок зависят от материалов, доступов, интеграций и согласованного объёма. Платные сервисы, лицензии и тарифы провайдеров считаются отдельно.",
     action: "Обсудить точную смету", details: "Подробнее об услуге", formTitle: "Пришлите расчёт — обсудим детали", formLead: "Выбранные ответы уже записаны в сообщение. Добавьте контакт и то, что важно для проекта.",
-    mascotNote: "Соберём проект по вашей задаче", sidebarTitle: "Мастерская проекта", chosen: "Выбрано", noSelection: "Пока без дополнительных функций",
+    mascotNote: "Соберём проект по вашей задаче", chosen: "Выбрано", noSelection: "Пока без дополнительных функций",
   },
   en: {
-    step: "STEP", of: "OF", next: "Next", back: "Back", result: "See estimate", restart: "Estimate another project",
+    step: "STEP", of: "OF", next: "Next", back: "Back", result: "See estimate", restart: "Estimate another project", continueHint: "To continue, tap Next.",
     questions: ["What would you like to build?", "Where are we starting?", "How large is the first version?", "What else should it do?", "What is ready already?"],
     helpers: ["Choose the closest format. We can refine it later.", "This affects migration and discovery work.", "Pick the closest scope for version one.", "Choose several or skip this step.", "One last step: materials and content management."],
     cms: "Do you need to edit content yourselves?", includedCms: "Basic content management is included in this format. Advanced roles and editing can be scoped separately.",
@@ -63,7 +63,7 @@ const labels = {
     price: "Cost", time: "Timeline", selected: "Included in the estimate", basic: "Base scope", noExtras: "No extra features", cmsLine: "CMS for self-service editing", contentLine: "Content support", sourceLine: "Migration without source files",
     disclaimer: "This is a guide, not a binding quote. The final price and timeline depend on materials, access, integrations and agreed scope. Third-party subscriptions and provider fees are separate.",
     action: "Discuss a firm quote", details: "Explore the service", formTitle: "Send the estimate — let's talk", formLead: "Your choices are prefilled in the message. Add your contact details and any project context.",
-    mascotNote: "Let's plan around your task", sidebarTitle: "Project workshop", chosen: "Selected", noSelection: "No extra features yet",
+    mascotNote: "Let's plan around your task", chosen: "Selected", noSelection: "No extra features yet",
   },
 } as const;
 
@@ -137,12 +137,12 @@ export function ProjectQuiz({ locale, embedded = false }: { locale: string; embe
 
   return <div className={styles.wrapper}>
     <div className={`shell ${styles.layout}`}>
-      <section ref={panelRef} className={styles.panel} aria-label={language === "ru" ? "Квиз-калькулятор стоимости проекта" : "Project cost calculator"}>
-        <div className={styles.progressText}><span>{step < 5 ? `${t.step} ${step + 1} ${t.of} 5` : "OJ / ESTIMATE"}</span><span>{Math.round(progress)}%</span></div>
+      <section ref={panelRef} className={`${styles.panel}${step === 3 ? ` ${styles.panelWithAdvance}` : ""}`} aria-label={language === "ru" ? "Квиз-калькулятор стоимости проекта" : "Project cost calculator"}>
+        <div className={styles.progressText}><span>{step < 5 ? `${t.step} ${step + 1} ${t.of} 5` : t.estimate}</span><span>{Math.round(progress)}%</span></div>
         <div className={styles.progressTrack}><span style={{ width: `${progress}%` }} /></div>
 
         {step < 5 ? <>
-          <div className={styles.questionHead}><p className={styles.kicker}>0{step + 1} / {t.sidebarTitle}</p><QuestionHeading>{step === 2 && project ? project.scopeQuestion[language] : step === 3 && project ? project.featureQuestion[language] : t.questions[step]}</QuestionHeading><p>{t.helpers[step]}</p></div>
+          <div className={styles.questionHead}><QuestionHeading>{step === 2 && project ? project.scopeQuestion[language] : step === 3 && project ? project.featureQuestion[language] : t.questions[step]}</QuestionHeading><p>{t.helpers[step]}</p></div>
 
           {step === 0 && <div className={styles.kindGrid}>{projects.map((item, index) => <button key={item.id} type="button" className={`${styles.kindCard} ${kind === item.id ? styles.active : ""}`} aria-pressed={kind === item.id} onClick={() => chooseKind(item.id)}><span className={styles.optionIndex}>{String(index + 1).padStart(2, "0")}</span><strong>{item.title[language]}</strong><small>{item.short[language]}</small><span className={styles.optionArrow} aria-hidden="true">↗</span></button>)}</div>}
 
@@ -154,9 +154,10 @@ export function ProjectQuiz({ locale, embedded = false }: { locale: string; embe
 
           {step === 4 && project && <div className={styles.lastStep}><div><h3>{language === "ru" ? (kind === "ai" ? "Данные и примеры уже есть?" : kind === "seo" ? "Есть доступы и материалы?" : "Тексты, фото и данные готовы?") : "Are the materials ready?"}</h3><div className={styles.choiceGrid}>{materialChoices.map((item) => <button key={item.id} type="button" className={`${styles.choice} ${materialsChosen && materials === item.id ? styles.active : ""}`} aria-pressed={materialsChosen && materials === item.id} onClick={() => { setMaterials(item.id); setMaterialsChosen(true); if (project.cms !== "optional" || cmsChosen) advanceTo(5); }}><strong>{item.label[language]}</strong><small>{item.detail[language]}</small></button>)}</div></div>{project.cms === "optional" && <div><h3>{t.cms}</h3><div className={styles.choiceGrid}>{cmsChoices.map((item) => <button key={item.id} type="button" className={`${styles.choice} ${cmsChosen && cms === item.id ? styles.active : ""}`} aria-pressed={cmsChosen && cms === item.id} onClick={() => { setCms(item.id); setCmsChosen(true); if (materialsChosen) advanceTo(5); }}><strong>{item.label[language]}</strong><small>{item.detail[language]}</small></button>)}</div></div>}{project.cms === "included" && <p className={styles.includedNote}>{t.includedCms}</p>}</div>}
 
-          <div className={styles.controls}>{step > 0 ? <button type="button" className={styles.back} onClick={() => setStep((value) => value - 1)}>← {t.back}</button> : <span />}{step === 3 && <button type="button" className={styles.next} onClick={() => advanceTo(4)}>{t.next} <span aria-hidden="true">↗</span></button>}</div>
+          <div className={styles.controls}>{step > 0 ? <button type="button" className={styles.back} onClick={() => setStep((value) => value - 1)}>← {t.back}</button> : <span />}{step === 3 && <button type="button" className={`${styles.next} ${styles.desktopAdvance}`} onClick={() => advanceTo(4)}>{t.next} <span aria-hidden="true">↗</span></button>}</div>
+          {step === 3 && <div className={styles.mobileAdvance}><span>{t.continueHint}</span><button type="button" className={styles.next} onClick={() => advanceTo(4)}>{t.next} <span aria-hidden="true">→</span></button></div>}
         </> : quote && project && <div className={styles.result}>
-          <p className={styles.kicker}>05 / OJ ESTIMATE</p><QuestionHeading>{t.estimate}</QuestionHeading><p className={styles.resultLead}>{t.estimateLead}</p>
+          <QuestionHeading>{t.estimate}</QuestionHeading><p className={styles.resultLead}>{t.estimateLead}</p>
           <div className={styles.resultNumbers}><div><span>{t.price}</span><strong>{money(quote.minimum, language)} <i>—</i> {money(quote.maximum, language)}</strong></div><div><span>{t.time}</span><strong>{quote.days[0]}–{quote.days[1]} <small>{t.days}</small></strong></div></div>
           <div className={styles.resultDetails}><h3>{t.selected}</h3><ul><li>{project.title[language]} · {quote.scope.label[language]}</li>{quote.selected.map((item) => <li key={item.id}>{item.label[language]}</li>)}{project.cms === "optional" && cms !== "none" && <li>{t.cmsLine}</li>}{materials !== "ready" && <li>{t.contentLine}</li>}{start === "no-source" && <li>{t.sourceLine}</li>}</ul></div>
           <p className={styles.disclaimer}>{t.disclaimer}</p>
@@ -165,7 +166,6 @@ export function ProjectQuiz({ locale, embedded = false }: { locale: string; embe
       </section>
 
       <aside className={styles.aside} aria-label={t.preview}>
-        <div className={styles.asideTop}><span className={styles.kicker}>OJ / PROJECT LAB</span><span>✦</span></div>
         <div className={styles.mascot}><Image src="/mascot/mascot-estimate.webp" alt="" width={1254} height={1254} sizes="(max-width: 900px) 75vw, 34vw" priority={!embedded} /><span>{t.mascotNote}</span></div>
         <div className={styles.liveQuote}><span>{t.preview}</span>{quote && project ? <><strong>{project.title[language]}</strong><b>{t.from} {money(quote.minimum, language)}</b><small>{quote.days[0]}–{quote.days[1]} {t.days}</small><p>{t.chosen}: {features.length ? features.map((id) => project.features.find((item) => item.id === id)?.label[language]).filter(Boolean).join(", ") : t.noSelection}</p></> : <p>{t.previewEmpty}</p>}</div>
       </aside>

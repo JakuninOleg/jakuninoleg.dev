@@ -68,7 +68,7 @@ export function ServiceLeadForm({ locale, service, title, lead, compact = false,
         {!compact && <div className={styles.mascot} aria-hidden="true"><Image src="/service-art/service-brief-scene.webp" width={1254} height={1254} alt="" /><span>{isRu ? "ВАША ИДЕЯ — МОЙ ПЛАН РАБОТЫ" : "YOUR IDEA — MY PLAN"}</span></div>}
       </div>
       <div className={styles.tablet}>
-        <div className={styles.tabletBar}><span>OJ / BRIEF</span><span aria-hidden="true">✦</span></div>
+        <div className={styles.tabletBar}><span>{isRu ? "ЗАЯВКА НА ПРОЕКТ" : "PROJECT ENQUIRY"}</span><span aria-hidden="true">✦</span></div>
         {status === "success" ? <div className={styles.success} role="status"><strong>{isRu ? "Заявка отправлена" : "Message sent"}</strong><p>{isRu ? "Я отвечу на указанный адрес." : "I’ll reply to the email you provided."}</p></div> :
           <form onSubmit={submit} className={styles.form}>
             <label className={styles.honeypot} aria-hidden="true">Company<input name="company" tabIndex={-1} autoComplete="off" value={company} onChange={(event) => setCompany(event.target.value)} /></label>

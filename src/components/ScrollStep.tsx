@@ -73,6 +73,7 @@ export function ScrollStep() {
       aria-label={up ? t("scrollUp") : t("scrollDown")}
       onClick={onClick}
     >
+      <span>{up ? t("scrollUp") : t("scrollPrompt")}</span>
       <svg viewBox="0 0 24 24" aria-hidden="true" fill="none">
         <path
           d="M12 5v14m0 0 6-6m-6 6-6-6"
