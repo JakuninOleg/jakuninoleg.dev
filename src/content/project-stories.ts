@@ -4,8 +4,8 @@ export const projectStories: Record<"ru" | "en", Record<string, Story>> = {
   ru: {
     "oj-cms": {
       task: "Сделать ежедневную работу с сайтом понятной для редактора: страницы, новости и медиа должны жить в одном месте.",
-      solution: "Разработал панель на Payload с ролями, статусами публикации и предпросмотром. Структуру можно адаптировать под контент конкретного проекта.",
-      result: "Откройте интерфейс CMS: в нём видны основные разделы и сценарий управления публикациями.",
+      solution: "Разработал демонстрационный редактор на Next.js: страницы, новости, медиа, статусы публикации и предпросмотр. Данные демо хранятся в браузере; интеграция с Payload проектируется для клиентского сайта отдельно.",
+      result: "Откройте демо CMS и пройдите сценарий от черновика до публикации.",
     },
     okhana: {
       task: "Организовать личное пространство семьи, где поиск и ответы опираются на её собственные данные.",
@@ -21,8 +21,8 @@ export const projectStories: Record<"ru" | "en", Record<string, Story>> = {
   en: {
     "oj-cms": {
       task: "Make everyday website editing clear: pages, news, and media should live in one place.",
-      solution: "I built a Payload admin with roles, publishing states, and preview. Its content structure can be tailored to each project.",
-      result: "Open the CMS interface to see the main sections and publishing workflow.",
+      solution: "I built a Next.js editor demo with pages, news, media, publishing states and preview. Demo data stays in the browser; Payload integration is scoped separately for a client website.",
+      result: "Open the CMS demo and follow the workflow from draft to publication.",
     },
     okhana: {
       task: "Create a private family space where search and answers use the family's own information.",

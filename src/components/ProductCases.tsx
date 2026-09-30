@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CaseServiceBridge } from "./CaseServiceBridge";
 import { ServiceLeadForm } from "./ServiceLeadForm";
 import { BlogContextLink } from "./BlogContextLink";
+import { Breadcrumbs } from "./Breadcrumbs";
 import styles from "./ProductCases.module.css";
 
 type Language = "ru" | "en";
@@ -42,18 +43,18 @@ const copy = {
       nextTitle: "OJ CMS", nextText: "Дальше — продукт для тех, кто управляет сайтами.",
     },
     "oj-cms": {
-      label: "03 / АВТОРСКИЙ ПРОДУКТ", title: "OJ CMS", lead: "Мощная система внутри. Спокойный интерфейс снаружи. Я разработал CMS, в которой редактировать сайт удобно каждый день.", scope: "ПРОДУКТ / UX / PAYLOAD / РЕДАКТОРСКИЙ СЦЕНАРИЙ", heroNote: "СОЗДАВАТЬ. ПРОВЕРЯТЬ. ПУБЛИКОВАТЬ.",
+      label: "03 / АВТОРСКИЙ ПРОДУКТ", title: "OJ CMS", lead: "Спокойный интерфейс для ежедневной работы с контентом. В демо можно пройти путь от правки до публикации.", scope: "ПРОДУКТ / UX / РЕДАКТОРСКИЙ СЦЕНАРИЙ", heroNote: "СОЗДАВАТЬ. ПРОВЕРЯТЬ. ПУБЛИКОВАТЬ.",
       contextLabel: "01 / ЗАДАЧА", contextTitle: "Сайт запускается. Работа с контентом только начинается.", context: "После релиза бизнесу нужно менять страницы, публиковать новости и находить изображения без помощи разработчика. Обычная админка показывает коллекции и системные поля; редактору нужен понятный рабочий процесс. Поэтому я построил OJ CMS вокруг действий человека, который поддерживает сайт.",
-      ideaLabel: "02 / ПОДХОД", ideaTitle: "Сильный движок не обязан выглядеть сложным", ideaText: "В основе — Payload. Поверх него я разработал собственный визуальный язык и сценарии: обзор, страницы, новости, медиа, настройки и пользователи. Интерфейс спокойно объясняет состояние публикации и следующий шаг, не обрушивая на редактора технические детали.",
+      ideaLabel: "02 / ПОДХОД", ideaTitle: "Редактору нужен понятный рабочий путь", ideaText: "Я разработал интерфейс для обзора, страниц, новостей, медиа и настроек. Демо хранит изменения в браузере и показывает сценарий редактора. Для рабочего сайта серверное хранение, права и публикацию можно построить на Payload — это отдельный этап внедрения.",
       detailLabel: "03 / РАБОЧИЕ ЭКРАНЫ", detailTitle: "Не макет панели, а настоящий редактор", detailIntro: "На этих экранах — рабочая демонстрация OJ CMS: обзор, редактирование страницы и медиатека.",
       features: [
         { n: "01", title: "Обзор", text: "Быстрый вход в страницы, новости, медиа и пользователей. Последние изменения и активность видны на главном экране." },
         { n: "02", title: "Редактор", text: "Страница сохраняется как черновик, проверяется и публикуется отдельно. Несохранённые изменения не исчезают незаметно." },
         { n: "03", title: "Медиатека", text: "Изображения собраны с названиями и связями. Система предупреждает, если файл уже используется на сайте." },
       ],
-      principleLabel: "04 / ЛОГИКА", principleTitle: "У каждого изменения понятный статус", principleText: "Редактор видит разницу между черновиком, опубликованной версией и изменениями после публикации. Роли разделяют работу с контентом и управление доступом. В результате CMS не мешает команде — она помогает безопасно пройти путь от правки до живой страницы.",
+      principleLabel: "04 / ЛОГИКА", principleTitle: "У каждого изменения понятный статус", principleText: "В демо видно, где черновик, опубликованная версия и изменения после публикации. Можно переключить роль и посмотреть, какие разделы доступны редактору. В рабочем внедрении доступ нужно защищать на сервере и в API.",
       flow: ["Изменить страницу", "Сохранить черновик", "Проверить и опубликовать"],
-      outcomeLabel: "05 / РЕЗУЛЬТАТ", outcomeTitle: "Собственный инструмент для сайтов клиентов", outcomeText: "OJ CMS уже можно открыть и пройти обычный путь редактора. Структура разделов, роли и внешний вид адаптируются под проект. Для меня это продолжение работы над сайтом: клиент получает не только готовую страницу, но и понятный способ развивать её дальше.",
+      outcomeLabel: "05 / РЕЗУЛЬТАТ", outcomeTitle: "Рабочее демо будущего редактора", outcomeText: "OJ CMS уже можно открыть и пройти обычный путь редактора. Это демонстрация интерфейса: данные остаются в браузере. Для клиентского сайта я отдельно определяю разделы, права, хранение и связь с публичными страницами.",
       nextTitle: "Охана", nextText: "Дальше — семейный продукт с AI-ассистентом и приватными данными.",
     },
   },
@@ -90,18 +91,18 @@ const copy = {
       nextTitle: "OJ CMS", nextText: "Next: a product for people who manage websites.",
     },
     "oj-cms": {
-      label: "03 / ORIGINAL PRODUCT", title: "OJ CMS", lead: "A powerful system inside. A calm interface outside. I built a CMS designed for everyday editing.", scope: "PRODUCT / UX / PAYLOAD / EDITORIAL WORKFLOW", heroNote: "CREATE. REVIEW. PUBLISH.",
+      label: "03 / ORIGINAL PRODUCT", title: "OJ CMS", lead: "A focused interface for everyday content work. The demo lets you go from edit to publication.", scope: "PRODUCT / UX / EDITORIAL WORKFLOW", heroNote: "CREATE. REVIEW. PUBLISH.",
       contextLabel: "01 / CHALLENGE", contextTitle: "A site launches. Content work is just beginning.", context: "After launch, a business needs to change pages, publish news, and find images without a developer. A typical admin shows collections and system fields; an editor needs a clear workflow. I built OJ CMS around the person who keeps the site current.",
-      ideaLabel: "02 / APPROACH", ideaTitle: "A strong engine does not have to feel complicated", ideaText: "Payload provides the foundation. I designed a visual language and workflows around it: overview, pages, news, media, settings, and users. The interface explains publication status and the next action without exposing every technical detail.",
+      ideaLabel: "02 / APPROACH", ideaTitle: "Editors need a clear workflow", ideaText: "I designed the overview, pages, news, media and settings around editorial tasks. The demo stores changes in the browser and shows that workflow. In a production website, Payload can provide server storage, permissions and publishing as a separate integration step.",
       detailLabel: "03 / WORKING SCREENS", detailTitle: "A real editor, not an admin mockup", detailIntro: "These screens show the working OJ CMS demo: overview, page editor, and media library.",
       features: [
         { n: "01", title: "Overview", text: "Quick access to pages, news, media, and users. Recent changes and activity appear on the home screen." },
         { n: "02", title: "Editor", text: "Save a draft, review it, then publish. Unsaved changes do not silently disappear." },
         { n: "03", title: "Media library", text: "Images have names and usage links. The system warns when a file is already in use." },
       ],
-      principleLabel: "04 / LOGIC", principleTitle: "Every change has a clear status", principleText: "Editors can tell a draft from the published version and from changes made since publication. Roles separate content editing from access management. The CMS supports the path from edit to live page without getting in the team's way.",
+      principleLabel: "04 / LOGIC", principleTitle: "Every change has a clear status", principleText: "The demo distinguishes drafts, published pages and changes since publication. You can switch roles to see the editor's view. A production integration must enforce access on the server and in the API.",
       flow: ["Edit a page", "Save a draft", "Review and publish"],
-      outcomeLabel: "05 / RESULT", outcomeTitle: "My own tool for client websites", outcomeText: "You can open OJ CMS today and follow a normal editorial workflow. Sections, roles, and visual identity can be adapted to a project. For me, it extends the website delivery: the client gets both a finished site and a clear way to keep it growing.",
+      outcomeLabel: "05 / RESULT", outcomeTitle: "A working editor demo", outcomeText: "You can open OJ CMS today and follow a normal editorial workflow. This is an interface demo; data stays in your browser. For a client website, I define the sections, permissions, storage and connection to public pages separately.",
       nextTitle: "Okhana", nextText: "Next: a private family product with an AI assistant.",
     },
   },
@@ -177,7 +178,7 @@ export function ProductCase({ locale, project }: { locale: string; project: Proj
   const url = project === "okhana" ? "https://okhanahome.com" : project === "tesla-explorer" ? "https://tesla-explorer.vercel.app" : "https://oj-cms.vercel.app/admin";
   const next = project === "okhana" ? "tesla-explorer" : project === "tesla-explorer" ? "oj-cms" : "okhana";
   return <article className={`${styles.case} ${styles[project === "tesla-explorer" ? "tesla" : project === "oj-cms" ? "cms" : "okhana"]}`}>
-    <section className={styles.hero} aria-labelledby="product-case-title"><div className={`shell ${styles.heroInner}`}><Link className={styles.back} href={`/${locale}/work`}>← {common.back}</Link><div className={styles.heroGrid}><div className={styles.heroCopy}><p className={styles.kicker}>{c.label}</p><h1 id="product-case-title">{c.title}</h1><p className={styles.heroLead}>{c.lead}</p><div className={styles.actions}><a href={url} target="_blank" rel="noreferrer">{common.visit} ↗</a><a href="#product-context">{language === "ru" ? "Смотреть кейс" : "Explore the case"} ↓</a></div></div><HeroArt project={project} language={language} /></div><div className={styles.heroFoot}><span>{c.scope}</span><span>{c.heroNote}</span></div></div></section>
+    <section className={styles.hero} aria-labelledby="product-case-title"><div className={`shell ${styles.heroInner}`}><Breadcrumbs locale={locale} items={[{ label: language === "ru" ? "Работы" : "Work", href: `/${locale}/work` }, { label: c.title }]} /><div className={styles.heroGrid}><div className={styles.heroCopy}><p className={styles.kicker}>{c.label}</p><h1 id="product-case-title">{c.title}</h1><p className={styles.heroLead}>{c.lead}</p><div className={styles.actions}><a href={url} target="_blank" rel="noreferrer">{common.visit} ↗</a><a href="#product-context">{language === "ru" ? "Смотреть кейс" : "Explore the case"} ↓</a></div></div><HeroArt project={project} language={language} /></div><div className={styles.heroFoot}><span>{c.scope}</span><span>{c.heroNote}</span></div></div></section>
 
     <section className={styles.context} id="product-context"><div className={`shell ${styles.split}`}><div><span className={styles.chapter}>{c.contextLabel}</span><h2>{c.contextTitle}</h2></div><p>{c.context}</p></div></section>
 
@@ -189,7 +190,7 @@ export function ProductCase({ locale, project }: { locale: string; project: Proj
 
     <section className={styles.outcome}>
       <div className={`shell ${styles.outcomeGrid}`}>
-        <div><span className={styles.chapter}>{c.outcomeLabel}</span><h2>{c.outcomeTitle}</h2><p>{c.outcomeText}</p><div className={styles.actions}><a href={url} target="_blank" rel="noreferrer">{common.visit} ↗</a><a href="#service-contact">{common.discuss} ↗</a></div></div>
+        <div><span className={styles.chapter}>{c.outcomeLabel}</span><h2>{c.outcomeTitle}</h2><p>{c.outcomeText}</p><div className={styles.actions}><a href={url} target="_blank" rel="noreferrer">{common.visit} ↗</a>{project === "oj-cms" && <Link href={`/${locale}/oj-cms`}>{language === "ru" ? "Подробнее о OJ CMS" : "Explore OJ CMS"} ↗</Link>}<a href="#service-contact">{common.discuss} ↗</a></div></div>
         <div className={styles.outcomeVisual}>
           {project === "oj-cms" ? <Image src="/projects/oj-cms/editor.webp" alt={language === "ru" ? "Редактор OJ CMS" : "OJ CMS editor"} fill sizes="(max-width: 760px) 100vw, 38vw" /> : <Image className={styles.outcomeMascot} src={project === "okhana" ? "/projects/okhana/mascot-planning.webp" : "/projects/tesla-explorer/mascot-route.webp"} alt={language === "ru" ? "Иллюстрация: Олег помогает довести задачу до результата" : "Illustration: Oleg brings the project to life"} width={1000} height={750} sizes="(max-width: 760px) 80vw, 32vw" />}
         </div>

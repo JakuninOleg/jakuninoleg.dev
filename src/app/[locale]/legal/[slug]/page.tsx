@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LegalArticle } from "@/components/LegalArticle";
 import {
   getLegalDoc,
@@ -60,7 +61,7 @@ export default async function LegalPage({
       <Header />
       <main id="main" className="legal-page">
         <header className="shell legal-hero">
-          <nav className="legal-breadcrumbs" aria-label={locale === "en" ? "Breadcrumbs" : "Хлебные крошки"}><Link href={`/${locale}`}>{locale === "en" ? "Home" : "Главная"}</Link><span>/</span><span>{t(`${slug}.nav`)}</span></nav>
+          <Breadcrumbs locale={locale} items={[{ label: t(`${slug}.nav`) }]} />
           <div className="legal-hero__grid">
             <div><p className="legal-hero__eyebrow">{intro.eyebrow}</p><p className="legal-hero__title">{intro.title}</p><p className="legal-hero__lead">{intro.lead}</p><div className="legal-hero__actions"><Link href={privacyBlogPath(locale)}>{locale === "en" ? "152-FZ website checklist" : "Что проверить по 152‑ФЗ"} ↗</Link><Link href={`/${locale}#contact`}>{locale === "en" ? "Contact me" : "Задать вопрос"} ↗</Link></div></div>
             <div className="legal-hero__art"><span>ДАННЫЕ / МАРШРУТ / КОНТРОЛЬ</span><Image src="/blog/mascot-152-fz.webp" alt="" width={1254} height={1254} sizes="(max-width: 760px) 88vw, 38vw" priority /></div>

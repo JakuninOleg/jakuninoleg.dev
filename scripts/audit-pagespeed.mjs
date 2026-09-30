@@ -1,9 +1,11 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import lighthouse from "lighthouse";
+import desktopConfig from "lighthouse/core/config/desktop-config.js";
 import { launch } from "chrome-launcher";
 
 const origin = (process.env.PAGESPEED_URL || "http://localhost:3000").replace(/\/$/, "");
-const output = "seo/pagespeed/results-mobile.json";
+const preset = process.env.PAGESPEED_PRESET === "desktop" ? "desktop" : "mobile";
+const output = `seo/pagespeed/results-${preset}.json`;
 const requestedPaths = process.argv.slice(2);
 const sitemap = requestedPaths.length ? "" : await (await fetch(`${origin}/sitemap.xml`)).text();
 const sitemapPaths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) =>
@@ -29,9 +31,10 @@ try {
         port: chrome.port,
         onlyCategories: ["performance"],
         logLevel: "error",
-      });
+      }, preset === "desktop" ? desktopConfig : undefined);
       const result = {
         path,
+        formFactor: lhr.configSettings.formFactor,
         score: Math.round((lhr.categories.performance?.score ?? 0) * 100),
         lcpMs: Math.round(lhr.audits["largest-contentful-paint"]?.numericValue ?? 0),
         cls: lhr.audits["cumulative-layout-shift"]?.numericValue ?? 0,
@@ -39,7 +42,7 @@ try {
         error: lhr.runtimeError?.message,
       };
       results.push(result);
-      if (result.error || result.score < 90) failed = true;
+      if (result.error || result.score < 90 || result.formFactor !== preset) failed = true;
       console.log(`${index + 1}/${paths.length} ${result.score} ${path}`);
     } catch (error) {
       failed = true;
