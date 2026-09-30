@@ -34,7 +34,7 @@ export const projectsMeta: ProjectMeta[] = [
   {
     id: "oj-cms",
     title: "OJ CMS",
-    stack: ["Payload", "CMS", "Media", "Preview"],
+    stack: ["Next.js", "Editor UX", "Media", "Preview"],
     image: "/projects/oj-cms/dashboard.webp",
     href: "https://oj-cms.vercel.app/admin",
     accent: "#5EEAD4",

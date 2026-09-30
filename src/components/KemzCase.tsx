@@ -3,6 +3,7 @@ import "./KemzCase.css";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { CaseServiceBridge } from "./CaseServiceBridge";
+import { Breadcrumbs } from "./Breadcrumbs";
 
 function KemzCatalogPreview({ locale }: { locale: string }) {
   const products = [
@@ -97,7 +98,7 @@ export async function KemzCase({ locale }: { locale: string }) {
         </picture>
         <div className="shell kemz-hero__inner">
           <div className="kemz-hero__copy">
-            <Link href={`/${locale}/work`} className="kemz-back">← {p("backCatalog")}</Link>
+            <Breadcrumbs locale={locale} items={[{ label: locale === "en" ? "Work" : "Работы", href: `/${locale}/work` }, { label: locale === "en" ? "KEMZ" : "КЭМЗ" }]} />
             <p className="kemz-kicker">01 / {p("kemz.eyebrow")}</p>
             <h1 id="kemz-title"><strong>{locale === "ru" ? "КЭМЗ" : "KEMZ"}</strong>{" "}<span>{p("kemz.title")}</span></h1>
             <p>{p("kemz.intro")}</p>

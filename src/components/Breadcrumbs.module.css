@@ -1,4 +1,4 @@
-.breadcrumbs { position: relative; z-index: 2; color: #b8cbd6; font: 600 .73rem/1.5 var(--font-mono), monospace; }
+.breadcrumbs { position: relative; z-index: 2; margin-bottom: 1.25rem; color: #b8cbd6; font: 600 .73rem/1.5 var(--font-mono), monospace; }
 .breadcrumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .6rem; margin: 0; padding: 0; list-style: none; }
 .breadcrumbs li { display: flex; align-items: center; gap: .6rem; }
 .breadcrumbs li > span:first-child:not([aria-current]) { color: #6e8c9b; }

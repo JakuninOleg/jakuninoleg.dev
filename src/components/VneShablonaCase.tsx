@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { CaseServiceBridge } from "./CaseServiceBridge";
+import { Breadcrumbs } from "./Breadcrumbs";
 import styles from "./VneShablonaCase.module.css";
 
 const asset = "/projects/vne-shablona";
@@ -23,7 +24,7 @@ export async function VneShablonaCase({ locale }: { locale: string }) {
     <article className={styles.case}>
       <section className={styles.hero} aria-labelledby="vne-title">
         <div className={`shell ${styles.heroInner}`}>
-          <Link href={`/${locale}/work`} className={styles.back}>← {p("backCatalog")}</Link>
+          <Breadcrumbs locale={locale} items={[{ label: locale === "en" ? "Work" : "Работы", href: `/${locale}/work` }, { label: t("title") }]} />
           <div className={styles.heroGrid}>
             <div className={styles.heroCopy}>
               <p className={styles.kicker}>{t("heroKicker")}</p>

@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Reveal } from "@/components/Reveal";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { projectsMeta } from "@/content/site";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -52,6 +53,7 @@ export default async function WorkPage({ params }: Props) {
       <Reveal />
       <main id="main" className="portfolio-page flex-1">
         <div className="shell portfolio-intro">
+          <Breadcrumbs locale={locale} items={[{ label: locale === "en" ? "Work" : "Работы" }]} />
           <p className="section-kicker">{p("catalogKicker")}</p>
           <h1>{p("catalogTitle")}</h1>
           <div className="portfolio-intro__bottom"><p>{p("catalogLead")}</p><span>{p("count", { count: ordered.length })}</span></div>

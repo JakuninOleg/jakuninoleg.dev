@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { CaseServiceBridge } from "@/components/CaseServiceBridge";
 import { Reveal } from "@/components/Reveal";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { projectsMeta } from "@/content/site";
 import { projectStories } from "@/content/project-stories";
 
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const productSeo: Record<string, { ru: [string, string]; en: [string, string] }> = {
     okhana: { ru: ["Охана — семейный AI-помощник, задачи и приватность | Кейс Олега Якунина", "Как я разработал семейный веб-сервис Охана: заметки, поручения, календарь, AI-ассистент и доступ к данным по ролям."], en: ["Okhana — family AI assistant and private workspace | Case study", "How I built Okhana: a family web app with notes, tasks, calendar, an AI assistant, and access-aware data queries."] },
     "tesla-explorer": { ru: ["Tesla Explorer — редизайн и планирование поездок | Кейс Олега Якунина", "Редизайн Tesla Explorer: маршрутный веб-сервис с личным кабинетом, картой Mapbox и AI-планированием поездок."], en: ["Tesla Explorer — redesign and trip planning | Case study", "Tesla Explorer redesign: a trip planning web app with a personal workspace, Mapbox routes, and AI-assisted itineraries."] },
-    "oj-cms": { ru: ["OJ CMS — авторская CMS на Payload | Кейс Олега Якунина", "Как я создал OJ CMS: понятная редакторская панель, страницы, новости, медиатека, черновики, роли и публикация."], en: ["OJ CMS — a custom Payload CMS | Case study", "How I built OJ CMS: an editorial dashboard for pages, news, media, drafts, roles, and publishing."] },
+    "oj-cms": { ru: ["OJ CMS — авторский интерфейс для управления сайтом | Кейс Олега Якунина", "Как я создал демо OJ CMS: редакторская панель, страницы, новости, медиатека, черновики и публикация."], en: ["OJ CMS — a custom content editor | Case study", "How I built the OJ CMS demo: an editorial dashboard for pages, news, media, drafts, and publishing."] },
   };
   const language = locale === "en" ? "en" : "ru";
   const pageTitle = seo ? seo("seoTitle") : productSeo[slug]?.[language][0] ?? `${title} — ${locale === "ru" ? "кейс" : "case study"}`;
@@ -67,7 +68,7 @@ export default async function CasePage({ params }: Props) {
       <Reveal />
       <main id="main" className="case-page flex-1">
         <div className="shell case-hero">
-          <Link href={`/${locale}/work`} className="case-back">← {p("backCatalog")}</Link>
+          <Breadcrumbs locale={locale} items={[{ label: locale === "en" ? "Work" : "Работы", href: `/${locale}/work` }, { label: title }]} />
           <p className="section-kicker">{kemz ? p("kemz.eyebrow") : t(`projects.${slug}.tag`)}</p>
           <div className="case-hero__main">
             <div>
