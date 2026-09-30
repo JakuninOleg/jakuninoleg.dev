@@ -21,6 +21,13 @@ export function HeroStage() {
     const callouts = calloutsRef.current;
     if (!stage || !reveal || !orbs || !callouts) return;
 
+    // Let the portrait paint before starting the decorative mobile effects.
+    let disposed = false;
+    let motionTimer: ReturnType<typeof setTimeout> | undefined;
+    void reveal.decode().catch(() => {}).then(() => {
+      if (!disposed) motionTimer = setTimeout(() => orbs.classList.add(styles.mobileMotion), 6000);
+    });
+
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const narrow = window.matchMedia("(max-width: 819px)");
     const observer = new IntersectionObserver(([entry]) => {
@@ -117,6 +124,8 @@ export function HeroStage() {
     narrow.addEventListener("change", onNarrow);
     onNarrow();
     return () => {
+      disposed = true;
+      if (motionTimer) clearTimeout(motionTimer);
       stop();
       observer.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
@@ -301,6 +310,11 @@ export function HeroStage() {
         />
       </picture>
       <picture>
+        <source
+          media="(max-width: 819px)"
+          type="image/avif"
+          srcSet="/mascot/mascot-reveal-mobile.avif"
+        />
         <source
           media="(max-width: 819px)"
           srcSet="/mascot/mascot-reveal-mobile.webp"

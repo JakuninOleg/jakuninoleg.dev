@@ -24,15 +24,18 @@ export async function Services() {
         style={{ ["--reveal-delay" as string]: `${index * 0.05}s` }}
       >
         <div className={`service-scene service-scene--${route}`}>
-          <Image
-            src={serviceCardArt(route)}
-            alt={artwork.alt[locale === "en" ? "en" : "ru"]}
-            fill
-            sizes="(max-width: 520px) 100vw, (max-width: 840px) 90vw, 42vw"
-            className="service-scene__image"
-            placeholder="blur"
-            blurDataURL={serviceCardBlur[route]}
-          />
+          <picture>
+            <source media="(max-width: 600px)" srcSet={`/service-art/cards/${route}-mobile.webp`} />
+            <Image
+              src={serviceCardArt(route)}
+              alt={artwork.alt[locale === "en" ? "en" : "ru"]}
+              fill
+              sizes="(max-width: 520px) 100vw, (max-width: 840px) 90vw, 42vw"
+              className="service-scene__image"
+              placeholder="blur"
+              blurDataURL={serviceCardBlur[route]}
+            />
+          </picture>
         </div>
         <div className="service-row__copy">
           <span className="service-row__tag">{service.tag}</span>

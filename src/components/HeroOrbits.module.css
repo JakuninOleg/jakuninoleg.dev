@@ -152,11 +152,14 @@
 @keyframes lightningPulse { 0%, 67%, 100% { opacity: .08; } 70%, 79% { opacity: .9; } 83% { opacity: .38; } }
 
 @media (max-width: 819px) {
+  .orbits:not(.mobileMotion) .orb,
+  .orbits:not(.mobileMotion) .elementalEffect::before,
+  .orbits:not(.mobileMotion) .elementalEffect::after { animation: none; }
   .orb {
     width: clamp(2rem, 8vw, 2.65rem);
     margin: -1.1rem 0 0 -1.1rem;
-    animation: mobileFloat 3.8s ease-in-out infinite;
   }
+  .mobileMotion .orb { animation: mobileFloat 3.8s ease-in-out infinite; }
   .orb:nth-child(1) { left: 17%; top: 24%; }
   .orb:nth-child(2) { left: 83%; top: 17%; animation-delay: -.9s; }
   .orb:nth-child(3) { left: 78%; top: 48%; animation-delay: -1.8s; }

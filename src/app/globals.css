@@ -1218,6 +1218,17 @@ body:has(.product-case-page) .topbar .brand {
   }
 }
 
+@media (max-width: 819px) {
+  .reveal-item,
+  .reveal-item.reveal-from-left,
+  .reveal-item.reveal-from-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+
 /* Hallmark · genre: atmospheric · macrostructure: Split Studio · theme: existing Jakunin dark/cyan · enrichment: mascot spotlight · nav: floating pill · footer: inline */
 /* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 */
 

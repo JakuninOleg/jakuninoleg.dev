@@ -13,10 +13,11 @@ function isInView(el: HTMLElement) {
 export function Reveal() {
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobile = window.matchMedia("(max-width: 819px)").matches;
     const nodes = Array.from(document.querySelectorAll<HTMLElement>(SELECTOR));
     if (!nodes.length) return;
 
-    if (reduced) {
+    if (reduced || mobile) {
       nodes.forEach((el) => el.classList.add("is-visible"));
       return;
     }

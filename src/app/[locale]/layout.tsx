@@ -103,6 +103,7 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const clientMessages = { Nav: messages.Nav, Contact: messages.Contact };
 
   return (
     <html
@@ -111,7 +112,7 @@ export default async function LocaleLayout({
       style={{ colorScheme: "dark" }}
     >
       <body className="min-h-full flex flex-col font-sans">
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages}>{children}</NextIntlClientProvider>
         <CookieConsent locale={locale} />
       </body>
     </html>
