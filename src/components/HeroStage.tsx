@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import styles from "./HeroOrbits.module.css";
+import styles from "./HeroCallouts.module.css";
 
 /**
  * Dual-layer hero mascot:
@@ -11,22 +11,13 @@ import styles from "./HeroOrbits.module.css";
 export function HeroStage() {
   const stageRef = useRef<HTMLDivElement>(null);
   const revealRef = useRef<HTMLImageElement>(null);
-  const orbsRef = useRef<HTMLDivElement>(null);
   const calloutsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const stage = stageRef.current;
     const reveal = revealRef.current;
-    const orbs = orbsRef.current;
     const callouts = calloutsRef.current;
-    if (!stage || !reveal || !orbs || !callouts) return;
-
-    // Let the portrait paint before starting the decorative mobile effects.
-    let disposed = false;
-    let motionTimer: ReturnType<typeof setTimeout> | undefined;
-    void reveal.decode().catch(() => {}).then(() => {
-      if (!disposed) motionTimer = setTimeout(() => orbs.classList.add(styles.mobileMotion), 6000);
-    });
+    if (!stage || !reveal || !callouts) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const narrow = window.matchMedia("(max-width: 819px)");
@@ -42,7 +33,6 @@ export function HeroStage() {
     let mobileActive = 0;
     let lastFrame = 0;
     const started = performance.now();
-    const orbElements = Array.from(orbs.children) as HTMLElement[];
     const calloutElements = Array.from(callouts.children) as HTMLElement[];
 
     const place = (now: number) => {
@@ -57,7 +47,7 @@ export function HeroStage() {
       const tick = (now - started) / 2100;
       let leftmost = { index: 0, x: Infinity };
 
-      orbElements.forEach((orb, index) => {
+      calloutElements.forEach((callout, index) => {
         const angle = tick + index * Math.PI * 2 / 3 - Math.PI / 2
           + Math.sin(tick * .63 + index * 1.7) * .16;
         const wanderX = Math.sin(tick * 1.41 + index * 3.3) * .014;
@@ -66,16 +56,12 @@ export function HeroStage() {
           + (.53 + Math.cos(angle) * .3 + wanderX) * image.width;
         const y = image.top - bounds.top
           + (.1 + Math.sin(angle) * .03 + wanderY) * image.height;
-        const depth = (Math.sin(angle) + 1) / 2;
-
-        orb.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${.83 + depth * .22})`;
-        calloutElements[index].style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        callout.style.transform = `translate3d(${x}px, ${y}px, 0)`;
         if (x < leftmost.x) leftmost = { index, x };
       });
       calloutElements.forEach((callout, index) => {
         callout.classList.toggle(styles.calloutActive, index === leftmost.index);
       });
-      orbs.style.opacity = "1";
       callouts.style.opacity = "1";
     };
 
@@ -109,8 +95,7 @@ export function HeroStage() {
     const onNarrow = () => {
       if (narrow.matches) {
         stop();
-        orbElements.forEach((orb) => { orb.style.transform = ""; });
-        orbs.style.opacity = "1";
+        calloutElements.forEach((callout) => { callout.style.transform = ""; });
         start();
       } else {
         stop();
@@ -124,8 +109,6 @@ export function HeroStage() {
     narrow.addEventListener("change", onNarrow);
     onNarrow();
     return () => {
-      disposed = true;
-      if (motionTimer) clearTimeout(motionTimer);
       stop();
       observer.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
@@ -330,11 +313,6 @@ export function HeroStage() {
           fetchPriority="high"
         />
       </picture>
-      <div ref={orbsRef} className={styles.orbits} aria-hidden="true">
-        <span className={styles.orb}><span className={styles.elementalEffect} /><span className={styles.orbGlyph}>✦</span></span>
-        <span className={styles.orb}><span className={styles.elementalEffect} /><span className={styles.orbGlyph}>❄</span></span>
-        <span className={styles.orb}><span className={styles.elementalEffect} /><span className={styles.orbGlyph}>ϟ</span></span>
-      </div>
       <div ref={calloutsRef} className={styles.callouts} aria-hidden="true">
         <span className={styles.callout}><span className={styles.bubble}>Генерирую<br />идеи!</span></span>
         <span className={styles.callout}><span className={styles.bubble}><span className={styles.desktopText}>Продумываю<br />архитектуру</span><span className={styles.mobileText}>Проектирую<br />дизайн</span></span></span>
