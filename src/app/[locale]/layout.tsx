@@ -35,7 +35,6 @@ export async function generateMetadata({
     metadataBase: new URL(siteUrl),
     title: {
       default: title,
-      template: `%s · Jakunin Oleg`,
     },
     description,
     keywords: keywords.split(",").map((item) => item.trim()),
