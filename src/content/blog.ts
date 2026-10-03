@@ -4,6 +4,30 @@ export const firstPostDate = "2026-09-28";
 export const privacyPostSlug = "152-fz-personalnye-dannye-na-sajte";
 export const privacyPostSlugEn = "152-fz-personal-data-on-a-website";
 export const privacyPostDate = "2026-09-25";
+export const catalogPostSlug = "katalog-oborudovaniya-dlya-proizvoditelya";
+export const catalogPostSlugEn = "equipment-catalog-for-manufacturers";
+export const catalogPostDate = "2026-10-03";
+
+export function catalogBlogPath(locale: string) {
+  return `/${locale}/blog/${locale === "en" ? catalogPostSlugEn : catalogPostSlug}`;
+}
+
+export const catalogPostCopy = {
+  ru: {
+    tag: "Каталог оборудования / из практики",
+    title: "Каталог оборудования: как провести клиента от модели до заявки",
+    lead: "Покупателю нужны характеристики, документы и понятный следующий шаг. На примере каталога КЭМЗ показываю, как спроектировать поиск, карточку оборудования и заявку без лишних препятствий.",
+    date: "3 октября 2026",
+    time: "7 минут чтения",
+  },
+  en: {
+    tag: "Equipment catalogs / field notes",
+    title: "An equipment catalog that takes buyers from model to enquiry",
+    lead: "Buyers need specifications, documents and a clear next step. The KEMZ project shows how to connect search, product pages and enquiries without adding friction.",
+    date: "3 October 2026",
+    time: "6 min read",
+  },
+} as const;
 
 export function privacyBlogPath(locale: string) {
   return `/${locale}/blog/${locale === "en" ? privacyPostSlugEn : privacyPostSlug}`;

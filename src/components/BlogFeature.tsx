@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getLocale } from "next-intl/server";
-import { blogCopy, blogPath, firstPostDate } from "@/content/blog";
+import { blogCopy, catalogBlogPath, catalogPostCopy, catalogPostDate } from "@/content/blog";
 import styles from "@/app/[locale]/blog/blog.module.css";
 
 export async function BlogFeature() {
   const locale = await getLocale();
   const c = blogCopy[locale === "en" ? "en" : "ru"];
+  const post = catalogPostCopy[locale === "en" ? "en" : "ru"];
 
   return (
     <section className={styles.homeSection} aria-labelledby="home-blog-title">
@@ -21,9 +22,9 @@ export async function BlogFeature() {
           <div className={styles.paperOne} /><div className={styles.paperTwo} />
           <Image src="/blog/mascot-blogger.webp" alt="" width={1254} height={1254} sizes="(max-width: 760px) 80vw, 38vw" />
         </div>
-        <Link href={blogPath(locale)} className={styles.homePost}>
-          <span>{c.firstTag} · <time dateTime={firstPostDate}>{c.date}</time></span>
-          <strong>{c.firstTitle}</strong>
+        <Link href={catalogBlogPath(locale)} className={styles.homePost}>
+          <span>{post.tag} · <time dateTime={catalogPostDate}>{post.date}</time></span>
+          <strong>{post.title}</strong>
           <span className={styles.homePostAction}>{c.read} ↗</span>
         </Link>
       </div>

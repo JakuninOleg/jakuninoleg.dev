@@ -5,21 +5,27 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { blogCopy, blogPath, blogSlug, firstPostDate, firstPostSlug, firstPostSlugEn, privacyBlogPath, privacyPostCopy, privacyPostDate, privacyPostSlug, privacyPostSlugEn } from "@/content/blog";
+import { blogCopy, blogPath, blogSlug, catalogBlogPath, catalogPostCopy, catalogPostDate, catalogPostSlug, catalogPostSlugEn, firstPostDate, firstPostSlug, firstPostSlugEn, privacyBlogPath, privacyPostCopy, privacyPostDate, privacyPostSlug, privacyPostSlugEn } from "@/content/blog";
 import { PrivacyArticle } from "./PrivacyArticle";
+import { CatalogArticle } from "./CatalogArticle";
 import styles from "../blog.module.css";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakuninoleg.dev";
 
 export function generateStaticParams() {
-  return [{ locale: "ru", slug: firstPostSlug }, { locale: "en", slug: firstPostSlugEn }, { locale: "ru", slug: privacyPostSlug }, { locale: "en", slug: privacyPostSlugEn }];
+  return [{ locale: "ru", slug: firstPostSlug }, { locale: "en", slug: firstPostSlugEn }, { locale: "ru", slug: privacyPostSlug }, { locale: "en", slug: privacyPostSlugEn }, { locale: "ru", slug: catalogPostSlug }, { locale: "en", slug: catalogPostSlugEn }];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const isPrivacy = slug === (locale === "en" ? privacyPostSlugEn : privacyPostSlug);
-  if (!isPrivacy && slug !== blogSlug(locale)) notFound();
+  const isCatalog = slug === (locale === "en" ? catalogPostSlugEn : catalogPostSlug);
+  if (!isPrivacy && !isCatalog && slug !== blogSlug(locale)) notFound();
+  if (isCatalog) {
+    const p = catalogPostCopy[locale === "en" ? "en" : "ru"];
+    return { title: p.title, description: p.lead, alternates: { canonical: catalogBlogPath(locale), languages: { ru: catalogBlogPath("ru"), en: catalogBlogPath("en") } }, openGraph: { type: "article", title: p.title, description: p.lead, url: catalogBlogPath(locale), publishedTime: catalogPostDate, images: ["/blog/catalog-equipment-hero.webp"] } };
+  }
   if (isPrivacy) {
     const p = privacyPostCopy[locale === "en" ? "en" : "ru"];
     return { title: p.title, description: p.lead, alternates: { canonical: privacyBlogPath(locale), languages: { ru: privacyBlogPath("ru"), en: privacyBlogPath("en") } }, openGraph: { type: "article", title: p.title, description: p.lead, url: privacyBlogPath(locale), publishedTime: privacyPostDate, images: ["/blog/mascot-152-fz.webp"] } };
@@ -35,6 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const { locale, slug } = await params;
+  if (slug === (locale === "en" ? catalogPostSlugEn : catalogPostSlug)) return <CatalogPostPage locale={locale} />;
   if (slug === (locale === "en" ? privacyPostSlugEn : privacyPostSlug)) return <PrivacyPostPage locale={locale} />;
   if (slug !== blogSlug(locale)) notFound();
   setRequestLocale(locale);
@@ -77,6 +84,33 @@ export default async function ArticlePage({ params }: Props) {
     </header>
     {isEn ? <EnglishArticle locale={locale} /> : <RussianArticle locale={locale} />}
     <section className={`shell ${styles.articleCta}`}><p className={styles.eyebrow}>{isEn ? "Let's build" : "Давайте сделаем"}</p><h2>{isEn ? "A site built for your business, not a template." : "Сайт под вашу задачу, а не под ограничения шаблона."}</h2><p>{isEn ? "Tell me what you need. I will suggest the architecture, design direction and a realistic scope." : "Расскажите, какой сайт вам нужен. Предложу архитектуру, дизайн-направление и понятный объём работ."}</p><Link href={`/${locale}#contact`} className={styles.ctaButton}>{isEn ? "Discuss a project" : "Обсудить проект"} <span aria-hidden>↗</span></Link></section>
+  </main><Footer /></>;
+}
+
+function CatalogPostPage({ locale }: { locale: string }) {
+  setRequestLocale(locale);
+  const isEn = locale === "en";
+  const p = catalogPostCopy[isEn ? "en" : "ru"];
+  const url = `${siteUrl}${catalogBlogPath(locale)}`;
+  const schema = { "@context": "https://schema.org", "@graph": [
+    { "@type": "BlogPosting", headline: p.title, description: p.lead, datePublished: catalogPostDate, dateModified: catalogPostDate, inLanguage: locale, author: { "@type": "Person", name: "Олег Якунин", url: siteUrl }, publisher: { "@type": "Person", name: "Олег Якунин" }, mainEntityOfPage: url, image: `${siteUrl}/blog/catalog-equipment-hero.webp` },
+    { "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: isEn ? "Home" : "Главная", item: `${siteUrl}/${locale}` },
+      { "@type": "ListItem", position: 2, name: isEn ? "Blog" : "Блог", item: `${siteUrl}/${locale}/blog` },
+      { "@type": "ListItem", position: 3, name: p.title, item: url },
+    ] },
+  ] };
+  return <><a href="#main" className="skip-link">{isEn ? "Skip to content" : "К основному содержимому"}</a><Header /><main id="main" className={styles.root}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
+    <header className={`shell ${styles.articleHero}`}>
+      <nav className={styles.breadcrumbs} aria-label={isEn ? "Breadcrumbs" : "Хлебные крошки"}><Link href={`/${locale}`}>{isEn ? "Home" : "Главная"}</Link><span>/</span><Link href={`/${locale}/blog`}>{isEn ? "Blog" : "Блог"}</Link><span>/</span><span>{isEn ? "Equipment catalog" : "Каталог оборудования"}</span></nav>
+      <p className={styles.eyebrow}>{p.tag} <span>·</span> <time dateTime={catalogPostDate}>{p.date}</time> <span>·</span> {p.time}</p>
+      <h1>{p.title}</h1><p className={styles.heroLead}>{p.lead}</p>
+      <div className={styles.heroByline}><span className={styles.bylineMark}>ОЯ</span><span>{isEn ? "Oleg Jakunin / design and development" : "Олег Якунин / дизайн и разработка"}</span></div>
+      <div className={`${styles.heroVisual} ${styles.catalogHeroVisual}`}><div className={styles.catalogHeroWords} aria-hidden="true"><span>{isEn ? "FROM A MODEL" : "ОТ МОДЕЛИ"}</span><strong>{isEn ? "TO A USEFUL ENQUIRY" : "К ПРЕДМЕТНОЙ ЗАЯВКЕ"}</strong><span>{isEn ? "FIND / CHECK / ASK" : "НАЙТИ / СВЕРИТЬ / ЗАПРОСИТЬ"}</span></div><Image src="/blog/catalog-equipment-hero.webp" alt={isEn ? "Oleg examines an industrial electric motor and technical drawing at a workbench" : "Маскот Олега изучает электродвигатель и чертёж за рабочим столом"} width={1672} height={941} sizes="(max-width: 760px) 94vw, 60vw" priority /></div>
+    </header>
+    <CatalogArticle locale={locale} />
+    <section className={`shell ${styles.articleCta}`}><p className={styles.eyebrow}>{isEn ? "YOUR EQUIPMENT" : "ВАШЕ ОБОРУДОВАНИЕ"}</p><h2>{isEn ? "Make the next enquiry more specific." : "Поможем клиенту прийти с конкретным запросом."}</h2><p>{isEn ? "We can map buyer questions, catalog structure and the enquiry route before design begins." : "Разберём вопросы покупателей, структуру каталога и маршрут заявки до начала дизайна."}</p><Link href={`/${locale}#contact`} className={styles.ctaButton}>{isEn ? "Discuss a catalog" : "Обсудить каталог"} <span aria-hidden>↗</span></Link></section>
   </main><Footer /></>;
 }
 

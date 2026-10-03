@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { projectsMeta } from "@/content/site";
 import { serviceRoutes } from "@/content/service-routes";
-import { blogPath, firstPostDate, privacyBlogPath, privacyPostDate } from "@/content/blog";
+import { blogPath, catalogBlogPath, catalogPostDate, firstPostDate, privacyBlogPath, privacyPostDate } from "@/content/blog";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakuninoleg.dev";
 
@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = paths.flatMap((path) => (path.startsWith("/legal/") ? ["ru"] : routing.locales).map((locale) => ({
     url: `${siteUrl}/${locale}${path}`,
     // A build is not a content update. Keep lastModified only where we know the date.
-    ...(path === "/blog" ? { lastModified: firstPostDate } : {}),
+    ...(path === "/blog" ? { lastModified: catalogPostDate } : {}),
     alternates: {
       languages: Object.fromEntries(
         (path.startsWith("/legal/") ? ["ru"] : routing.locales).map((alt) => [alt, `${siteUrl}/${alt}${path}`]),
@@ -30,5 +30,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: privacyPostDate,
     alternates: { languages: Object.fromEntries(routing.locales.map((alt) => [alt, `${siteUrl}${privacyBlogPath(alt)}`])) },
   }));
-  return [...pages, ...articles, ...privacyArticles];
+  const catalogArticles = routing.locales.map((locale) => ({
+    url: `${siteUrl}${catalogBlogPath(locale)}`,
+    lastModified: catalogPostDate,
+    alternates: { languages: Object.fromEntries(routing.locales.map((alt) => [alt, `${siteUrl}${catalogBlogPath(alt)}`])) },
+  }));
+  return [...pages, ...articles, ...privacyArticles, ...catalogArticles];
 }

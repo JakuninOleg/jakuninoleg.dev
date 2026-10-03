@@ -1,0 +1,57 @@
+name: Notify IndexNow after production deployment
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build the previous sitemap
+        env:
+          BEFORE: ${{ github.event.before }}
+          NEXT_TELEMETRY_DISABLED: '1'
+        run: |
+          git cat-file -e "$BEFORE^{commit}"
+          mkdir -p "$RUNNER_TEMP/indexnow-before"
+          git archive "$BEFORE" | tar -x -C "$RUNNER_TEMP/indexnow-before"
+          cd "$RUNNER_TEMP/indexnow-before"
+          npm ci
+          npm run build
+          cp .next/server/app/sitemap.xml.body "$RUNNER_TEMP/indexnow-before.xml"
+      - name: Build the new sitemap and find new pages
+        env:
+          NEXT_TELEMETRY_DISABLED: '1'
+        run: |
+          npm run build
+          node scripts/indexnow-sitemap-diff.mjs "$RUNNER_TEMP/indexnow-before.xml" .next/server/app/sitemap.xml.body "$RUNNER_TEMP/indexnow-urls.txt"
+      - name: Wait for the pages to reach production, then notify IndexNow
+        run: |
+          if [ ! -s "$RUNNER_TEMP/indexnow-urls.txt" ]; then
+            echo 'No new pages to submit.'
+            exit 0
+          fi
+          mapfile -t urls < "$RUNNER_TEMP/indexnow-urls.txt"
+          for attempt in $(seq 1 30); do
+            if npm run indexnow -- "${urls[@]}"; then
+              exit 0
+            fi
+            echo "Production is not ready or IndexNow did not accept the URLs (attempt $attempt/30)."
+            sleep 60
+          done
+          echo 'IndexNow notification failed after 30 attempts.' >&2
+          exit 1

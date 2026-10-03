@@ -27,5 +27,5 @@ export default async function KemzPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const n = await getTranslations("Nav");
-  return <><a href="#main" className="skip-link">{n("skipToContent")}</a><Header /><Reveal /><main id="main" className="case-page flex-1"><KemzCase locale={locale} /><BlogContextLink locale={locale} context="case" /></main><Footer /></>;
+  return <><a href="#main" className="skip-link">{n("skipToContent")}</a><Header /><Reveal /><main id="main" className="case-page flex-1"><KemzCase locale={locale} /><BlogContextLink locale={locale} context="caseCatalog" /></main><Footer /></>;
 }

@@ -62,3 +62,13 @@ Site language switch: **En** / **Ru**.
 - Telegram [@Sainttss](https://t.me/Sainttss)
 - [oleg.kemz@gmail.com](mailto:oleg.kemz@gmail.com)
 - GitHub [JakuninOleg](https://github.com/JakuninOleg)
+
+## IndexNow
+
+The site publishes its IndexNow verification file from `public/`. After a production deployment is complete, notify participating search engines **only about URLs that were actually added or materially updated**:
+
+```sh
+npm run indexnow -- /ru/blog/example /en/blog/example
+```
+
+Use `--dry-run` to check the URL list without a network request. The command verifies the deployed key file and each public page before submitting to the IndexNow global endpoint. A GitHub Actions workflow compares the sitemap before and after a push to `main`, waits for new URLs to appear in production, then runs the command automatically. For materially updated existing pages, run the command manually after deployment. Keep the sitemap in place for full-site discovery; IndexNow does not notify Google or guarantee indexing.
