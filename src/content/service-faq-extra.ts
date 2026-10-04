@@ -31,8 +31,11 @@ export const serviceFaqExtra: Record<"ru" | "en", Record<ServiceRoute, Answer[]>
     ],
     "seo-positioning": [
       { title: "Что входит в семантическое ядро?", text: "Не просто список фраз: группирую запросы по намерению, теме и странице. Отмечаю, где нужна услуга, категория, кейс или статья." },
+      { title: "Сколько статей нужно публиковать в месяц?", text: "В качестве примера могу заложить 8 материалов в месяц — по два в неделю. План зависит от спроса, доступных кейсов и времени эксперта: качественные четыре статьи полезнее шестнадцати пересказов. Темы и календарь входят в SEO-план; написание и публикацию согласуем отдельно." },
       { title: "Вы пишете тексты и меняете структуру сайта?", text: "Да. Помогу уточнить позиционирование, подготовить план страниц, заголовки и тексты, затем внедрить структуру и внутренние ссылки." },
       { title: "Как понять, что SEO работает?", text: "Сравниваем индексацию, показы, клики и целевые обращения в Search Console, Яндекс Вебмастере и аналитике. Смотрим не только на отдельную позицию." },
+      { title: "Поможет ли это попасть в ответы ИИ-поиска?", text: "Отдельного способа гарантировать упоминание нет. Делаю страницы доступными для обхода, ясно описываю услуги и реальные кейсы, добавляю уместную разметку и проверяю факты. Эта основа полезна и обычному поиску, и системам, которые используют страницы как источники." },
+      { title: "Что нужно от меня для старта?", text: "Адрес сайта, приоритетные услуги и регионы, примеры обращений и доступ только на чтение к Search Console, Яндекс Вебмастеру и аналитике, если они подключены. Начать можно и без кабинетов — с публичного аудита." },
     ],
     cms: [
       { title: "Смогу ли я добавлять товары, страницы и новости сам?", text: "Да. Поля и роли проектируются вокруг ваших редакторских задач. Перед передачей вместе проверим типовые действия." },
@@ -73,8 +76,11 @@ export const serviceFaqExtra: Record<"ru" | "en", Record<ServiceRoute, Answer[]>
     ],
     "seo-positioning": [
       { title: "What does keyword research deliver?", text: "Queries grouped by intent, topic and target page rather than a raw list of phrases." },
+      { title: "How many articles should we publish each month?", text: "Eight articles a month, two per week, can be a working example. The plan depends on demand, available case material and expert time: four substantive articles beat sixteen paraphrases. Topics and the calendar are part of the SEO plan; writing and publication are scoped separately." },
       { title: "Do you also write and implement pages?", text: "Yes. I can plan the architecture, write page copy and metadata, and implement internal links." },
       { title: "How do we measure progress?", text: "We review indexing, impressions, clicks and qualified leads in search and analytics tools." },
+      { title: "Will this get us into AI search answers?", text: "No one can guarantee a mention. I make pages crawlable, describe real services and case studies clearly, add relevant structured data and check factual claims. Those foundations help people and search systems understand the site." },
+      { title: "What do you need to start?", text: "The site URL, priority services and regions, examples of customer inquiries, and read-only access to search and analytics accounts if available. A public-site audit can come first." },
     ],
     cms: [
       { title: "Can our team add products and news independently?", text: "Yes. Fields and permissions reflect editorial tasks, which we test together before handover." },

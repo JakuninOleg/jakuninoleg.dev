@@ -50,11 +50,9 @@ function KemzProductPreview({ locale }: { locale: string }) {
 
 function KemzPhonePreview({ locale }: { locale: string }) {
   return (
-    <div className="kemz-hero__phone" role="img" aria-label={locale === "ru" ? "Мобильная версия главной страницы КЭМЗ" : "Mobile KEMZ home page"}>
+    <div className="kemz-hero__phone" role="img" aria-label={locale === "ru" ? "Мобильная версия каталога КЭМЗ с категориями оборудования" : "Mobile KEMZ catalog with equipment categories"}>
       <div className="kemz-hero__phone-screen">
-        <div className="kemz-hero__phone-header"><Image src="/projects/kemz/logo.webp" alt="" width={88} height={100} /><strong>КЭМЗ</strong><span>Связаться&nbsp; →</span><i aria-hidden="true">☰</i></div>
-        <div className="kemz-hero__phone-main"><Image src="/projects/kemz/quarry.webp" alt="" fill sizes="160px" /><div><small>С 1960 ГОДА&nbsp; | &nbsp;КАРПИНСК</small><b>ЭЛЕКТРИЧЕСКИЕ МАШИНЫ ДЛЯ ГОРНОДОБЫВАЮЩЕЙ ТЕХНИКИ</b><p>Проектируем, производим и испытываем двигатели и генераторы</p><span>Перейти в каталог&nbsp; →</span></div></div>
-        <div className="kemz-hero__phone-facts"><strong>54–600 кВт</strong><strong>15–1250 кВт</strong></div>
+        <Image src="/projects/kemz/catalog-mobile.webp" alt="" fill sizes="(max-width: 720px) 128px, 176px" />
       </div>
     </div>
   );

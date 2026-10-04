@@ -4,6 +4,7 @@ import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { Process } from "@/components/Process";
 import { JsonLd } from "@/components/JsonLd";
 import { Reveal } from "@/components/Reveal";
 import { Services } from "@/components/Services";
@@ -37,6 +38,7 @@ export default async function HomePage({
       <Reveal />
       <main id="main" className="flex-1">
         <Hero />
+        <Process />
         <Services />
         <HomeCalculator locale={locale} />
         <Work />

@@ -53,6 +53,9 @@
 .inlineLink { display: inline-block; margin-top: 1rem; }
 .exampleArt { position: relative; display: grid; place-items: center; min-width: 0; min-height: 23rem; overflow: hidden; border: 1px solid color-mix(in srgb, var(--service-accent) 40%, transparent); border-radius: .9rem; background: radial-gradient(circle at 50% 50%, #173747, #0b1b27 70%); }
 .exampleArt > img { object-fit: cover; object-position: top center; }
+.seoExample { padding-bottom: clamp(5.5rem, 9vw, 8.75rem); }
+.seoExampleArt { background: radial-gradient(circle at 52% 50%, #20454a, #0b1b27 72%); }
+.seoExampleArt > img { object-fit: contain; object-position: center; padding: .65rem; }
 .concepts { padding: clamp(4rem, 7vw, 7rem) 0; background: #10202b; }
 .conceptsHead { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: end; gap: 2rem; margin-bottom: 2.4rem; }
 .conceptsHead h2 { max-width: 16ch; margin: 0; font: 800 clamp(2.2rem, 4.3vw, 4.5rem)/1.02 var(--font-display), sans-serif; letter-spacing: -.05em; text-wrap: balance; }
@@ -158,6 +161,70 @@
 .seoBranches { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; width: 100%; max-width: 25rem; margin-top: 1.2rem; }
 .seoBranches > div { display: grid; justify-items: center; gap: .6rem; padding: 1rem .4rem; border: 1px solid rgba(187,226,237,.3); border-radius: .5rem; background: #122c3a; font-size: .75rem; text-align: center; }
 .seoBranches span { color: var(--service-accent); }
+.seoDetails { padding: clamp(5rem, 8vw, 8rem) 0; background: #10222d; }
+.seoDetailsIntro { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); align-items: end; gap: 2rem 4rem; margin-bottom: 2.5rem; }
+.seoDetailsIntro h2 { max-width: 16ch; margin: 0; font: 800 clamp(2.2rem, 4.5vw, 4.8rem)/1.05 var(--font-display), sans-serif; letter-spacing: -.05em; text-wrap: balance; }
+.seoDetailsIntro > p { max-width: 37rem; margin: 0; color: #bed1d9; font-size: 1.08rem; line-height: 1.7; }
+.seoDeliverables { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; }
+.seoDeliverables article { min-width: 0; min-height: 17rem; padding: clamp(1.25rem, 2.3vw, 2rem); border: 1px solid rgba(150, 211, 210, .26); border-radius: .75rem; background: linear-gradient(150deg, #163440, #0c1d28); }
+.seoDeliverables span { color: var(--service-accent); font: 750 .7rem/1.4 var(--font-mono), monospace; letter-spacing: .08em; }
+.seoDeliverables h3 { max-width: 16ch; margin: 2.4rem 0 .8rem; font: 800 clamp(1.4rem, 2.2vw, 2rem)/1.1 var(--font-display), sans-serif; letter-spacing: -.035em; }
+.seoDeliverables p { margin: 0; color: #b8cbd5; line-height: 1.58; }
+.seoResearch { margin-top: clamp(3.5rem, 6vw, 6rem); }
+.seoResearchIntro { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(1rem, 4vw, 4rem); }
+.seoResearchIntro > div > span, .seoGeoIntro > span { color: var(--service-accent); font: 750 .72rem var(--font-mono), monospace; letter-spacing: .1em; }
+.seoResearchIntro h3, .seoGeoIntro h3 { max-width: 19ch; margin: .85rem 0 1.25rem; font: 800 clamp(2rem, 3.7vw, 4rem)/1.05 var(--font-display), sans-serif; letter-spacing: -.045em; text-wrap: balance; }
+.seoResearchIntro p, .seoGeoIntro p { max-width: 39rem; margin: 0; color: #c5d7df; font-size: 1.05rem; line-height: 1.7; }
+.seoResearchIntro figure { min-width: 0; margin: 0; padding: 1rem 1rem .9rem; border: 1px solid rgba(150, 211, 210, .2); border-radius: .9rem; background: radial-gradient(circle at 56% 50%, rgba(82, 167, 170, .15), transparent 65%), #0b1b26; }
+.seoResearchIntro img { display: block; width: 100%; height: auto; }
+.seoResearchIntro figcaption { margin-top: .45rem; color: #a6bfca; font-size: .75rem; line-height: 1.4; }
+.seoWorksheet { margin-top: 1rem; overflow: hidden; border: 1px solid rgba(150, 211, 210, .28); border-radius: .75rem; background: #0a1923; }
+.seoWorksheetHead, .seoWorksheetRow { display: grid; grid-template-columns: minmax(9rem, .75fr) minmax(0, 1.5fr) minmax(0, 1.35fr); }
+.seoWorksheetHead { padding: .8rem 1.4rem; background: #183943; color: var(--service-accent); font: 750 .7rem var(--font-mono), monospace; letter-spacing: .07em; text-transform: uppercase; }
+.seoWorksheetRow { border-top: 1px solid rgba(150, 211, 210, .18); }
+.seoWorksheetRow > div { min-width: 0; padding: 1.2rem 1.4rem; color: #c5d7df; font-size: .93rem; line-height: 1.55; }
+.seoWorksheetRow > div:first-child { color: #f4fbfa; font-weight: 800; }
+.seoWorksheetRow > div + div { border-left: 1px solid rgba(150, 211, 210, .12); }
+.seoWorksheetMobileLabel { display: none; }
+.seoProof { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-top: clamp(2.5rem, 5vw, 4.5rem); padding: clamp(1.4rem, 3vw, 2.5rem); border: 1px solid rgba(150, 211, 210, .26); border-radius: .75rem; background: radial-gradient(circle at 85% 20%, rgba(129, 215, 177, .15), transparent 48%), #0b1b26; }
+.seoGeo { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 1.5rem clamp(2rem, 5vw, 5rem); margin-top: clamp(4rem, 7vw, 7rem); padding: clamp(1.5rem, 4vw, 3.5rem); border: 1px solid rgba(150, 211, 210, .22); border-radius: .9rem; background: radial-gradient(circle at 100% 0, rgba(77, 155, 167, .19), transparent 44%), #0a1b27; }
+.seoGeoIntro h3 { max-width: 21ch; font-size: clamp(2rem, 3vw, 3.3rem); }
+.seoGeoSteps { display: grid; gap: .7rem; align-self: center; }
+.seoGeoSteps article { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: .15rem .9rem; padding: 1rem 1.15rem; border: 1px solid rgba(150, 211, 210, .25); border-radius: .55rem; background: rgba(21, 54, 66, .82); }
+.seoGeoSteps article > span { grid-row: span 2; color: var(--service-accent); font: 750 .83rem var(--font-mono), monospace; }
+.seoGeoSteps h4 { margin: 0; font: 800 1.2rem/1.2 var(--font-display), sans-serif; }
+.seoGeoSteps p { margin: .25rem 0 0; color: #bfd3dc; line-height: 1.55; }
+.seoGeoNote { grid-column: 1 / -1; max-width: 68rem; margin: 0; padding-top: 1.3rem; border-top: 1px solid rgba(150, 211, 210, .25); color: #c5d7df; line-height: 1.6; }
+.seoProof span { color: var(--service-accent); font: 750 .7rem var(--font-mono), monospace; letter-spacing: .1em; }
+.seoProof h3 { margin: .85rem 0; font: 800 clamp(1.5rem, 2.5vw, 2.3rem)/1.12 var(--font-display), sans-serif; letter-spacing: -.04em; }
+.seoProof p { max-width: 48rem; margin: 0; color: #b8cbd5; line-height: 1.6; }
+.seoProof a { flex: none; color: var(--service-accent); font-weight: 800; }
+.seoProof a:hover { text-decoration: underline; }
+.seoEditorial { margin-top: clamp(4rem, 7vw, 7rem); }
+.seoEditorialHead { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); align-items: end; gap: 1.5rem 4rem; }
+.seoEditorialHead span, .seoEditorialCards article span { color: var(--service-accent); font: 750 .72rem var(--font-mono), monospace; letter-spacing: .1em; }
+.seoEditorialHead h3 { max-width: 18ch; margin: .85rem 0 0; font: 800 clamp(2rem, 3.7vw, 4rem)/1.05 var(--font-display), sans-serif; letter-spacing: -.045em; text-wrap: balance; }
+.seoEditorialHead p { max-width: 37rem; margin: 0; color: #c5d7df; font-size: 1.05rem; line-height: 1.7; }
+.seoEditorialCadence { display: flex; flex-wrap: wrap; gap: .7rem 1.2rem; margin-top: 2rem; padding: 1rem 1.3rem; border-block: 1px solid rgba(150, 211, 210, .3); color: #f4fbfa; font: 800 clamp(1.2rem, 2.1vw, 2rem)/1.25 var(--font-display), sans-serif; }
+.seoEditorialCadence span { display: inline-flex; align-items: center; gap: 1.2rem; }
+.seoEditorialCadence b { color: var(--service-accent); font-weight: 500; }
+.seoEditorialSource { max-width: 70rem; margin: 1.4rem 0 2rem; color: #c5d7df; line-height: 1.65; }
+.seoEditorialCards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; }
+.seoEditorialCards article { min-width: 0; overflow: hidden; border: 1px solid rgba(150, 211, 210, .25); border-radius: .9rem; background: linear-gradient(155deg, #153341, #0a1b27); }
+.seoEditorialCards .seoEditorialAvoid { border-color: rgba(227, 151, 126, .32); background: linear-gradient(155deg, #2a2830, #0d1d27); }
+.seoEditorialAvoid span { color: #e9ad96 !important; }
+.seoEditorialImage { position: relative; height: clamp(13rem, 21vw, 19rem); background: radial-gradient(circle at 50% 70%, rgba(88, 169, 157, .15), transparent 66%); }
+.seoEditorialImage img { object-fit: contain; object-position: center bottom; padding: .25rem 1rem 0; }
+.seoEditorialCards article > div:last-child { padding: 1.4rem clamp(1.25rem, 2.3vw, 2rem) 2rem; }
+.seoEditorialCards h4 { margin: .65rem 0 .7rem; font: 800 clamp(1.45rem, 2.2vw, 2rem)/1.12 var(--font-display), sans-serif; letter-spacing: -.03em; }
+.seoEditorialCards p { max-width: 33rem; margin: 0; color: #b8cbd5; line-height: 1.58; }
+.seoEvidenceGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 6vw, 6rem); margin-top: clamp(4rem, 7vw, 6rem); }
+.seoEvidenceGrid > div { min-width: 0; }
+.seoEvidenceGrid > div > h3 { max-width: 20ch; min-height: 3.3em; margin: 0 0 1.8rem; font: 800 clamp(1.7rem, 2.6vw, 2.6rem)/1.12 var(--font-display), sans-serif; letter-spacing: -.04em; }
+.seoEvidenceRow { display: grid; grid-template-columns: minmax(8rem, .55fr) minmax(0, 1fr); gap: 1.5rem; padding: 1.3rem 0; border-top: 1px solid rgba(156, 204, 221, .25); }
+.seoEvidenceRow h4 { margin: 0; color: var(--service-accent); font: 750 1.05rem/1.35 var(--font-display), sans-serif; }
+.seoEvidenceRow p { margin: 0; color: #b8cbd5; line-height: 1.6; }
+.seoDetailsFootnote { max-width: 65rem; margin: 2rem 0 0; padding-left: 1.2rem; border-left: 2px solid var(--service-accent); color: #d7e5e8; line-height: 1.6; }
 .aiDiagram { display: flex; align-items: center; justify-content: center; gap: .6rem; min-height: 19rem; padding: 1rem 0; }
 .aiDiagram > div { display: grid; align-content: space-between; width: 31%; min-height: 11rem; padding: 1rem; border: 1px solid rgba(174, 160, 243, .4); border-radius: .8rem; background: linear-gradient(150deg, #213249, #102331); box-shadow: 0 1rem 1.8rem rgba(0,0,0,.18); }
 .aiDiagram > div:first-child { transform: rotate(-5deg); }
@@ -186,7 +253,10 @@
 .comicGrid figcaption { padding: 1rem 1.2rem; font-weight: 800; }
 @media (max-width: 900px) { .heroGrid, .exampleGrid, .faqGrid, .conceptsHead { grid-template-columns: 1fr; } .conceptsGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .heroVisual { max-width: 42rem; } .exampleArt { min-height: 18rem; } .hero h1 { max-width: 14ch; } }
 @media (max-width: 900px) { .integrationIntro, .integrationGroup, .commerceSeo { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .seoDetailsIntro, .seoEvidenceGrid, .seoResearchIntro, .seoGeo, .seoEditorialHead { grid-template-columns: 1fr; } .seoEvidenceGrid > div > h3 { min-height: 0; } .seoResearchIntro figure { max-width: 44rem; } }
 @media (max-width: 650px) { .hero { padding-top: 7.5rem; } .hero h1 { font-size: clamp(2.75rem, 12vw, 4.5rem); } .heroVisual { transform: none; } .visualImage { aspect-ratio: 1.15; } .includedGrid, .processGrid, .compareGrid, .relatedGrid, .comicGrid { grid-template-columns: 1fr; } .relatedHead { align-items: start; flex-direction: column; } .includedGrid article { min-height: 0; } .finalInner { align-items: start; flex-direction: column; } .exampleArt { min-height: 16rem; } .storeVisualCompact { padding: .6rem; } .integrationMarks { grid-template-columns: repeat(2, minmax(0, 1fr)); } .aiDiagram { gap: .25rem; } .aiDiagram > div { min-height: 8rem; padding: .6rem; } .aiDiagram strong { font-size: .75rem; } .aiDiagram small { font-size: .5rem; } .designDiagram { gap: .5rem; } .designWire, .designFinal { min-height: 10rem; padding: .7rem; } .designFinal b { font-size: 1.15rem; } }
+@media (max-width: 650px) { .seoDeliverables, .seoEditorialCards { grid-template-columns: 1fr; } .seoDeliverables article { min-height: 0; } .seoDeliverables h3 { margin-top: 1.5rem; } .seoProof { align-items: start; flex-direction: column; } .seoEvidenceRow { grid-template-columns: 1fr; gap: .55rem; } .seoEditorialImage { height: 15rem; } .seoEditorialCadence { gap: .35rem .7rem; } .seoEditorialCadence span { gap: .7rem; } }
+@media (max-width: 650px) { .seoWorksheetHead { display: none; } .seoWorksheetRow { display: block; padding: .35rem 0; } .seoWorksheetRow > div { padding: .65rem 1rem; } .seoWorksheetRow > div + div { border-left: 0; } .seoWorksheetMobileLabel { display: block; margin-bottom: .3rem; color: var(--service-accent); font: 750 .65rem var(--font-mono), monospace; letter-spacing: .08em; text-transform: uppercase; } .seoGeoSteps article { grid-template-columns: 2rem minmax(0, 1fr); padding: .95rem; } }
 @media (max-width: 500px) { .conceptsGrid { grid-template-columns: 1fr; } .conceptImage { aspect-ratio: 1.4; } }
 @media (max-width: 650px) { .visualImageArtwork { aspect-ratio: 1.5; } }
 @media (prefers-reduced-motion: reduce) { .primary, .storeVisualFrame, .integrationMark, .relatedGrid a, .relatedGrid a svg, .conceptCard, .conceptImage img, .faqAnswer { transition: none; } }

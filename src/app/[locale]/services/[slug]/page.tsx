@@ -75,10 +75,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const copy = servicePages[locale === "en" ? "en" : "ru"][slug as ServiceRoute];
   if (!copy) return {};
   const path = `/${locale}/services/${slug}`;
+  const image = copy.image ?? serviceArt[slug as ServiceRoute]?.src;
   return {
     title: copy.seoTitle, description: copy.seoDescription,
     alternates: { canonical: path, languages: { ru: `/ru/services/${slug}`, en: `/en/services/${slug}` } },
-    openGraph: { type: "website", url: path, title: copy.seoTitle, description: copy.seoDescription, ...(copy.image ? { images: [copy.image] } : {}) },
+    openGraph: { type: "website", url: path, title: copy.seoTitle, description: copy.seoDescription, ...(image ? { images: [image] } : {}) },
   };
 }
 
@@ -129,10 +130,10 @@ export default async function ServiceDetailPage({ params }: Props) {
         <div className={styles.includedGrid}>{copy.included.map((item, index) => <article key={item.title} className="reveal-item"><span>0{index + 1}</span>{route === "landing-pages" && <div className={styles.includedDetail} aria-hidden="true"><Image src={index === 0 ? "/service-art/landing-workshop-wide.webp" : index === 1 ? "/service-art/design-redesign.webp" : "/service-art/seo-positioning.webp"} alt="" fill sizes="(max-width: 650px) 80vw, 28vw" /></div>}<h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
       </div></section>
 
-      <section className={styles.example} aria-labelledby="example-title"><div className={`shell ${styles.exampleGrid}`}>
+      <section className={`${styles.example} ${route === "seo-positioning" ? styles.seoExample : ""}`} aria-labelledby="example-title"><div className={`shell ${styles.exampleGrid}`}>
         <div className={styles.exampleCopy}><h2 id="example-title">{copy.exampleTitle}</h2><p>{copy.exampleText}</p>{caseHref && <Link href={caseHref} className={styles.inlineLink}>{copy.exampleCta} ↗</Link>}</div>
-        <div className={styles.exampleArt}>
-          {copy.image ? <Image src={copy.image} alt={copy.imageAlt || ""} fill sizes="(max-width: 850px) 100vw, 50vw" /> : route === "online-stores" ? <StoreVisual isRu={isRu} compact /> : <SeoDiagram isRu={isRu} />}
+        <div className={`${styles.exampleArt} ${route === "seo-positioning" ? styles.seoExampleArt : ""}`}>
+          {copy.image ? <Image src={copy.image} alt={copy.imageAlt || ""} fill sizes="(max-width: 850px) 100vw, 50vw" /> : route === "online-stores" ? <StoreVisual isRu={isRu} compact /> : route === "seo-positioning" ? <Image src="/service-art/seo-intent-routes.webp" alt={isRu ? "Маскот направляет запрос клиента к странице услуги, кейсу и полезной статье" : "Mascot maps a customer question to a service page, case study and useful article"} fill sizes="(max-width: 900px) 100vw, 50vw" /> : <SeoDiagram isRu={isRu} />}
         </div>
       </div></section>
 
@@ -140,13 +141,14 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       {route === "online-stores" && <CommerceDetails isRu={isRu} />}
       {route === "landing-pages" && <LandingDetails isRu={isRu} />}
+      {route === "seo-positioning" && <SeoServiceDetails isRu={isRu} />}
 
       <section className={styles.process} aria-labelledby="process-title"><div className="shell">
-        <div className={styles.sectionHead}><p className={styles.kicker}>03 / {isRu ? "ПРОЦЕСС" : "PROCESS"}</p><h2 id="process-title">{copy.processTitle}</h2></div>
+        <div className={styles.sectionHead}><p className={styles.kicker}>{route === "seo-positioning" ? "04" : "03"} / {isRu ? "ПРОЦЕСС" : "PROCESS"}</p><h2 id="process-title">{copy.processTitle}</h2></div>
         <ol className={styles.processGrid}>{copy.process.map((item, index) => <li key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p></li>)}</ol>
       </div></section>
 
-      <section className={styles.faq} aria-labelledby="faq-title"><div className={`shell ${styles.faqGrid}`}><div><p className={styles.kicker}>04 / FAQ</p><h2 id="faq-title">{isRu ? "Частые вопросы" : "Common questions"}</h2></div><FaqList items={[...copy.faq, ...serviceFaqExtra[isRu ? "ru" : "en"][route]]} /></div></section>
+      <section className={styles.faq} aria-labelledby="faq-title"><div className={`shell ${styles.faqGrid}`}><div><p className={styles.kicker}>{route === "seo-positioning" ? "05" : "04"} / FAQ</p><h2 id="faq-title">{isRu ? "Частые вопросы" : "Common questions"}</h2></div><FaqList items={[...copy.faq, ...serviceFaqExtra[isRu ? "ru" : "en"][route]]} /></div></section>
 
       <nav className={styles.related} aria-label={isRu ? "Другие услуги" : "Other services"}><div className="shell"><p className={styles.kicker}>{isRu ? "МОЖНО ПО-ДРУГОМУ" : "ANOTHER ROUTE"}</p><div className={styles.relatedHead}><h2>{related.title}</h2><p>{related.text}</p></div><div className={styles.relatedGrid}>{relatedRoutes.map((item) => {
         const artwork = relatedCardArt[item];
@@ -187,6 +189,154 @@ function StoreVisual({ isRu, compact = false }: { isRu: boolean; compact?: boole
     </div>
     <span className={styles.storeVisualNote}>{isRu ? "ВИТРИНА · КАТАЛОГ · КОРЗИНА" : "STOREFRONT · CATALOG · CART"}</span>
   </div>;
+}
+
+function SeoServiceDetails({ isRu }: { isRu: boolean }) {
+  const content = isRu ? {
+    kicker: "03 / ОТ ПЛАНА К РЕЗУЛЬТАТУ",
+    title: "После аудита понятно, что делать дальше",
+    intro: "Вместо общего списка ошибок — приоритеты, страницы и способ проверить изменения. Состав внедрения согласуем отдельно: можно начать с аудита или пройти путь до публикации и наблюдения за результатом.",
+    deliverables: [
+      { label: "01 / КАРТА СПРОСА", title: "Какие страницы нужны", text: "Группы запросов, поисковое намерение и назначение страницы: услуга, категория, кейс или полезный материал." },
+      { label: "02 / ОЧЕРЕДЬ ПРАВОК", title: "Что исправить сначала", text: "Проблемные URL, причина, влияние на обход или путь к заявке и конкретное действие. Технические ошибки отделены от гипотез по контенту." },
+      { label: "03 / КОНТЕНТ-ПЛАН", title: "О чём писать и зачем", text: "Темы опираются на вопросы покупателей и реальные материалы бизнеса. Для каждой — цель, целевая страница и доказательства, которые стоит собрать." },
+    ],
+    researchLabel: "КАК ИЗУЧАЮ РЫНОК",
+    researchTitle: "Сравниваю не позиции, а ответы на задачу клиента",
+    researchIntro: "По каждому важному намерению смотрю выдачу Яндекса и Google в нужном регионе: какие страницы ранжируются, что они обещают и чем подтверждают предложение. Затем сопоставляю это с вашим сайтом и реальными преимуществами бизнеса.",
+    researchCaption: "Иллюстрация процесса исследования; сравнение для проекта строится на фактической выдаче.",
+    researchColumns: ["Слой анализа", "Что фиксирую", "Решение для сайта"],
+    researchRows: [
+      ["Запрос и выдача", "Намерение, типы результатов, регион и устройство; отдельно Яндекс и Google.", "Понять, нужна ли услуга, категория, кейс или ответ на вопрос."],
+      ["Страницы конкурентов", "Предложение, ассортимент, структура, доказательства, цены и путь к заявке.", "Показать собственное отличие там, где клиент действительно сравнивает."],
+      ["Наши страницы", "Какие URL уже отвечают на запрос, чего не хватает в содержании и внутренних ссылках.", "Сохранить, улучшить или создать страницу — с приоритетом по ценности задачи."],
+    ],
+    editorialLabel: "РЕДАКЦИОННЫЙ ПЛАН",
+    editorialTitle: "Статьи из вашей практики, а не из чужого текста",
+    editorialIntro: "В SEO-план включаю темы, целевые страницы и календарь публикаций. Пример рабочего ритма — 8 материалов за месяц, по 2 в неделю. Частоту выбираем по запасу фактов и возможности эксперта участвовать: объём сам по себе не даёт результата.",
+    editorialCadence: ["8 статей", "4 недели", "2 в неделю"],
+    editorialSource: "Темы собираю из поискового спроса, вопросов отдела продаж, выдачи конкурентов и материалов вашей команды. Для каждой статьи фиксирую задачу читателя, эксперта, доказательства и ссылку на следующую полезную страницу. Написание и публикацию материалов согласуем отдельно от подготовки плана.",
+    editorialAvoidLabel: "НЕ ДЕЛАЕМ",
+    editorialAvoidTitle: "Рерайт ради количества",
+    editorialAvoidText: "Не пересказываем чужие статьи с заменой слов и не заполняем календарь без фактов о вашем продукте. Такой материал не показывает, почему клиенту стоит выбрать вас.",
+    editorialDoLabel: "ДЕЛАЕМ",
+    editorialDoTitle: "Показываем собственный опыт",
+    editorialDoText: "Разбираем задачу, решения, скриншоты, ограничения и выводы с вашим экспертом. Такие материалы дают человеку ответ и помогают поисковым системам понять, на чём он основан.",
+    geoLabel: "SEO / AEO / GEO",
+    geoTitle: "Одна экспертиза — три способа быть найденными",
+    geoIntro: "Работаю с обычной выдачей, прямыми ответами на вопросы и AI-поиском как с разными сценариями одной задачи. Основа общая: доступная страница, конкретный ответ и доказательства из вашей практики.",
+    geoSteps: [
+      { number: "SEO", title: "Классический поиск", text: "Собираю спрос по намерениям, устраняю проблемы индексации, создаю нужные страницы и внутренние связи. Смотрю показы, клики и целевые обращения." },
+      { number: "AEO", title: "Ответ на вопрос", text: "Выделяю реальные вопросы покупателей, даю короткий ответ в начале раздела, затем раскрываю условия и примеры. Проверяю, понятно ли это человеку и поисковой выдаче." },
+      { number: "GEO", title: "AI-поиск", text: "Делаю источники доступными для обхода, добавляю авторство и проверяемые кейсы; отслеживаю цитирования и переходы там, где сервисы дают такие данные." },
+    ],
+    geoNote: "Упоминание в AI-ответе и место в обычной выдаче нельзя обещать. Проверяю видимость по важным вопросам и связываю её с переходами, действиями на сайте и подходящими заявками.",
+    toolsTitle: "Инструменты под задачу, а не ради отчёта",
+    tools: [
+      { title: "Поисковые системы", text: "Google Search Console, Яндекс Вебмастер, при необходимости Bing Webmaster: индексация, запросы, страницы и ошибки обхода." },
+      { title: "Техническая диагностика", text: "Обход сайта, проверка ответов сервера, canonical, robots.txt, sitemap, внутренних ссылок и мобильной версии; PageSpeed Insights и Lighthouse для скорости." },
+      { title: "Поведение и заявки", text: "Яндекс Метрика или GA4 при наличии доступа и настроенных целей: органические переходы, действия на сайте и обращения." },
+    ],
+    metricsTitle: "На какие цифры смотрим",
+    metrics: [
+      { title: "Видимость", text: "Проиндексированные страницы, показы, клики, CTR и запросы по важным URL." },
+      { title: "Качество трафика", text: "Органические визиты, целевые действия и обращения, которые действительно подходят бизнесу." },
+      { title: "Техническое качество", text: "Ошибки обхода, мобильная пригодность, LCP, INP и CLS по полевым данным, когда их достаточно." },
+    ],
+    proofLabel: "ИЗ РЕАЛЬНОГО ПРОЕКТА",
+    proofTitle: "КЭМЗ: каталог, который можно искать по моделям",
+    proofText: "Для завода пересобрал структуру каталога: у категорий и моделей появились отдельные страницы с характеристиками, метаданными и понятным путём к заявке. В кейсе показаны реальные экраны и решения.",
+    proofLink: "Смотреть кейс КЭМЗ",
+    footnote: "Для анализа данных нужны доступы к счётчикам и кабинетам вебмастеров. Если их нет, сначала проверяю публичную часть сайта и помогаю настроить измерение.",
+  } : {
+    kicker: "03 / FROM PLAN TO ACTION",
+    title: "An audit you can act on",
+    intro: "The outcome is a prioritized list of pages and changes, with a way to check progress. Implementation is scoped separately: we can start with an audit or continue through publication and monitoring.",
+    deliverables: [
+      { label: "01 / DEMAND MAP", title: "Pages to create", text: "Query groups, search intent and a destination for each: service page, category, case study or useful article." },
+      { label: "02 / FIX QUEUE", title: "What to fix first", text: "Affected URLs, the cause, its effect on discovery or inquiries, and an actionable change. Technical defects are separated from content hypotheses." },
+      { label: "03 / CONTENT PLAN", title: "What to publish", text: "Topics grounded in customer questions and real business material, each with a goal, target page and evidence to gather." },
+    ],
+    researchLabel: "HOW I STUDY THE MARKET",
+    researchTitle: "Compare answers to the buyer's task, not just rankings",
+    researchIntro: "For each important intent, I inspect Google and Yandex results in the relevant market: which pages appear, what they offer, and how they support their claims. I then compare that with your site and what your business can actually prove.",
+    researchCaption: "An illustration of the research process; project comparisons use observed search results.",
+    researchColumns: ["Layer", "What I record", "Decision for your site"],
+    researchRows: [
+      ["Query and results", "Intent, result types, region and device; Google and Yandex separately.", "Choose a service page, category, case study or direct answer."],
+      ["Competitor pages", "Offer, range, structure, proof, pricing and path to inquiry.", "Show a real difference where buyers compare providers."],
+      ["Your pages", "Existing URLs, missing answers, supporting evidence and internal links.", "Keep, improve or create a page based on business value."],
+    ],
+    editorialLabel: "EDITORIAL PLAN",
+    editorialTitle: "Articles from your work, not someone else's copy",
+    editorialIntro: "The SEO plan includes topics, target pages and a publishing calendar. An example cadence is 8 articles a month, 2 per week. We set the pace based on available evidence and expert time; volume alone is not a result.",
+    editorialCadence: ["8 articles", "4 weeks", "2 per week"],
+    editorialSource: "Topics come from search demand, sales questions, competitor results and your team's own material. For each article I record the reader's task, the expert, the evidence and the next useful page. Writing and publishing are scoped separately from the plan.",
+    editorialAvoidLabel: "AVOID",
+    editorialAvoidTitle: "Rewriting for volume",
+    editorialAvoidText: "We do not paraphrase other people's articles or fill a calendar without facts about your product. That gives a buyer no reason to choose you.",
+    editorialDoLabel: "DO INSTEAD",
+    editorialDoTitle: "Show first-hand work",
+    editorialDoText: "Explain the problem, decisions, screens, constraints and outcomes with your expert. That answers the reader and makes the basis for your answer clear to search systems.",
+    geoLabel: "SEO / AEO / GEO",
+    geoTitle: "One expertise, three ways to be found",
+    geoIntro: "Traditional results, direct answers and AI search are different paths to the same useful source. Each needs an accessible page, a clear answer and evidence from your work.",
+    geoSteps: [
+      { number: "SEO", title: "Traditional search", text: "Group demand by intent, fix indexing issues, create the right pages and internal links. Track impressions, clicks and qualified inquiries." },
+      { number: "AEO", title: "Direct answers", text: "Identify real buyer questions, answer them briefly up front, then explain conditions and examples. Check clarity for readers and search results." },
+      { number: "GEO", title: "AI search", text: "Keep sources crawlable, add authorship and verifiable case studies; monitor citations and referrals where services expose that data." },
+    ],
+    geoNote: "No one can promise an AI citation or a ranking. I check visibility for important questions and connect it to visits, on-site actions and qualified inquiries.",
+    toolsTitle: "Tools chosen for the question",
+    tools: [
+      { title: "Search platforms", text: "Google Search Console, Yandex Webmaster and, where useful, Bing Webmaster for indexing, queries, pages and crawl issues." },
+      { title: "Technical checks", text: "Site crawl, server responses, canonicals, robots.txt, sitemap, internal links and mobile layout; PageSpeed Insights and Lighthouse for speed." },
+      { title: "Behavior and leads", text: "Yandex Metrica or GA4 when access and goals are configured: organic visits, on-site actions and inquiries." },
+    ],
+    metricsTitle: "How we track progress",
+    metrics: [
+      { title: "Visibility", text: "Indexed pages, impressions, clicks, CTR and queries for priority URLs." },
+      { title: "Traffic quality", text: "Organic visits, goal completions and inquiries that fit the business." },
+      { title: "Technical quality", text: "Crawl errors, mobile usability, and LCP, INP and CLS field data when available." },
+    ],
+    proofLabel: "REAL PROJECT",
+    proofTitle: "KEMZ: a catalog searchable by model",
+    proofText: "I rebuilt the factory catalog structure with separate category and model pages, product specifications, metadata and a clear route to inquiry. The case study shows real screens and decisions.",
+    proofLink: "View the KEMZ case",
+    footnote: "Private search and analytics data requires access. Without it, I start with the public site and help set up measurement.",
+  };
+
+  return <section className={styles.seoDetails} aria-labelledby="seo-details-title"><div className="shell">
+    <div className={styles.seoDetailsIntro}><div><p className={styles.kicker}>{content.kicker}</p><h2 id="seo-details-title">{content.title}</h2></div><p>{content.intro}</p></div>
+    <div className={styles.seoDeliverables}>{content.deliverables.map((item) => <article key={item.label}><span>{item.label}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+    <div className={styles.seoResearch}>
+      <div className={styles.seoResearchIntro}><div><span>{content.researchLabel}</span><h3>{content.researchTitle}</h3><p>{content.researchIntro}</p></div><figure><Image src="/service-art/seo-research.webp" alt={isRu ? "Маскот изучает страницы в поисковой выдаче и группирует запросы по задачам" : "Mascot studies search results and groups queries by user task"} width={1672} height={941} sizes="(max-width: 900px) 100vw, 48vw" /><figcaption>{content.researchCaption}</figcaption></figure></div>
+      <div className={styles.seoWorksheet} role="table" aria-label={isRu ? "Как исследование конкурентов превращается в план страниц" : "How competitor research becomes a page plan"}>
+        <div className={styles.seoWorksheetHead} role="row">{content.researchColumns.map((column) => <span role="columnheader" key={column}>{column}</span>)}</div>
+        {content.researchRows.map((row) => <div className={styles.seoWorksheetRow} role="row" key={row[0]}>{row.map((cell, index) => <div role="cell" key={index}><span className={styles.seoWorksheetMobileLabel}>{content.researchColumns[index]}</span>{cell}</div>)}</div>)}
+      </div>
+    </div>
+    <div className={styles.seoProof}><div><span>{content.proofLabel}</span><h3>{content.proofTitle}</h3><p>{content.proofText}</p></div><Link href={isRu ? "/ru/work/aokemz" : "/en/work/aokemz"}>{content.proofLink} ↗</Link></div>
+    <div className={styles.seoEditorial}>
+      <div className={styles.seoEditorialHead}><div><span>{content.editorialLabel}</span><h3>{content.editorialTitle}</h3></div><p>{content.editorialIntro}</p></div>
+      <div className={styles.seoEditorialCadence} aria-label={isRu ? "Пример плана публикаций" : "Example publishing schedule"}>{content.editorialCadence.map((item, index) => <span key={item}>{item}{index < content.editorialCadence.length - 1 && <b aria-hidden="true">/</b>}</span>)}</div>
+      <p className={styles.seoEditorialSource}>{content.editorialSource}</p>
+      <div className={styles.seoEditorialCards}>
+        <article className={styles.seoEditorialAvoid}><div className={styles.seoEditorialImage}><Image src="/service-art/seo-no-rewrites.webp" alt={isRu ? "Маскот скрестил руки перед стопкой однотипных переписанных статей" : "Mascot crosses his arms in front of a stack of rewritten articles"} fill sizes="(max-width: 700px) 90vw, 40vw" /></div><div><span>{content.editorialAvoidLabel}</span><h4>{content.editorialAvoidTitle}</h4><p>{content.editorialAvoidText}</p></div></article>
+        <article className={styles.seoEditorialDo}><div className={styles.seoEditorialImage}><Image src="/service-art/seo-original-work.webp" alt={isRu ? "Маскот показывает статью-кейс с собственными материалами и даёт знак одобрения" : "Mascot approves an article based on original case material"} fill sizes="(max-width: 700px) 90vw, 40vw" /></div><div><span>{content.editorialDoLabel}</span><h4>{content.editorialDoTitle}</h4><p>{content.editorialDoText}</p></div></article>
+      </div>
+    </div>
+    <div className={styles.seoGeo}>
+      <div className={styles.seoGeoIntro}><span>{content.geoLabel}</span><h3>{content.geoTitle}</h3><p>{content.geoIntro}</p></div>
+      <div className={styles.seoGeoSteps}>{content.geoSteps.map((step) => <article key={step.number}><span>{step.number}</span><h4>{step.title}</h4><p>{step.text}</p></article>)}</div>
+      <p className={styles.seoGeoNote}>{content.geoNote}</p>
+    </div>
+    <div className={styles.seoEvidenceGrid}>
+      <div><h3>{content.toolsTitle}</h3>{content.tools.map((item) => <div className={styles.seoEvidenceRow} key={item.title}><h4>{item.title}</h4><p>{item.text}</p></div>)}</div>
+      <div><h3>{content.metricsTitle}</h3>{content.metrics.map((item) => <div className={styles.seoEvidenceRow} key={item.title}><h4>{item.title}</h4><p>{item.text}</p></div>)}</div>
+    </div>
+    <p className={styles.seoDetailsFootnote}>{content.footnote}</p>
+  </div></section>;
 }
 
 function SeoDiagram({ isRu }: { isRu: boolean }) {

@@ -28,7 +28,7 @@
     "leadMobile": "From idea and design to code, CMS and launch. Built personally around your goals.",
     "primaryCta": "Discuss a project",
     "secondaryCta": "See work",
-    "aboutCta": "About me and my approach",
+    "aboutCta": "How I work",
     "scopeLabel": "What I can cover",
     "scope": ["Positioning", "Design", "Development", "SEO"],
     "scrollPrompt": "Scroll down",
@@ -434,23 +434,39 @@
       }
     ]
   },
+  "Process": {
+    "kicker": "HOW I WORK / 01—05",
+    "title": "From a business need to a working website",
+    "lead": "I first clarify what the site needs to achieve and for whom. Then I research demand, design the visitor journey, build the product, and bring it to launch.",
+    "resultLabel": "Outcome:",
+    "note": "The scope of each stage depends on the project: a small landing page and a complex catalogue need different levels of work.",
+    "workCta": "See the projects",
+    "contactCta": "Discuss your project",
+    "steps": [
+      { "title": "Understand the problem", "text": "I discuss business goals, the audience, the offer, and constraints. We define the visitor action that matters and how to tell whether the site helps.", "result": "a clear brief and success criteria.", "alt": "Oleg's mascot mapping business goals and a website plan at a board" },
+      { "title": "Research the market and search", "text": "I review competitors and real search queries, group topics by user intent, and define the pages and content the site needs.", "result": "a site structure and content plan.", "alt": "Oleg's mascot studying search queries and competitor sites with a magnifying glass" },
+      { "title": "Create the design concept", "text": "I shape user journeys, information hierarchy, and a visual language for the brand. I show how key pages work across screen sizes.", "result": "a clear design direction.", "alt": "Oleg's mascot designing a website interface at a drafting desk" },
+      { "title": "Build and configure", "text": "I build the responsive interface, configure the CMS, forms, and needed integrations. Semantic markup, speed, and content editing are part of the build.", "result": "a site ready for review.", "alt": "Oleg's mascot coding a website and connecting its interface to a CMS" },
+      { "title": "Test and launch", "text": "I check mobile layouts, forms, accessibility, metadata, and analytics. I deploy the site, connect the domain, and hand over editing instructions.", "result": "a published and checked project.", "alt": "Oleg's mascot launching a site and checking it on a computer and phone" }
+    ]
+  },
   "About": {
-    "kicker": "About me and my approach",
-    "title": "From the idea and design to code and launch",
-    "lead": "I treat a website as one complete product: understand the brief and audience, design the interface, build it, and prepare it for use and search.",
-    "profileLabel": "Profile",
+    "kicker": "ABOUT ME",
+    "title": "Who leads your project",
+    "lead": "I'm Oleg Jakunin. I personally handle the site's design and development, from the first decisions through publication.",
+    "profileLabel": "Short résumé",
     "name": "Oleg Jakunin",
     "role": "Frontend / Fullstack developer",
-    "profileText": "I have worked in web development since 2017. I studied full-stack development at Le Wagon Barcelona and later mentored its students. At major fintech companies, I built ERP systems, financial dashboards, and tools with complex business logic. I also worked in an international team on products for overseas clients. Since 2022, I have led website and web-product projects independently, from the initial brief through launch.",
+    "profileText": "I have worked in web development since 2017. Since 2022, I have led website and web-product projects independently, from brief to launch.",
     "toolsLabel": "Technologies used in my projects",
     "tools": ["React", "Next.js", "Nuxt", "TypeScript", "Node.js", "PostgreSQL", "Payload", "RAG"],
     "githubCta": "Code and profile on GitHub",
-    "stepsLabel": "How I work",
-    "steps": [
-      { "title": "Positioning", "text": "I work out who the project is for, how to explain its value, and the path a visitor should take." },
-      { "title": "Design concept", "text": "I shape the structure and visual language. For an existing site, I decide what to keep and what to rethink." },
-      { "title": "Development", "text": "I build the interface, logic, integrations, and CMS around the team's and users' actual tasks." },
-      { "title": "SEO and launch", "text": "I prepare pages and metadata for search, then check speed, forms, and analytics before launch." }
+    "experienceLabel": "Experience",
+    "experience": [
+      { "period": "2017 →", "title": "Training and mentoring", "text": "I studied full-stack development at Le Wagon Barcelona and later mentored its students." },
+      { "period": "Fintech", "title": "Complex web services", "text": "At major fintech companies I built ERP systems, financial dashboards, and products with complex business logic." },
+      { "period": "Team", "title": "International projects", "text": "I developed digital products for overseas clients as part of an international team." },
+      { "period": "2022 →", "title": "Independent projects", "text": "I create websites and web products directly with clients, from the brief and design to code and launch." }
     ]
   },
   "Stack": {

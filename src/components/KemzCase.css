@@ -38,22 +38,8 @@
 .kemz-hero__screen img { display: block; width: calc(100% + 13px); max-width: none; height: 100%; object-fit: cover; object-position: left top; }
 .kemz-hero__phone { position: absolute; z-index: 3; right: -.1rem; bottom: .5rem; width: clamp(8.2rem,13vw,11rem); aspect-ratio: 390 / 844; padding: .38rem; border: 1px solid #60717d; border-radius: 1.45rem; background: #0b1218; box-shadow: 0 22px 55px rgba(0,0,0,.65); transform: rotate(4deg); }
 .kemz-hero__phone::before { content: ""; position: absolute; z-index: 2; top: .38rem; left: 39%; width: 22%; height: .28rem; border-radius: 0 0 .4rem .4rem; background: #0b1218; }
-.kemz-hero__phone-screen { display: flex; flex-direction: column; width: 100%; height: 100%; overflow: hidden; border-radius: 1.08rem; background: #f6faff; font-family: Arial,sans-serif; }
-.kemz-hero__phone-header { display: flex; align-items: center; gap: .16rem; min-height: 12%; padding: .28rem; color: #132c45; }
-.kemz-hero__phone-header img { width: .82rem; height: .94rem; object-fit: contain; }
-.kemz-hero__phone-header strong { font-size: .55rem; }
-.kemz-hero__phone-header span { margin-left: auto; padding: .28rem; border-radius: .12rem; background: #0056b9; color: #fff; font-size: .3rem; white-space: nowrap; }
-.kemz-hero__phone-header i { font-size: .55rem; font-style: normal; }
-.kemz-hero__phone-main { position: relative; flex: 1; min-height: 0; overflow: hidden; background: #14334e; }
-.kemz-hero__phone-main>img { object-fit: cover; object-position: 60% center; opacity: .72; }
-.kemz-hero__phone-main::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,rgba(10,34,54,.66),rgba(10,34,54,.54) 55%,rgba(10,34,54,.82)); }
-.kemz-hero__phone-main>div { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .55rem; height: 100%; padding: .7rem .5rem; color: #fff; text-align: center; }
-.kemz-hero__phone-main small { font-size: .33rem; letter-spacing: .04em; }
-.kemz-hero__phone-main b { max-width: 100%; font-size: clamp(.61rem,1.1vw,.75rem); line-height: 1.1; overflow-wrap: anywhere; text-wrap: balance; }
-.kemz-hero__phone-main p { margin: 0; font-size: .4rem; line-height: 1.35; }
-.kemz-hero__phone-main span { padding: .38rem .48rem; background: #0056b9; font-size: .36rem; font-weight: 700; }
-.kemz-hero__phone-facts { display: grid; grid-template-columns: 1fr 1fr; min-height: 13%; color: #183551; }
-.kemz-hero__phone-facts strong { display: grid; place-items: center; border-right: 1px solid #d9e6f2; font-size: .42rem; }
+.kemz-hero__phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 1.08rem; background: #f6faff; }
+.kemz-hero__phone-screen>img { object-fit: fill; }
 .kemz-hero__art-index { position: absolute; right: -1rem; bottom: 0; color: rgba(231,244,251,.1); font-size: clamp(8rem,20vw,20rem); font-weight: 700; line-height: 1; letter-spacing: -.1em; }
 .kemz-hero__rail { display: none; }
 .kemz-hero__facts { display: flex; flex-wrap: wrap; align-items: center; gap: 0; padding-block: 1.3rem; border-top: 1px solid var(--kemz-line); }

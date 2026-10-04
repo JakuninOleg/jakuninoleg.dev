@@ -13,6 +13,7 @@ export function Header() {
   const homeAnchor = (hash: string) => home ? hash : `/${locale}${hash}`;
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const panelRef = useRef<HTMLElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -47,6 +48,7 @@ export function Header() {
 
     const onScroll = () => {
       const y = window.scrollY;
+      setScrolled(y > 40);
       if (open) {
         setHidden(false);
         lastY = y;
@@ -83,7 +85,7 @@ export function Header() {
 
   return (
     <header
-      className={`topbar${open ? " is-menu-open" : ""}${hidden ? " is-hidden" : ""}`}
+      className={`topbar${open ? " is-menu-open" : ""}${hidden ? " is-hidden" : ""}${scrolled ? " is-scrolled" : ""}`}
     >
       <div className="shell topbar__inner">
         <a href={homeAnchor("#top")} className="brand" onClick={() => setOpen(false)}>
