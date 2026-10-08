@@ -1,0 +1,16 @@
+.section { background: #102330; padding: clamp(4rem,7vw,7rem) 0; color: #f3f7f9; border-block: 1px solid #29404e; scroll-margin-top: 6rem; }
+.layout { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(2rem,5vw,5rem); }
+.visual img { display: block; width: 100%; height: auto; object-fit: contain; }
+.kicker { margin: 0 0 1.1rem; color: #e3be61; font-size: .72rem; letter-spacing: .15em; font-weight: 750; }
+.copy h2 { margin: 0 0 1.5rem; max-width: 17ch; font: 800 clamp(2.2rem,3.5vw,4rem)/1.04 var(--font-display),sans-serif; letter-spacing: -.045em; text-wrap: balance; }
+.lead { color: #b6cbd5; font-size: 1.05rem; line-height: 1.65; max-width: 48ch; }
+.formats { display: grid; gap: 1rem; margin: 1.8rem 0; }
+.formats p { margin: 0; display: grid; gap: .4rem; padding-top: 1rem; border-top: 1px solid #35505f; }
+.formats strong { font-size: 1.1rem; }
+.formats span { color: #b6cbd5; line-height: 1.55; }
+.button { display: inline-flex; gap: 1.5rem; justify-content: center; align-items: center; min-height: 3.2rem; padding: .8rem 1.5rem; border-radius: 99px; background: #25cbd5; color: #092331; font-weight: 800; }
+.button:hover { background: #83e8ed; }
+.button:focus-visible { outline: 2px solid #f5cf75; outline-offset: 5px; }
+.note { margin: 1rem 0 0; color: #a5bbc7; font-size: .8rem; line-height: 1.5; }
+@media(max-width:800px) { .layout { grid-template-columns: 1fr; gap: 2rem; } .visual { order: 2; max-width: 38rem; margin-inline: auto; } .copy h2 { max-width: 22ch; } .lead { max-width: 55ch; } }
+@media(max-width:480px) { .button { width: 100%; } }

@@ -42,7 +42,7 @@ export function JsonLd({ locale, title, description }: JsonLdProps) {
         email: site.email,
         jobTitle: "Frontend / Fullstack Developer",
         description,
-        image: `${siteUrl}/mascot/mascot-contact.webp`,
+        image: `${siteUrl}/mascot/mascot-base.webp`,
         sameAs,
         knowsAbout: [
           "Web development",
@@ -60,7 +60,7 @@ export function JsonLd({ locale, title, description }: JsonLdProps) {
         "@id": `${siteUrl}/#service`,
         name: `${site.name} — web development`,
         url: pageUrl,
-        image: `${siteUrl}/mascot/mascot-contact.webp`,
+        image: `${siteUrl}/mascot/mascot-base.webp`,
         description,
         provider: { "@id": `${siteUrl}/#person` },
         serviceType: [

@@ -17,6 +17,7 @@ export async function Footer() {
           <a href={`/${locale}#about`}>{n("about")}</a>
           <a href={`/${locale}/oj-cms`}>{n("solutions")}</a>
           <a href={`/${locale}/blog`}>{n("blog")}</a>
+          <a href={`/${locale}/partners`}>{locale === "en" ? "Partners" : "Партнёрам"}</a>
           <a href={`/${locale}/calculator`}>{locale === "en" ? "Cost calculator" : "Калькулятор"}</a>
         </nav>
         <div className="footer-row">

@@ -20,7 +20,7 @@ export function Header() {
   const links = [
     { href: `/${locale}/services`, label: t("services") },
     { href: `/${locale}/work`, label: t("work") },
-    { href: homeAnchor("#about"), label: t("about") },
+    { href: `/${locale}/partners`, label: t("partners") },
     { href: `/${locale}/oj-cms`, label: t("solutions") },
     { href: `/${locale}/blog`, label: t("blog") },
     { href: homeAnchor("#contact"), label: t("contact") },

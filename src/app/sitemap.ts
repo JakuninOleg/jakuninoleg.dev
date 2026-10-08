@@ -7,7 +7,7 @@ import { blogPath, catalogBlogPath, catalogPostDate, firstPostDate, privacyBlogP
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakuninoleg.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ["", "/services", "/calculator", "/oj-cms", "/work", "/blog", "/legal/privacy", "/legal/consent", "/legal/cookies", ...serviceRoutes.map((slug) => `/services/${slug}`), ...projectsMeta.map((project) => `/work/${project.id}`)];
+  const paths = ["", "/services", "/calculator", "/oj-cms", "/work", "/blog", "/partners", "/legal/privacy", "/legal/consent", "/legal/cookies", ...serviceRoutes.map((slug) => `/services/${slug}`), ...projectsMeta.map((project) => `/work/${project.id}`)];
   const pages = paths.flatMap((path) => (path.startsWith("/legal/") ? ["ru"] : routing.locales).map((locale) => ({
     url: `${siteUrl}/${locale}${path}`,
     // A build is not a content update. Keep lastModified only where we know the date.

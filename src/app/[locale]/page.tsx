@@ -12,6 +12,7 @@ import { Solutions } from "@/components/Solutions";
 import { Work } from "@/components/Work";
 import { BlogFeature } from "@/components/BlogFeature";
 import { HomeCalculator } from "@/components/HomeCalculator";
+import { PartnershipFeature } from "@/components/PartnershipFeature";
 import "../home.css";
 
 export default async function HomePage({
@@ -45,6 +46,7 @@ export default async function HomePage({
         <About />
         <Solutions />
         <BlogFeature />
+        <PartnershipFeature locale={locale} />
         <Contact />
       </main>
       <Footer />

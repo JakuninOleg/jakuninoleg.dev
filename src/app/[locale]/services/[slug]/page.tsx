@@ -119,7 +119,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           <div className={styles.heroVisual}>
             {!artwork && <div className={styles.visualTop}><span>{isRu ? "НАПРАВЛЕНИЕ" : "SERVICE"} / {String(serviceRoutes.indexOf(route) + 1).padStart(2, "0")}</span><ServiceGlyph kind={route} /></div>}
             {artwork ? <div className={`${styles.visualImage} ${styles.visualImageArtwork}`}><Image src={artwork.src} alt={artwork.alt[isRu ? "ru" : "en"]} fill sizes="(max-width: 850px) 100vw, 50vw" priority /></div> : route === "seo-positioning" ? <SeoDiagram isRu={isRu} /> : route === "ai-solutions" ? <AiDiagram isRu={isRu} /> : route === "design-redesign" ? <DesignDiagram isRu={isRu} /> : copy.image ? <div className={styles.visualImage}><Image src={copy.image} alt={copy.imageAlt || ""} fill sizes="(max-width: 850px) 100vw, 50vw" priority /></div> : null}
-            {!artwork && <div className={styles.visualBottom}><span>{copy.exampleLabel}</span><Image src="/mascot/mascot-contact.webp" alt="" width={76} height={76} /></div>}
+            {!artwork && <div className={styles.visualBottom}><span>{copy.exampleLabel}</span><Image src="/mascot/mascot-base.webp" alt="" width={76} height={76} /></div>}
           </div>
         </div>
         <div className={`shell ${styles.heroNote}`}>{copy.note}</div>

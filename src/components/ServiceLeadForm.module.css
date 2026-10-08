@@ -23,6 +23,18 @@
 .success { display: grid; align-content: center; min-height: 20rem; padding: 2rem; }
 .success strong { font: 800 2rem var(--font-display),sans-serif; }
 .error { margin: 0; color: #9b2637; }
+.partnership { background: #102330; border-top: 1px solid #304451; }
+.partnership .tablet { transform: none; box-shadow: none; background: #0c1c28; color: #f3f7f9; border: 1px solid #35505f; border-radius: .6rem; padding: 1.7rem; }
+.partnership .tabletBar { color: #78d9df; border-color: #35505f; }
+.partnership .form label:not(.consent):not(.honeypot) { color: #c2d4dd; }
+.partnership .form input:not([type=checkbox]), .partnership .form textarea { background: #112a39; color: #f3f7f9; border-color: #35505f; }
+.partnership .form input::placeholder,.partnership .form textarea::placeholder { color: #94aeba; }
+.partnership .consent { color: #a9bec9; }
+.partnership .consent a { color: #75dce5; }
+.partnership .mascot { background: none; min-height: 0; }
+.partnership .mascot img { max-height: 22rem; object-fit: contain; }
+.partnership .mascot span { display: none; }
+.partnership .error { color: #ffaab3; }
 .compact { padding: clamp(4rem, 7vw, 7rem) 0; background: #0b2634; }
 .compact .intro h2 { font-size: clamp(2.6rem, 4vw, 4.4rem); }
 .compact .tablet { transform: none; box-shadow: 1rem 1.2rem 0 #061620, 1rem 1.8rem 2rem #0005; }
