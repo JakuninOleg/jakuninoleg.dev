@@ -14,7 +14,7 @@ export async function Footer() {
         <nav className="footer-site" aria-label={t("siteLabel")}>
           <a href={`/${locale}/services`}>{n("services")}</a>
           <a href={`/${locale}/work`}>{n("work")}</a>
-          <a href={`/${locale}#about`}>{n("about")}</a>
+          <a href={`/${locale}/resume`}>{n("about")}</a>
           <a href={`/${locale}/oj-cms`}>{n("solutions")}</a>
           <a href={`/${locale}/blog`}>{n("blog")}</a>
           <a href={`/${locale}/partners`}>{locale === "en" ? "Partners" : "Партнёрам"}</a>

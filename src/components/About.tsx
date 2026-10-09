@@ -1,8 +1,9 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { site } from "@/content/site";
 
 export async function About() {
   const t = await getTranslations("About");
+  const locale = await getLocale();
   const experience = t.raw("experience") as { period: string; title: string; text: string }[];
   const tools = t.raw("tools") as string[];
 
@@ -25,6 +26,9 @@ export async function About() {
             <p className="about-profile__text">{t("profileText")}</p>
             <a href={site.github} target="_blank" rel="noreferrer" className="about-profile__link">
               {t("githubCta")} <span aria-hidden="true">↗</span>
+            </a>
+            <a href={`/${locale}/resume`} className="about-profile__link" style={{ marginLeft: 20 }}>
+              {locale === "en" ? "Full resume" : "Полное резюме"} <span aria-hidden="true">↗</span>
             </a>
           </div>
 
