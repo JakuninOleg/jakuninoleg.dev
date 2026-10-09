@@ -10,9 +10,9 @@ export const solutionsMeta: SolutionMeta[] = [
   {
     id: "catalog",
     accent: "#22d3ee",
-    stack: ["OJ CMS", "Next.js", "Content UI"],
-    image: "/solutions/oj-cms.webp",
-    demoHref: "https://oj-cms.vercel.app/admin",
+    stack: ["OJ CMS", "Next.js", "Payload"],
+    image: "/projects/kemz/cms/dashboard.webp",
+    demoHref: "/ru/oj-cms",
   },
   {
     id: "shop",

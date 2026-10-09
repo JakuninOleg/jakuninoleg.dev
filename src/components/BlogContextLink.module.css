@@ -19,9 +19,19 @@
 }
 
 .innerEditorial {
-  grid-template-columns: minmax(0, 1.05fr) minmax(12rem, .95fr) auto;
+  grid-template-columns: minmax(0, 1.25fr) minmax(12rem, .95fr);
   align-items: center;
-  gap: clamp(1.25rem, 3vw, 2.5rem);
+  gap: 1.5rem clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.innerEditorial > .art {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+
+.innerEditorial > a {
+  grid-column: 1;
+  justify-self: start;
 }
 
 .inner p {
@@ -80,7 +90,7 @@
   }
 
   .innerEditorial a {
-    grid-column: 1 / -1;
+    grid-column: 1;
     justify-self: start;
   }
 }
@@ -104,6 +114,11 @@
     order: 2;
     max-width: 22rem;
     margin: 0 auto;
+  }
+
+  .innerEditorial > .art {
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .art img {

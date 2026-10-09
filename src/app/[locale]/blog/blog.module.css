@@ -36,6 +36,7 @@
 .catalogProjectLink{display:block;border:1px solid #37576a;transition:border-color .2s}
 .catalogProjectLink:hover{border-color:#e7b438}
 .catalogProjectLink img{display:block;width:100%;height:auto}
+.catalogCmsImage{display:block;width:100%;height:auto;object-fit:contain;border:1px solid #304453;border-radius:10px}
 .catalogFigure figcaption{color:#aebfc9;font-size:.85rem;line-height:1.5;margin-top:.7rem}
 .catalogFigure figcaption a{color:#f1c050;text-decoration:underline;text-underline-offset:3px}
 .catalogChecklist{padding-left:1.5rem;color:#c6d2dc;font-size:clamp(1.05rem,1.25vw,1.18rem);line-height:1.7}

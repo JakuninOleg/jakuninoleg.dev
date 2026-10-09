@@ -67,14 +67,14 @@
       "aokemz": {
         "title": "AO KEMZ",
         "tag": "corporate site",
-        "summary": "Industrial company website with an equipment catalog, production facilities, documents, news and technical inquiries. Updated design built with Nuxt.",
+        "summary": "An industrial website on Next.js and React with a catalog, news and documents. OJ CMS on Payload brings editing, inquiries and Metrika analytics together.",
         "result": "Explore the updated website"
       },
       "oj-cms": {
         "tag": "My product · CMS",
-        "summary": "I built OJ CMS on Payload: pages, news, media and roles in an interface designed for everyday content work.",
+        "summary": "OJ CMS on Payload: content, catalog, inquiries and analytics in one panel, deployed on the KEMZ factory website.",
         "result": "Explore the OJ CMS interface",
-        "imageAlt": "OJ CMS interface with pages, news, media, publication status and website preview"
+        "imageAlt": "Live KEMZ OJ CMS dashboard for catalog, news, documents and inquiries"
       }
     }
   },
@@ -105,8 +105,8 @@
     "caseSolution": "The solution",
     "kemz": {
       "seoTitle": "KEMZ equipment catalog website — design, CMS and SEO",
-      "seoDescription": "KEMZ factory website case: redesign, equipment catalog with model pages, technical inquiries, CMS and SEO. The mobile PageSpeed Insights score reached 95.",
-      "lead": "A new factory website: from an urgent brief and design concept to the equipment catalog, CMS, forms, and launch.",
+      "seoDescription": "KEMZ website built with Next.js and React: equipment catalog, OJ CMS on Payload, inquiries in the admin panel and Yandex Metrika analytics.",
+      "lead": "A Next.js factory website with bespoke design, an equipment catalog and OJ CMS on Payload for content, inquiries and analytics.",
       "eyebrow": "Corporate website / industry",
       "title": "Making complex manufacturing clear",
       "intro": "I urgently rebuilt the factory website as a B2B sales tool: bold industrial design, an equipment catalog, technical inquiries, a CMS, and SEO — from concept to launch.",
@@ -129,7 +129,7 @@
       "scope1Title": "Bold industrial design",
       "scope1Text": "I removed the old template's visual noise. Oversized type, quarry textures, signature blue, and real machinery convey the scale of production without obscuring technical details.",
       "scope2Title": "Catalog and CMS",
-      "scope2Text": "I built a route from product category to model, with specifications, documents, and clear navigation. The CMS lets the team update products and news on its own.",
+      "scope2Text": "I built the category-to-model journey and integrated OJ CMS on Payload for products, categories, news, documents and publishing states.",
       "scope3Title": "Inquiries without spam",
       "scope3Text": "I created a technical inquiry with equipment parameters, field validation, and spam protection, then routed requests to the right team.",
       "scope4Title": "Speed and search",
@@ -158,7 +158,7 @@
       "heroButton": "Explore case",
       "heroSite": "Visit website",
       "heroFactOne": "Corporate website",
-      "heroFactTwo": "Nuxt 3 + Contentful",
+      "heroFactTwo": "Next.js + OJ CMS",
       "heroFactThree": "Catalog and inquiries",
       "contextTask": "What blocked inquiries",
       "contextItems": ["Slow mobile loading", "A confusing route to a model", "Spam and missed inquiries", "Weak search visibility"],
@@ -178,14 +178,14 @@
     "insideIntro": "I planned not only the public pages, but also how the team updates the catalog, receives inquiries, and grows search visibility.",
     "insideServiceLink": "How I build catalog websites",
     "insideCmsTitle": "Editing without a developer",
-    "insideCmsText": "The CMS stores categories, models, descriptions, images, and news. The team can keep product information current.",
+    "insideCmsText": "I adapted OJ CMS on Payload to the KEMZ catalog. The team edits products, categories, news and documents, with separate draft and publishing actions for product changes.",
     "insideLeadsTitle": "An inquiry with context",
-    "insideLeadsText": "The technical form collects selection details and contacts. Field validation and spam protection help keep valuable inquiries visible.",
+    "insideLeadsText": "Form inquiries are saved in the CMS before email notifications are sent. Editors can view inquiries; administrators handle processing and deletion.",
     "insideSeoTitle": "Pages for each product line",
     "insideSeoText": "Categories and models have their own URLs, titles, and descriptions; the site also provides a sitemap, canonicals, and structured data.",
       "productionCaption": "KEMZ manufacturing",
       "resultLabel": "Outcome",
-      "resultText": "The site is faster, and the route to equipment and technical inquiries is shorter. The mobile PageSpeed Insights score rose from roughly 60–70 to 95. Accessibility and SEO each scored 100.",
+      "resultText": "The website brings the catalog, technical inquiries and team workflows together in OJ CMS.",
       "psiPerformance": "Performance",
       "psiAccessibility": "Accessibility",
       "psiBestPractices": "Best practices",
@@ -207,7 +207,7 @@
         "badge": "Built by me",
         "title": "OJ CMS for your website",
         "hook": "Update your website yourself, from a news post to a new catalog item.",
-        "text": "I built OJ CMS to make everyday content work straightforward. Pages, news and media live in one interface, with published content and work in progress clearly marked.",
+        "text": "OJ CMS is live at KEMZ: the team manages products, news and documents. The panel stores website inquiries and displays traffic through the Yandex Metrika API.",
         "author": "For your project, I’ll configure the catalog structure and fields, connect the website and add inquiry forms.",
         "points": [
           "Manage text and images in one clear interface",
@@ -217,9 +217,9 @@
         ],
         "cta": "Discuss a site with OJ CMS",
         "note": "My CMS built on Payload. For company websites, manufacturers and service catalogs.",
-        "imageAlt": "OJ CMS interface with pages, news, media, publication status and website preview",
-        "caption": "Inside OJ CMS",
-        "demoCta": "Open OJ CMS"
+        "imageAlt": "Live KEMZ OJ CMS dashboard for catalog, news, documents and inquiries",
+        "caption": "OJ CMS on the live KEMZ website",
+        "demoCta": "Explore OJ CMS"
       },
       "shop": {
         "tag": "Shop · Commerce",
@@ -322,7 +322,7 @@
     ],
     "proofKicker": "04 / in practice",
     "proofTitle": "KEMZ: a catalog for complex industrial products",
-    "proofText": "For KEMZ I rebuilt the website around product categories, model pages, a technical form, and a CMS. I renewed the visual language and prepared the pages for search. The mobile PageSpeed Insights score is 95.",
+    "proofText": "For KEMZ I built a Next.js and React site with product categories, model pages and technical inquiries. OJ CMS on Payload combines catalog editing, stored inquiries and Yandex Metrika analytics.",
     "proofLink": "Explore the KEMZ case",
     "proofSite": "Visit the factory website",
     "finalTitle": "Help customers choose from your range",

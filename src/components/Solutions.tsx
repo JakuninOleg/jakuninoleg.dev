@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { solutionsMeta } from "@/content/solutions";
 
 export async function Solutions() {
   const t = await getTranslations("Solutions");
+  const locale = await getLocale();
 
   return (
     <section id="solutions" className="section section--alt" aria-labelledby="solutions-heading">
@@ -48,15 +49,15 @@ export async function Solutions() {
                     <Image
                       src={solution.image}
                       alt={t(`offers.${solution.id}.imageAlt`)}
-                      width={solution.demoHref ? 1438 : 1600}
-                      height={solution.demoHref ? 1224 : 900}
+                      width={solution.demoHref ? 1265 : 1600}
+                      height={solution.demoHref ? 723 : 900}
                       sizes="(max-width: 819px) 100vw, 55vw"
                       className="solution-shot__img"
                     />
                     {solution.demoHref && (
                       <figcaption className="solution-shot__caption">
                         <span>{t(`offers.${solution.id}.caption`)}</span>
-                        <a href={solution.demoHref} target="_blank" rel="noreferrer">
+                        <a href={`/${locale}/oj-cms`}>
                           {t(`offers.${solution.id}.demoCta`)} <span aria-hidden="true">↗</span>
                         </a>
                       </figcaption>

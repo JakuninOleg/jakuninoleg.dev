@@ -60,7 +60,7 @@ export const projectsMeta: ProjectMeta[] = [
   {
     id: "aokemz",
     title: "AO KEMZ",
-    stack: ["Nuxt", "Vue", "Contentful", "Tailwind"],
+    stack: ["Next.js", "React", "Payload", "OJ CMS", "TypeScript"],
     image: "/projects/aokemz-v2.webp",
     href: "https://aokemz.ru/",
     accent: "#78CCF0",

@@ -1,3 +1,4 @@
+import { KemzCmsShowcase } from "@/components/KemzCmsShowcase";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -127,7 +128,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       <section className={`${styles.included} ${route === "landing-pages" ? styles.includedLanding : ""}`} aria-labelledby="included-title"><div className="shell">
         <div className={styles.sectionHead}><p className={styles.kicker}>01 / {isRu ? "СОСТАВ РАБОТ" : "SCOPE"}</p><h2 id="included-title">{copy.includedTitle}</h2></div>
-        <div className={styles.includedGrid}>{copy.included.map((item, index) => <article key={item.title} className="reveal-item"><span>0{index + 1}</span>{route === "landing-pages" && <div className={styles.includedDetail} aria-hidden="true"><Image src={index === 0 ? "/service-art/landing-workshop-wide.webp" : index === 1 ? "/service-art/design-redesign.webp" : "/service-art/seo-positioning.webp"} alt="" fill sizes="(max-width: 650px) 80vw, 28vw" /></div>}<h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+        <div className={`${styles.includedGrid}${route === "cms" ? ` ${styles.includedGridCms}` : ""}`}>{copy.included.map((item, index) => <article key={item.title} className="reveal-item"><span>0{index + 1}</span>{route === "landing-pages" && <div className={styles.includedDetail} aria-hidden="true"><Image src={index === 0 ? "/service-art/landing-workshop-wide.webp" : index === 1 ? "/service-art/design-redesign.webp" : "/service-art/seo-positioning.webp"} alt="" fill sizes="(max-width: 650px) 80vw, 28vw" /></div>}<h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
       </div></section>
 
       <section className={`${styles.example} ${route === "seo-positioning" ? styles.seoExample : ""}`} aria-labelledby="example-title"><div className={`shell ${styles.exampleGrid}`}>
@@ -138,6 +139,8 @@ export default async function ServiceDetailPage({ params }: Props) {
       </div></section>
 
       {(route === "design-redesign" || route === "landing-pages") && <ConceptGallery isRu={isRu} compact={route === "landing-pages"} />}
+
+      {route === "cms" && <KemzCmsShowcase locale={locale} compact />}
 
       {route === "online-stores" && <CommerceDetails isRu={isRu} />}
       {route === "landing-pages" && <LandingDetails isRu={isRu} />}
@@ -155,7 +158,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         return <Link key={item} href={`/${locale}/services/${item}`}><Image className={artwork ? styles.relatedArtworkFeature : styles.relatedArtwork} src={artwork?.src ?? serviceCardArt(item)} alt="" width={artwork?.width ?? 960} height={artwork?.height ?? 960} sizes="(max-width: 650px) 100vw, 33vw" placeholder="blur" blurDataURL={relatedCardBlur[item] ?? serviceCardBlur[item]} /><span className={styles.relatedTitle}>{serviceTitles[serviceRoutes.indexOf(item)].title}</span><span className={styles.relatedArrow} aria-hidden="true">↗</span></Link>;
       })}</div><Link href={`/${locale}/services`} className={styles.relatedAll}>{isRu ? "Все направления" : "All services"} ↗</Link></div></nav>
 
-      {(["landing-pages", "online-stores", "seo-positioning", "cms"] as ServiceRoute[]).includes(route) && <BlogContextLink locale={locale} context={route === "landing-pages" ? "landing" : route === "online-stores" ? "store" : route === "cms" ? "cms" : "seo"} />}
+      {(["landing-pages", "online-stores", "seo-positioning", "cms"] as ServiceRoute[]).includes(route) && <BlogContextLink locale={locale} context={route === "landing-pages" ? "landing" : route === "online-stores" ? "store" : route === "cms" ? "cms" : "seo"} showArt={route === "cms"} />}
       {route === "web-applications" && <BlogContextLink locale={locale} context="privacy" />}
       <ServiceLeadForm locale={locale} service={serviceTitles[serviceRoutes.indexOf(route)].title} title={copy.finalTitle} lead={copy.finalText} />
     </main><Footer />

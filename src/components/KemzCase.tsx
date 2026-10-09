@@ -1,3 +1,4 @@
+import { KemzCmsShowcase } from "@/components/KemzCmsShowcase";
 import Image from "next/image";
 import "./KemzCase.css";
 import Link from "next/link";
@@ -179,6 +180,8 @@ export async function KemzCase({ locale }: { locale: string }) {
           <div><span>SEARCH / SEO</span><h3>{p("kemz.insideSeoTitle")}</h3><p>{p("kemz.insideSeoText")}</p></div>
         </div>
       </div></section>
+
+      <KemzCmsShowcase locale={locale} />
 
       <section className="kemz-not-found" id="kemz-not-found" aria-labelledby="kemz-not-found-title"><div className="shell kemz-not-found__inner"><div className="kemz-not-found__copy"><p className="kemz-kicker">08 / {locale === "ru" ? "ДЕТАЛЬ, КОТОРАЯ ТОЖЕ РАБОТАЕТ" : "A DETAIL THAT STILL WORKS"}</p><h2 id="kemz-not-found-title">{locale === "ru" ? "Даже тупик ведёт к нужному разделу" : "Even a dead end offers a way forward"}</h2><p>{locale === "ru" ? "Оформил страницу 404 в языке завода: инженерный образ, ясное объяснение ошибки, переходы на главную и в каталог. Если человек попал по старой или ошибочной ссылке, он может сразу продолжить поиск оборудования или оставить запрос." : "I designed the 404 page in the factory’s visual language, with clear routes to the homepage and catalog. An old or mistyped link can still lead a visitor to equipment or an inquiry."}</p><a href="https://aokemz.ru/this-page-does-not-exist" target="_blank" rel="noreferrer">{locale === "ru" ? "Открыть страницу 404" : "Open the 404 page"} ↗</a></div><div className="kemz-not-found__screen"><Image src="/projects/kemz/not-found-engineering.webp" alt={locale === "ru" ? "Инженерный образ на странице 404 КЭМЗ" : "KEMZ engineering artwork on the 404 page"} fill sizes="(max-width: 850px) 100vw, 55vw" /><div className="kemz-not-found__overlay"><strong>404</strong><span>{locale === "ru" ? "Страница не найдена" : "Page not found"}</span><small>{locale === "ru" ? "Главная →　Каталог продукции →" : "Home →　Product catalog →"}</small></div></div></div></section>
 

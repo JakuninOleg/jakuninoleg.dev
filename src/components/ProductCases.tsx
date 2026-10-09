@@ -1,3 +1,4 @@
+import { KemzCmsShowcase } from "@/components/KemzCmsShowcase";
 import Image from "next/image";
 import Link from "next/link";
 import { CaseServiceBridge } from "./CaseServiceBridge";
@@ -43,9 +44,9 @@ const copy = {
       nextTitle: "OJ CMS", nextText: "Дальше — продукт для тех, кто управляет сайтами.",
     },
     "oj-cms": {
-      label: "03 / АВТОРСКИЙ ПРОДУКТ", title: "OJ CMS", lead: "Спокойный интерфейс для ежедневной работы с контентом. В демо можно пройти путь от правки до публикации.", scope: "ПРОДУКТ / UX / РЕДАКТОРСКИЙ СЦЕНАРИЙ", heroNote: "СОЗДАВАТЬ. ПРОВЕРЯТЬ. ПУБЛИКОВАТЬ.",
+      label: "03 / АВТОРСКИЙ ПРОДУКТ", title: "OJ CMS", lead: "Система на базе Payload для ежедневной работы с сайтом. На КЭМЗ уже объединяет каталог, новости, документы, заявки и статистику; отдельное демо знакомит с редактором.", scope: "ПРОДУКТ / UX / РЕДАКТОРСКИЙ СЦЕНАРИЙ", heroNote: "СОЗДАВАТЬ. ПРОВЕРЯТЬ. ПУБЛИКОВАТЬ.",
       contextLabel: "01 / ЗАДАЧА", contextTitle: "Сайт запускается. Работа с контентом только начинается.", context: "После релиза бизнесу нужно менять страницы, публиковать новости и находить изображения без помощи разработчика. Обычная админка показывает коллекции и системные поля; редактору нужен понятный рабочий процесс. Поэтому я построил OJ CMS вокруг действий человека, который поддерживает сайт.",
-      ideaLabel: "02 / ПОДХОД", ideaTitle: "Редактору нужен понятный рабочий путь", ideaText: "Я разработал интерфейс для обзора, страниц, новостей, медиа и настроек. Демо хранит изменения в браузере и показывает сценарий редактора. Для рабочего сайта серверное хранение, права и публикацию можно построить на Payload — это отдельный этап внедрения.",
+      ideaLabel: "02 / ПОДХОД", ideaTitle: "Редактору нужен понятный рабочий путь", ideaText: "Я разработал интерфейс для обзора, страниц, новостей, медиа и настроек. Демо хранит изменения в браузере и показывает сценарий редактора. На КЭМЗ серверное хранение, права и публикация уже реализованы на Payload; панель адаптирована под каталог завода.",
       detailLabel: "03 / РАБОЧИЕ ЭКРАНЫ", detailTitle: "Не макет панели, а настоящий редактор", detailIntro: "На этих экранах — рабочая демонстрация OJ CMS: обзор, редактирование страницы и медиатека.",
       features: [
         { n: "01", title: "Обзор", text: "Быстрый вход в страницы, новости, медиа и пользователей. Последние изменения и активность видны на главном экране." },
@@ -54,7 +55,7 @@ const copy = {
       ],
       principleLabel: "04 / ЛОГИКА", principleTitle: "У каждого изменения понятный статус", principleText: "В демо видно, где черновик, опубликованная версия и изменения после публикации. Можно переключить роль и посмотреть, какие разделы доступны редактору. В рабочем внедрении доступ нужно защищать на сервере и в API.",
       flow: ["Изменить страницу", "Сохранить черновик", "Проверить и опубликовать"],
-      outcomeLabel: "05 / РЕЗУЛЬТАТ", outcomeTitle: "Рабочее демо будущего редактора", outcomeText: "OJ CMS уже можно открыть и пройти обычный путь редактора. Это демонстрация интерфейса: данные остаются в браузере. Для клиентского сайта я отдельно определяю разделы, права, хранение и связь с публичными страницами.",
+      outcomeLabel: "05 / РЕЗУЛЬТАТ", outcomeTitle: "От демонстрации — к рабочему сайту КЭМЗ", outcomeText: "OJ CMS уже внедрена на сайте КЭМЗ на Next.js: серверная основа Payload, каталог, новости, документы, сохранение заявок и статистика Метрики. Браузерное демо остаётся отдельным способом познакомиться с редактором; оно не открывает доступ к данным клиента.",
       nextTitle: "Охана", nextText: "Дальше — семейный продукт с AI-ассистентом и приватными данными.",
     },
   },
@@ -91,9 +92,9 @@ const copy = {
       nextTitle: "OJ CMS", nextText: "Next: a product for people who manage websites.",
     },
     "oj-cms": {
-      label: "03 / ORIGINAL PRODUCT", title: "OJ CMS", lead: "A focused interface for everyday content work. The demo lets you go from edit to publication.", scope: "PRODUCT / UX / EDITORIAL WORKFLOW", heroNote: "CREATE. REVIEW. PUBLISH.",
+      label: "03 / ORIGINAL PRODUCT", title: "OJ CMS", lead: "A Payload-based system for everyday website work. Live at KEMZ with a catalog, news, documents, inquiries and analytics; a separate demo introduces the editor.", scope: "PRODUCT / UX / EDITORIAL WORKFLOW", heroNote: "CREATE. REVIEW. PUBLISH.",
       contextLabel: "01 / CHALLENGE", contextTitle: "A site launches. Content work is just beginning.", context: "After launch, a business needs to change pages, publish news, and find images without a developer. A typical admin shows collections and system fields; an editor needs a clear workflow. I built OJ CMS around the person who keeps the site current.",
-      ideaLabel: "02 / APPROACH", ideaTitle: "Editors need a clear workflow", ideaText: "I designed the overview, pages, news, media and settings around editorial tasks. The demo stores changes in the browser and shows that workflow. In a production website, Payload can provide server storage, permissions and publishing as a separate integration step.",
+      ideaLabel: "02 / APPROACH", ideaTitle: "Editors need a clear workflow", ideaText: "I designed the overview, pages, news, media and settings around editorial tasks. The demo stores changes in the browser and shows that workflow. At KEMZ, Payload already provides server storage, permissions and publishing within the live implementation.",
       detailLabel: "03 / WORKING SCREENS", detailTitle: "A real editor, not an admin mockup", detailIntro: "These screens show the working OJ CMS demo: overview, page editor, and media library.",
       features: [
         { n: "01", title: "Overview", text: "Quick access to pages, news, media, and users. Recent changes and activity appear on the home screen." },
@@ -102,7 +103,7 @@ const copy = {
       ],
       principleLabel: "04 / LOGIC", principleTitle: "Every change has a clear status", principleText: "The demo distinguishes drafts, published pages and changes since publication. You can switch roles to see the editor's view. A production integration must enforce access on the server and in the API.",
       flow: ["Edit a page", "Save a draft", "Review and publish"],
-      outcomeLabel: "05 / RESULT", outcomeTitle: "A working editor demo", outcomeText: "You can open OJ CMS today and follow a normal editorial workflow. This is an interface demo; data stays in your browser. For a client website, I define the sections, permissions, storage and connection to public pages separately.",
+      outcomeLabel: "05 / RESULT", outcomeTitle: "From a demo to the live KEMZ site", outcomeText: "OJ CMS is deployed on the Next.js KEMZ website: Payload storage, catalog, news, documents, saved inquiries and Metrika analytics. The browser demo remains a separate way to explore the editor without access to client data.",
       nextTitle: "Okhana", nextText: "Next: a private family product with an AI assistant.",
     },
   },
@@ -186,6 +187,8 @@ export function ProductCase({ locale, project }: { locale: string; project: Proj
 
     <section className={styles.details}><div className="shell"><div className={styles.sectionIntro}><div><span className={styles.chapter}>{c.detailLabel}</span><h2>{c.detailTitle}</h2></div><p>{c.detailIntro}</p></div><div className={styles.featureGrid}>{c.features.map((feature) => <div key={feature.n} className={styles.feature}><span>{feature.n}</span><h3>{feature.title}</h3><p>{feature.text}</p></div>)}</div><div className={styles.demoWrap}>{project === "okhana" ? <OkhanaPreview language={language} detail /> : project === "tesla-explorer" ? <TeslaPreview language={language} /> : <div className={styles.cmsGallery}><figure><Image src="/projects/oj-cms/dashboard.webp" alt={language === "ru" ? "Обзор OJ CMS" : "OJ CMS overview"} width={1536} height={1024} sizes="(max-width: 850px) 100vw, 52vw" /><figcaption>01 / {c.features[0].title}</figcaption></figure><figure><Image src="/projects/oj-cms/media.webp" alt={language === "ru" ? "Медиатека OJ CMS" : "OJ CMS media library"} width={1280} height={800} sizes="(max-width: 850px) 100vw, 30vw" /><figcaption>02 / {c.features[2].title}</figcaption></figure></div>}<span className={styles.demoCaption}>{project === "oj-cms" ? common.screen : project === "okhana" ? (language === "ru" ? "ДЕМОНСТРАЦИОННЫЙ ИНТЕРФЕЙС / ОХАНА" : "OKHANA / DEMO DASHBOARD") : language === "ru" ? "Экран приложения" : "Application screen"}</span></div></div></section>
 
+    {project === "oj-cms" && <KemzCmsShowcase locale={locale} compact />}
+
     <section className={styles.principle}><div className={`shell ${styles.principleGrid}`}><div><span className={styles.chapter}>{c.principleLabel}</span><h2>{c.principleTitle}</h2><p>{c.principleText}</p></div><div className={styles.flow}>{c.flow.map((step, i) => <div key={step}><span>0{i + 1}</span><strong>{step}</strong></div>)}</div></div></section>
 
     <section className={styles.outcome}>
@@ -197,7 +200,7 @@ export function ProductCase({ locale, project }: { locale: string; project: Proj
       </div>
     </section>
     {project === "oj-cms" && <CaseServiceBridge locale={locale} route="cms" />}
-    {project === "oj-cms" && <BlogContextLink locale={locale} context="cms" />}
+    {project === "oj-cms" && <BlogContextLink locale={locale} context="cms" showArt />}
     <ServiceLeadForm locale={locale} service={c.title} title={language === "ru" ? `Обсудим проект, похожий на ${c.title}?` : `Discuss a project like ${c.title}`} lead={language === "ru" ? "Расскажите о задаче. Я предложу дизайн, архитектуру и первый план работ." : "Tell me about your idea. I will suggest a design direction, architecture and first steps."} />
     <Link href={`/${locale}/work/${next}`} className={styles.next}><span>{common.next} / {c.nextText}</span><strong>{c.nextTitle} ↗</strong></Link>
   </article>;

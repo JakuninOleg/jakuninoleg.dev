@@ -1,3 +1,4 @@
+import { KemzCmsShowcase } from "@/components/KemzCmsShowcase";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -121,6 +122,8 @@ export default async function OjCmsPage({ params }: Props) {
           <span className={styles.cardIndex}>0{index + 1}</span><div><h3>{point.title}</h3><p>{point.text}</p></div>
         </article>)}</div></div>
       </div></section>
+
+      <KemzCmsShowcase locale={locale} compact />
 
       <section className={styles.boundary} aria-labelledby="boundary-title"><div className="shell">
         <p className={styles.kicker}>{copy.boundary.label}</p><h2 id="boundary-title">{copy.boundary.title}</h2>

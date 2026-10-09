@@ -1,11 +1,11 @@
 export const ojCmsPage = {
   ru: {
-    seoTitle: "OJ CMS и Payload — авторский редактор и серверная основа",
-    seoDescription: "Как работает демо OJ CMS: страницы, новости, медиа, черновики и предпросмотр. Узнайте, как авторский интерфейс можно связать с Payload при внедрении на сайт.",
+    seoTitle: "OJ CMS на Payload — контент, каталог, заявки и аналитика",
+    seoDescription: "OJ CMS на базе Payload: рабочее внедрение на сайте КЭМЗ. Редактирование каталога и новостей, заявки в панели и статистика через API Яндекс Метрики.",
     hero: {
       eyebrow: "OJ CMS / УПРАВЛЕНИЕ КОНТЕНТОМ",
       title: "Сайтом удобно управлять и после запуска",
-      lead: "OJ CMS — мой интерфейс для команды, которая обновляет сайт. В рабочем демо можно пройти путь от правки страницы до публикации. Для клиентского проекта я отдельно проектирую серверную часть, роли и связь с публичным сайтом.",
+      lead: "OJ CMS — моя система на базе Payload для работы команды с сайтом. На КЭМЗ она уже управляет каталогом, новостями и документами, сохраняет обращения и показывает статистику Яндекс Метрики. Для каждого проекта настраиваю разделы, поля и права под задачи бизнеса.",
       primary: "Попробовать демо",
       secondary: "Обсудить внедрение",
       note: "Демо размещено на Vercel: в некоторых сетях оно может не открыться без VPN. Изменения сохраняются только в вашем браузере; демо не подключено к вашему сайту.",
@@ -35,7 +35,7 @@ export const ojCmsPage = {
     payload: {
       label: "03 / ТЕХНОЛОГИЯ",
       title: "OJ CMS и Payload: как они связаны",
-      intro: "Payload — открытая CMS для хранения контента, API и прав доступа. OJ CMS я проектирую как надстройку над её архитектурой: добавляю свой интерфейс и редакторские сценарии. Нынешнее демо показывает этот интерфейс отдельно: сервер Payload к нему ещё не подключён. Для рабочего сайта я настраиваю Payload, базу данных и публикацию под задачи команды.",
+      intro: "Payload — open-source CMS: серверное хранение, API и правила доступа. OJ CMS использует эту основу и дополняет её моим интерфейсом, обзорной панелью и сценариями под конкретную команду. На сайте КЭМЗ связка уже работает с каталогом, обращениями и Яндекс Метрикой. Отдельное браузерное демо показывает редакторский сценарий без подключения к данным завода.",
       points: [
         { title: "Основа — Payload", text: "Его коллекции и поля задают структуру страниц, статей, товаров и других материалов. Исходный код открыт." },
         { title: "Слой OJ CMS", text: "Я проектирую поверх этой основы более понятный редактор: быстрый доступ к материалам, черновики, предпросмотр и защиту от случайных действий." },
@@ -47,11 +47,11 @@ export const ojCmsPage = {
     },
     boundary: {
       label: "04 / ЧТО УЖЕ РАБОТАЕТ",
-      title: "Демо и рабочее внедрение — разные этапы",
+      title: "Демо для знакомства. Внедрение — для работы.",
       demoTitle: "Сейчас в демо",
       demoText: "Можно редактировать страницы и новости, работать с медиа, сохранять черновик и открывать предпросмотр. Данные остаются в браузере посетителя; переключение роли показывает интерфейс, но не заменяет серверную авторизацию.",
-      productionTitle: "Для вашего сайта",
-      productionText: "Нужны отдельные решения: модель контента, серверное хранение, права, подключение публичных страниц, резервное копирование и размещение. Состав определим по тому, что команда действительно обновляет.",
+      productionTitle: "Уже работает на КЭМЗ",
+      productionText: "Каталог, категории, новости и документы хранятся на сервере Payload. В OJ CMS доступны статусы публикации, заявки с сайта и статистика через API Яндекс Метрики. Для вашего проекта состав разделов и интеграций настрою отдельно.",
     },
     fit: {
       label: "05 / ПРИМЕНЕНИЕ",
@@ -84,12 +84,12 @@ export const ojCmsPage = {
     },
   },
   en: {
-    seoTitle: "OJ CMS and Payload — a custom editor and server foundation",
-    seoDescription: "Explore the OJ CMS demo: pages, news, media, drafts and preview. See how its custom editing experience can be connected to Payload for a live website.",
+    seoTitle: "OJ CMS on Payload — content, catalog, inquiries and analytics",
+    seoDescription: "OJ CMS built on Payload and deployed at KEMZ: catalog and news editing, stored inquiries and analytics through the Yandex Metrika API.",
     hero: {
       eyebrow: "OJ CMS / CONTENT MANAGEMENT",
       title: "Your website should stay easy to update",
-      lead: "OJ CMS is the editing interface I designed for teams that keep a site current. The working demo takes you from a page edit to publication. Production storage, permissions and the connection to your site are designed for each client project.",
+      lead: "OJ CMS is my Payload-based system for teams managing a website. At KEMZ it already manages the catalog, news and documents, stores inquiries and displays Yandex Metrika analytics. I tailor sections, fields and permissions to each business.",
       primary: "Try the demo",
       secondary: "Discuss integration",
       note: "The demo is hosted on Vercel and may require a VPN on some networks. Changes stay in your browser only; it is not connected to your website.",
@@ -119,7 +119,7 @@ export const ojCmsPage = {
     payload: {
       label: "03 / TECHNOLOGY",
       title: "How OJ CMS and Payload fit together",
-      intro: "Payload is an open-source CMS for content storage, APIs and access rules. I design OJ CMS as a layer on its architecture, adding my own editing interface and workflows. The current demo presents that interface separately: it is not yet connected to a Payload server. For a live site, I configure Payload, a database and publishing around the team's needs.",
+      intro: "Payload is an open-source CMS providing server storage, APIs and access rules. OJ CMS builds on it with my own interface, dashboard and team-specific workflows. At KEMZ this setup already handles the catalog, inquiries and Yandex Metrika. The separate browser demo shows the editing workflow without access to factory data.",
       points: [
         { title: "Payload foundation", text: "Open-source collections and fields model pages, posts, products and other content." },
         { title: "OJ CMS layer", text: "I design a focused editor on top: quick access to content, drafts, preview and safeguards against accidental changes." },
@@ -131,11 +131,11 @@ export const ojCmsPage = {
     },
     boundary: {
       label: "04 / CURRENT STATE",
-      title: "The demo and a live integration are different stages",
+      title: "A demo to explore. A deployment to work with.",
       demoTitle: "In the demo today",
       demoText: "Edit pages and news, work with media, save drafts and open previews. Data stays in each visitor's browser. Switching roles illustrates the interface but does not replace server authentication.",
-      productionTitle: "For your website",
-      productionText: "A live deployment needs a content model, server storage, permissions, a link to public pages, backups and hosting. The scope depends on what your team actually updates.",
+      productionTitle: "Already deployed at KEMZ",
+      productionText: "Catalog, categories, news and documents are stored on the Payload server. OJ CMS provides publishing states, website inquiries and Yandex Metrika API analytics. Sections and integrations are configured separately for each client.",
     },
     fit: {
       label: "05 / USE CASES",

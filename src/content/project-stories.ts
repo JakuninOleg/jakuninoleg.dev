@@ -4,7 +4,7 @@ export const projectStories: Record<"ru" | "en", Record<string, Story>> = {
   ru: {
     "oj-cms": {
       task: "Сделать ежедневную работу с сайтом понятной для редактора: страницы, новости и медиа должны жить в одном месте.",
-      solution: "Разработал демонстрационный редактор на Next.js: страницы, новости, медиа, статусы публикации и предпросмотр. Данные демо хранятся в браузере; интеграция с Payload проектируется для клиентского сайта отдельно.",
+      solution: "Разработал демонстрационный редактор на Next.js: страницы, новости, медиа, статусы публикации и предпросмотр. Отдельное браузерное демо знакомит с интерфейсом, а на сайте КЭМЗ уже работает внедрение на Payload с каталогом, заявками и статистикой Метрики.",
       result: "Откройте демо CMS и пройдите сценарий от черновика до публикации.",
     },
     okhana: {
@@ -21,7 +21,7 @@ export const projectStories: Record<"ru" | "en", Record<string, Story>> = {
   en: {
     "oj-cms": {
       task: "Make everyday website editing clear: pages, news, and media should live in one place.",
-      solution: "I built a Next.js editor demo with pages, news, media, publishing states and preview. Demo data stays in the browser; Payload integration is scoped separately for a client website.",
+      solution: "I built a Next.js editor demo with pages, news, media, publishing states and preview. The separate browser demo shows the interface; the live KEMZ deployment uses Payload for its catalog, stored inquiries and Metrika analytics.",
       result: "Open the CMS demo and follow the workflow from draft to publication.",
     },
     okhana: {
