@@ -1391,7 +1391,7 @@
   .footer-row {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
   }
