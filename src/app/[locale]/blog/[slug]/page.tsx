@@ -8,17 +8,23 @@ import { Footer } from "@/components/Footer";
 import { blogCopy, blogPath, blogSlug, catalogBlogPath, catalogPostCopy, catalogPostDate, catalogPostSlug, catalogPostSlugEn, firstPostDate, firstPostSlug, firstPostSlugEn, privacyBlogPath, privacyPostCopy, privacyPostDate, privacyPostSlug, privacyPostSlugEn } from "@/content/blog";
 import { PrivacyArticle } from "./PrivacyArticle";
 import { CatalogArticle } from "./CatalogArticle";
+import { CmsPostPage } from "./CmsArticle";
+import { cmsBlogPath, cmsPostArt, cmsPostCopy, cmsPostDate, cmsPostSlug, cmsPostSlugEn } from "@/content/cms-post";
 import styles from "../blog.module.css";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakuninoleg.dev";
 
 export function generateStaticParams() {
-  return [{ locale: "ru", slug: firstPostSlug }, { locale: "en", slug: firstPostSlugEn }, { locale: "ru", slug: privacyPostSlug }, { locale: "en", slug: privacyPostSlugEn }, { locale: "ru", slug: catalogPostSlug }, { locale: "en", slug: catalogPostSlugEn }];
+  return [{ locale: "ru", slug: firstPostSlug }, { locale: "en", slug: firstPostSlugEn }, { locale: "ru", slug: privacyPostSlug }, { locale: "en", slug: privacyPostSlugEn }, { locale: "ru", slug: catalogPostSlug }, { locale: "en", slug: catalogPostSlugEn }, { locale: "ru", slug: cmsPostSlug }, { locale: "en", slug: cmsPostSlugEn }];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  if (slug === (locale === "en" ? cmsPostSlugEn : cmsPostSlug)) {
+    const p = cmsPostCopy[locale === "en" ? "en" : "ru"];
+    return { title: p.title, description: p.lead, alternates: { canonical: cmsBlogPath(locale), languages: { ru: cmsBlogPath("ru"), en: cmsBlogPath("en") } }, openGraph: { type: "article", title: p.title, description: p.lead, url: cmsBlogPath(locale), publishedTime: cmsPostDate, images: [cmsPostArt] } };
+  }
   const isPrivacy = slug === (locale === "en" ? privacyPostSlugEn : privacyPostSlug);
   const isCatalog = slug === (locale === "en" ? catalogPostSlugEn : catalogPostSlug);
   if (!isPrivacy && !isCatalog && slug !== blogSlug(locale)) notFound();
@@ -41,6 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const { locale, slug } = await params;
+  if (slug === (locale === "en" ? cmsPostSlugEn : cmsPostSlug)) return <CmsPostPage locale={locale} />;
   if (slug === (locale === "en" ? catalogPostSlugEn : catalogPostSlug)) return <CatalogPostPage locale={locale} />;
   if (slug === (locale === "en" ? privacyPostSlugEn : privacyPostSlug)) return <PrivacyPostPage locale={locale} />;
   if (slug !== blogSlug(locale)) notFound();

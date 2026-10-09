@@ -4,6 +4,7 @@ import { useEffect, useTransition } from "react";
 import { useParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { cmsPostSlug, cmsPostSlugEn } from "@/content/cms-post";
 
 const SCROLL_KEY = "locale-switch-scroll-y";
 
@@ -47,7 +48,9 @@ export function LocaleSwitcher() {
             }
             sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
             startTransition(() => {
-              router.replace(pathname, { locale, scroll: false });
+              const isCmsArticle = pathname === `/blog/${cmsPostSlug}` || pathname === `/blog/${cmsPostSlugEn}`;
+              const nextPath = isCmsArticle ? `/blog/${locale === "en" ? cmsPostSlugEn : cmsPostSlug}` : pathname;
+              router.replace(nextPath, { locale, scroll: false });
             });
           }}
         >
