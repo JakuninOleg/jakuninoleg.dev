@@ -1300,7 +1300,7 @@
   .topbar-nav {
     display: inline-flex;
     justify-self: center;
-    grid-column: 1 / -1;
+    grid-column: 2;
   }
 
   .topbar-locale {
