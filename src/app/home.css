@@ -1296,7 +1296,7 @@
 }
 
 
-@media (min-width: 820px) {
+@media (min-width: 1000px) {
   .topbar-nav {
     display: inline-flex;
     justify-self: center;
@@ -1315,6 +1315,9 @@
   .menu-panel {
     display: none;
   }
+}
+
+@media (min-width: 820px) {
 
   .hero-content {
     grid-template-columns: minmax(0, 620px);
@@ -1945,8 +1948,10 @@
   margin-top: 1rem;
 }
 
-.work-preview__image {
-  aspect-ratio: 1265 / 712;
+@media (max-width: 1250px) {
+  .work-preview__image {
+    aspect-ratio: 1265 / 712;
+  }
 }
 
 .work-preview__small {
