@@ -1,0 +1,12 @@
+.cover{margin-top:2.5rem;overflow:hidden;border:1px solid #344955;border-radius:16px;background:#e9ddc2}
+.cover img,.figure img{display:block;width:100%;height:auto}
+.figure{margin:0 0 4rem;max-width:790px}
+.figure img{border-radius:12px;border:1px solid #344955;object-fit:contain}
+.figure figcaption{font-size:.85rem;line-height:1.55;color:#aebfc9;margin-top:.85rem;max-width:65ch}
+.mobileFigure{display:flex;flex-direction:column;align-items:center;background:#132530;padding:2rem;border-radius:16px}
+.mobileFigure img{width:min(100%,330px);border-radius:20px}
+.mobileFigure figcaption{align-self:flex-start}
+.note{border-left:3px solid #f1c050;padding:.5rem 0 .5rem 1.5rem;margin:0 0 4rem;max-width:700px}
+.note p{font-size:clamp(1.4rem,2.2vw,2rem);line-height:1.35;color:#f0dfb6;letter-spacing:-.025em}
+.serviceLink{margin-top:1.5rem!important;font-size:1rem!important}.serviceLink a{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:760px){.cover{border-radius:10px;margin-top:1.75rem}.figure{margin-bottom:3rem}.mobileFigure{padding:1.2rem}.note{margin-bottom:3rem}}

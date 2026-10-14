@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { blogCopy, blogPath, catalogBlogPath, catalogPostCopy, catalogPostDate, firstPostDate, privacyBlogPath, privacyPostCopy, privacyPostDate } from "@/content/blog";
 import styles from "./blog.module.css";
 import { cmsBlogPath, cmsPostArt, cmsPostCopy, cmsPostDate } from "@/content/cms-post";
+import { comicPostPath, comicPostArt, comicPostCopy, comicPostDate } from "@/content/comic-post";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -35,7 +36,12 @@ export default async function BlogPage({ params }: Props) {
       <div className={styles.indexPortrait}><Image src="/blog/mascot-blogger.webp" alt={locale === "en" ? "Oleg writing at his desk" : "Олег пишет статью за столом"} width={1254} height={1254} priority sizes="(max-width: 760px) 85vw, 40vw" /></div>
     </div>
     <div className={`shell ${styles.indexList}`}>
-      <p className={styles.eyebrow}>{locale === "en" ? "Published" : "Опубликовано"} / 004</p>
+      <p className={styles.eyebrow}>{locale === "en" ? "Published / 004" : "Статьи / 005"}</p>
+      {locale === "ru" && <Link href={comicPostPath} className={styles.indexCard}>
+        <div className={styles.indexCardNumber}>↗</div>
+        <div><p className={styles.cardMeta}>{comicPostCopy.tag} · <time dateTime={comicPostDate}>14 октября 2026</time></p><h2>{comicPostCopy.title}</h2><p>{comicPostCopy.lead}</p><span className={styles.textLink}>{c.read} ↗</span></div>
+        <div className={styles.catalogCardArt}><Image src={comicPostArt} alt="" width={1672} height={941} sizes="(max-width: 760px) 88vw, 260px" /></div>
+      </Link>}
       <Link href={cmsBlogPath(locale)} className={styles.indexCard}>
         <div className={styles.indexCardNumber}>01<span aria-hidden>↗</span></div>
         <div><p className={styles.cardMeta}>{cmsPost.tag} · <time dateTime={cmsPostDate}>{cmsPost.date}</time></p><h2>{cmsPost.title}</h2><p>{cmsPost.lead}</p><span className={styles.textLink}>{c.read} ↗</span></div>

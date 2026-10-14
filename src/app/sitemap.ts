@@ -4,6 +4,7 @@ import { projectsMeta } from "@/content/site";
 import { serviceRoutes } from "@/content/service-routes";
 import { blogPath, catalogBlogPath, catalogPostDate, firstPostDate, privacyBlogPath, privacyPostDate } from "@/content/blog";
 import { cmsBlogPath, cmsPostDate } from "@/content/cms-post";
+import { comicPostPath, comicPostDate } from "@/content/comic-post";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakuninoleg.dev";
 
@@ -41,5 +42,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: cmsPostDate,
     alternates: { languages: Object.fromEntries(routing.locales.map((alt) => [alt, `${siteUrl}${cmsBlogPath(alt)}`])) },
   }));
-  return [...pages, ...articles, ...privacyArticles, ...catalogArticles, ...cmsArticles];
+  return [...pages, ...articles, ...privacyArticles, ...catalogArticles, ...cmsArticles, { url: `${siteUrl}${comicPostPath}`, lastModified: comicPostDate }];
 }
