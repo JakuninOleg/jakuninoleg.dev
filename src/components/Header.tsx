@@ -89,9 +89,14 @@ export function Header() {
       className={`topbar${open ? " is-menu-open" : ""}${hidden ? " is-hidden" : ""}${scrolled ? " is-scrolled" : ""}`}
     >
       <div className="shell topbar__inner">
-        <a href={homeAnchor("#top")} className="brand" onClick={() => setOpen(false)}>
-          <span className="brand__first">Jakunin</span>
-          <span className="brand__last">Oleg</span>
+        <a
+          href={homeAnchor("#top")}
+          className="brand"
+          aria-label={`${t("brandSurname")} ${t("brandGivenName")}`}
+          onClick={() => setOpen(false)}
+        >
+          <span className="brand__first">{t("brandSurname")}</span>
+          <span className="brand__last">{t("brandGivenName")}</span>
         </a>
 
         <nav className="topbar-nav" aria-label={t("navLabel")}>

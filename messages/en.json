@@ -5,6 +5,8 @@
     "keywords": "programmer, website developer, web developer, frontend developer, fullstack developer, build a website, web app development, landing page, MVP, Jakunin Oleg"
   },
   "Nav": {
+    "brandSurname": "Jakunin",
+    "brandGivenName": "Oleg",
     "work": "Work",
     "solutions": "OJ CMS",
     "services": "Services",
