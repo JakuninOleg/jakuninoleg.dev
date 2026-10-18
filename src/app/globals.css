@@ -538,6 +538,13 @@ body:has(.product-case-page) .topbar .brand {
   backdrop-filter: blur(16px);
 }
 
+@media (max-width: 999px) {
+  .topbar .brand,
+  body:has(.product-case-page) .topbar .brand {
+    padding-inline: 0;
+  }
+}
+
 .section--alt {
   background: var(--bg-2);
   border-block: 1px solid var(--line);
