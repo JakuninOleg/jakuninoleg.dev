@@ -160,6 +160,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       {(["landing-pages", "online-stores", "seo-positioning", "cms"] as ServiceRoute[]).includes(route) && <BlogContextLink locale={locale} context={route === "landing-pages" ? "landing" : route === "online-stores" ? "store" : route === "cms" ? "cms" : "seo"} showArt={route === "cms"} />}
       {route === "web-applications" && <BlogContextLink locale={locale} context="privacy" />}
+      {route === "ai-solutions" && isRu && <BlogContextLink locale={locale} context="ai" />}
       <ServiceLeadForm locale={locale} service={serviceTitles[serviceRoutes.indexOf(route)].title} title={copy.finalTitle} lead={copy.finalText} />
     </main><Footer />
   </>;

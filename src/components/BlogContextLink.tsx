@@ -2,11 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { blogPath, catalogBlogPath, privacyBlogPath } from "@/content/blog";
 import styles from "./BlogContextLink.module.css";
+import { okhanaPostPath, okhanaPostCopy } from "@/content/okhana-post";
 
-type Context = "landing" | "catalog" | "store" | "cms" | "seo" | "case" | "caseCatalog" | "privacy";
+type Context = "landing" | "catalog" | "store" | "cms" | "seo" | "case" | "caseCatalog" | "privacy" | "ai";
 
 const copy = {
   ru: {
+    ai: ["ИИ В ПРИЛОЖЕНИИ", okhanaPostCopy.title, "Как связал ассистента с заметками, задачами и календарём: поиск, доступ к данным и Go AI Proxy."],
     landing: ["САЙТ БЕЗ КОНСТРУКТОРА", "Зачем лендингу свой дизайн и код?", "Разбираю, когда разработка без Tilda и WordPress даёт больше свободы и помогает избежать лишних доработок."],
     catalog: ["КАТАЛОГ ОБОРУДОВАНИЯ", "Как довести выбор модели до заявки", "Поиск, характеристики, карточка оборудования и запрос предложения — на примере проекта КЭМЗ."],
     store: ["ТЕХНОЛОГИИ И БЮДЖЕТ", "Своя витрина или готовый шаблон?", "Сравниваю индивидуальную разработку с Tilda, WordPress и Битриксом по задачам и дальнейшим расходам."],
@@ -17,6 +19,7 @@ const copy = {
     privacy: ["ПЕРЕД ЗАПУСКОМ", "Что происходит с данными после отправки формы?", "Чек-лист по 152‑ФЗ для сайта: согласие, политика, уведомление и маршрут заявки."],
   },
   en: {
+    ai: ["AI IN AN APP", "Building the Okhana assistant", "Search, access controls, tool calls and Go AI Proxy."],
     landing: ["BEYOND BUILDERS", "Why design and code a landing page?", "When a bespoke build offers more freedom than adapting a Tilda or WordPress template."],
     catalog: ["EQUIPMENT CATALOGS", "Take model selection through to an enquiry", "Search, specifications, product pages and enquiries, with the KEMZ project as an example."],
     store: ["TECHNOLOGY AND COST", "A custom storefront or a template?", "Compare a tailored build with Tilda, WordPress and Bitrix over its working life."],
@@ -38,6 +41,7 @@ export function BlogContextLink({
   showArt?: boolean;
 }) {
   const isEn = locale === "en";
+  if (context === "ai" && isEn) return null;
   const [kicker, title, lead] = copy[isEn ? "en" : "ru"][context];
   const withEditorial = context === "cms" && showArt;
 
@@ -64,8 +68,8 @@ export function BlogContextLink({
             />
           </div>
         )}
-        <Link href={context === "privacy" ? privacyBlogPath(locale) : context === "catalog" || context === "caseCatalog" ? catalogBlogPath(locale) : blogPath(locale)}>
-          {context === "privacy"
+        <Link href={context === "ai" ? okhanaPostPath : context === "privacy" ? privacyBlogPath(locale) : context === "catalog" || context === "caseCatalog" ? catalogBlogPath(locale) : blogPath(locale)}>
+          {context === "ai" ? "Читать об ассистенте" : context === "privacy"
             ? isEn ? "Read the checklist" : "Читать чек-лист"
             : context === "catalog" || context === "caseCatalog"
               ? isEn ? "Read the catalog guide" : "Читать о каталоге"

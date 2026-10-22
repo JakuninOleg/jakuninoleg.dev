@@ -201,6 +201,7 @@ export function ProductCase({ locale, project }: { locale: string; project: Proj
     </section>
     {project === "oj-cms" && <CaseServiceBridge locale={locale} route="cms" />}
     {project === "oj-cms" && <BlogContextLink locale={locale} context="cms" showArt />}
+    {project === "okhana" && locale === "ru" && <BlogContextLink locale={locale} context="ai" />}
     <ServiceLeadForm locale={locale} service={c.title} title={language === "ru" ? `Обсудим проект, похожий на ${c.title}?` : `Discuss a project like ${c.title}`} lead={language === "ru" ? "Расскажите о задаче. Я предложу дизайн, архитектуру и первый план работ." : "Tell me about your idea. I will suggest a design direction, architecture and first steps."} />
     <Link href={`/${locale}/work/${next}`} className={styles.next}><span>{common.next} / {c.nextText}</span><strong>{c.nextTitle} ↗</strong></Link>
   </article>;

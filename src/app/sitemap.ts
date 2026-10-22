@@ -6,6 +6,8 @@ import { blogPath, catalogBlogPath, catalogPostDate, firstPostDate, privacyBlogP
 import { cmsBlogPath, cmsPostDate } from "@/content/cms-post";
 import { comicPostPath, comicPostDate } from "@/content/comic-post";
 
+import { okhanaPostPath, okhanaPostDate } from "@/content/okhana-post";
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakuninoleg.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -13,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = paths.flatMap((path) => (path.startsWith("/legal/") ? ["ru"] : routing.locales).map((locale) => ({
     url: `${siteUrl}/${locale}${path}`,
     // A build is not a content update. Keep lastModified only where we know the date.
-    ...(path === "/blog" ? { lastModified: cmsPostDate } : {}),
+    ...(path === "/blog" ? { lastModified: locale === "ru" ? okhanaPostDate : cmsPostDate } : {}),
     alternates: {
       languages: Object.fromEntries(
         (path.startsWith("/legal/") ? ["ru"] : routing.locales).map((alt) => [alt, `${siteUrl}/${alt}${path}`]),
@@ -42,5 +44,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: cmsPostDate,
     alternates: { languages: Object.fromEntries(routing.locales.map((alt) => [alt, `${siteUrl}${cmsBlogPath(alt)}`])) },
   }));
-  return [...pages, ...articles, ...privacyArticles, ...catalogArticles, ...cmsArticles, { url: `${siteUrl}${comicPostPath}`, lastModified: comicPostDate }];
+  return [{ url: `${siteUrl}${okhanaPostPath}`, lastModified: okhanaPostDate }, ...pages, ...articles, ...privacyArticles, ...catalogArticles, ...cmsArticles, { url: `${siteUrl}${comicPostPath}`, lastModified: comicPostDate }];
 }

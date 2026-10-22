@@ -14,15 +14,21 @@ import styles from "../blog.module.css";
 import { ComicPostPage } from "./ComicArticle";
 import { comicPostSlug, comicPostPath, comicPostArt, comicPostCopy, comicPostDate } from "@/content/comic-post";
 
+import { OkhanaPostPage } from "./OkhanaArticle";
+import { okhanaPostSlug, okhanaPostPath, okhanaPostArt, okhanaPostCopy, okhanaPostDate } from "@/content/okhana-post";
+
 type Props = { params: Promise<{ locale: string; slug: string }> };
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakuninoleg.dev";
 
 export function generateStaticParams() {
-  return [{ locale: "ru", slug: comicPostSlug }, { locale: "ru", slug: firstPostSlug }, { locale: "en", slug: firstPostSlugEn }, { locale: "ru", slug: privacyPostSlug }, { locale: "en", slug: privacyPostSlugEn }, { locale: "ru", slug: catalogPostSlug }, { locale: "en", slug: catalogPostSlugEn }, { locale: "ru", slug: cmsPostSlug }, { locale: "en", slug: cmsPostSlugEn }];
+  return [{ locale: "ru", slug: okhanaPostSlug }, { locale: "ru", slug: comicPostSlug }, { locale: "ru", slug: firstPostSlug }, { locale: "en", slug: firstPostSlugEn }, { locale: "ru", slug: privacyPostSlug }, { locale: "en", slug: privacyPostSlugEn }, { locale: "ru", slug: catalogPostSlug }, { locale: "en", slug: catalogPostSlugEn }, { locale: "ru", slug: cmsPostSlug }, { locale: "en", slug: cmsPostSlugEn }];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  if (locale === "ru" && slug === okhanaPostSlug) {
+    return { title: okhanaPostCopy.title, description: okhanaPostCopy.lead, alternates: { canonical: okhanaPostPath }, openGraph: { type: "article", title: okhanaPostCopy.title, description: okhanaPostCopy.lead, url: okhanaPostPath, publishedTime: okhanaPostDate, images: [okhanaPostArt] }, twitter: { card: "summary_large_image", title: okhanaPostCopy.title, description: okhanaPostCopy.lead, images: [okhanaPostArt] } };
+  }
   if (locale === "ru" && slug === comicPostSlug) {
     return { title: comicPostCopy.title, description: comicPostCopy.lead, alternates: { canonical: comicPostPath }, openGraph: { type: "article", title: comicPostCopy.title, description: comicPostCopy.lead, url: comicPostPath, publishedTime: comicPostDate, images: [comicPostArt] } };
   }
@@ -52,6 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const { locale, slug } = await params;
+  if (locale === "ru" && slug === okhanaPostSlug) return <OkhanaPostPage />;
   if (locale === "ru" && slug === comicPostSlug) return <ComicPostPage />;
   if (slug === (locale === "en" ? cmsPostSlugEn : cmsPostSlug)) return <CmsPostPage locale={locale} />;
   if (slug === (locale === "en" ? catalogPostSlugEn : catalogPostSlug)) return <CatalogPostPage locale={locale} />;

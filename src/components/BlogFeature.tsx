@@ -4,11 +4,12 @@ import { getLocale } from "next-intl/server";
 import { blogCopy } from "@/content/blog";
 import { cmsBlogPath, cmsPostCopy, cmsPostDate } from "@/content/cms-post";
 import styles from "@/app/[locale]/blog/blog.module.css";
+import { okhanaPostPath, okhanaPostCopy, okhanaPostDate } from "@/content/okhana-post";
 
 export async function BlogFeature() {
   const locale = await getLocale();
   const c = blogCopy[locale === "en" ? "en" : "ru"];
-  const post = cmsPostCopy[locale === "en" ? "en" : "ru"];
+  const post = locale === "ru" ? { ...okhanaPostCopy, date: "23 октября 2026" } : cmsPostCopy.en;
 
   return (
     <section className={styles.homeSection} aria-labelledby="home-blog-title">
@@ -23,8 +24,8 @@ export async function BlogFeature() {
           <div className={styles.paperOne} /><div className={styles.paperTwo} />
           <Image src="/blog/mascot-blogger.webp" alt="" width={1254} height={1254} sizes="(max-width: 760px) 80vw, 38vw" />
         </div>
-        <Link href={cmsBlogPath(locale)} className={styles.homePost}>
-          <span>{post.tag} · <time dateTime={cmsPostDate}>{post.date}</time></span>
+        <Link href={locale === "ru" ? okhanaPostPath : cmsBlogPath(locale)} className={styles.homePost}>
+          <span>{post.tag} · <time dateTime={locale === "ru" ? okhanaPostDate : cmsPostDate}>{post.date}</time></span>
           <strong>{post.title}</strong>
           <span className={styles.homePostAction}>{c.read} ↗</span>
         </Link>
