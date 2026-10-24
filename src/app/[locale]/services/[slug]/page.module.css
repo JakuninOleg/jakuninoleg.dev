@@ -313,3 +313,7 @@
   .includedGridCms { grid-template-columns: minmax(0, 1fr); }
   .includedGridCms article, .includedGridCms article:nth-child(-n + 2) { grid-column: auto; min-height: 0; }
 }
+
+@media (max-width: 650px) {
+  .heroApplications h1 { font-size: clamp(1.6rem, 9vw, 2.5rem); text-wrap: pretty; }
+}

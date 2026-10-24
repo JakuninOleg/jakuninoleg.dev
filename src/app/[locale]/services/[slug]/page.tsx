@@ -104,7 +104,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     <a href="#main" className="skip-link">{nav("skipToContent")}</a>
     <Header /><Reveal />
     <main id="main" className={`${styles.page} flex-1`} style={accent}>
-      <section className={`${styles.hero} ${route === "landing-pages" ? styles.heroLanding : ""}`} aria-labelledby="service-title">
+      <section className={`${styles.hero} ${route === "landing-pages" ? styles.heroLanding : ""} ${route === "web-applications" ? styles.heroApplications : ""}`} aria-labelledby="service-title">
         <div className="shell">
           <Breadcrumbs locale={locale} items={[{ label: isRu ? "Услуги" : "Services", href: `/${locale}/services` }, { label: serviceTitles[serviceRoutes.indexOf(route)].title }]} />
           <p className={styles.kicker}>{copy.label}</p>
