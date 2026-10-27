@@ -66,7 +66,7 @@ export function createLeadHandler({ env = process.env, transport = fetch, logger
       }, data => data.ok === true && Number.isInteger(data.result?.message_id))),
     ]);
     if (!mailReady) logger.error('natalia_delivery_not_configured', { channel: 'email' });
-    if (!telegramReady) logger.error('natalia_delivery_not_configured', { channel: 'telegram' });
+    if (!telegramReady && env.NATALIA_TELEGRAM_CHAT_ID) logger.error('natalia_delivery_not_configured', { channel: 'telegram' });
     return { email: Boolean(email), telegram: Boolean(telegram) };
   }
 
