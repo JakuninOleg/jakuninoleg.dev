@@ -49,6 +49,13 @@
     "title": "Products already in use",
     "screenshotAlt": "Screenshot of {title}",
     "projects": {
+      "gorodickaya": {
+        "title": "Natalia Goroditskaya",
+        "tag": "financial advisory · Astro",
+        "summary": "A multi-page financial expert website: market research, bespoke design, service pages and SEO/GEO foundations.",
+        "result": "Visit Goroditskaya & Partners",
+        "imageAlt": "Actual Goroditskaya & Partners homepage with Natalia's portrait and bespoke logo"
+      },
       "vne-shablona": {
         "title": "BEYOND THE TEMPLATE",
         "tag": "independent landing page · comic",

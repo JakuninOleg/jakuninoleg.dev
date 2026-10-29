@@ -140,6 +140,11 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       {(route === "design-redesign" || route === "landing-pages") && <ConceptGallery isRu={isRu} compact={route === "landing-pages"} />}
 
+      {(["landing-pages", "design-redesign", "seo-positioning"] as string[]).includes(route) && <section className={styles.example} aria-labelledby="gorodickaya-case-title"><div className={`shell ${styles.exampleGrid}`}>
+        <div className={styles.exampleCopy}><h2 id="gorodickaya-case-title">{isRu ? "Сайт финансового эксперта: от исследования до Astro" : "A financial expert website: from research to Astro"}</h2><p>{isRu ? "Для Натальи Городицкой я связал исследование конкурентов и поискового спроса с авторским дизайном и многостраничной структурой. Услуги, кейсы и статьи ведут посетителя от его вопроса к консультации." : "For Natalia Goroditskaya, I connected competitor and search research with bespoke design and a multi-page structure. Services, cases and articles guide visitors from a business question to a consultation."}</p><Link href={`/${locale}/work/gorodickaya`} className={styles.inlineLink}>{isRu ? "Посмотреть подробный кейс" : "Explore the case study"} ↗</Link></div>
+        <Link href={`/${locale}/work/gorodickaya`} className={styles.exampleArt} aria-label={isRu ? "Кейс Натальи Городицкой" : "Natalia Goroditskaya case study"}><Image src="/projects/gorodickaya/desktop.webp" alt={isRu ? "Разработанный сайт финансового эксперта Натальи Городицкой" : "The financial advisory website built for Natalia Goroditskaya"} fill sizes="(max-width: 850px) 100vw, 50vw" /></Link>
+      </div></section>}
+
       {route === "cms" && <KemzCmsShowcase locale={locale} compact />}
 
       {route === "online-stores" && <CommerceDetails isRu={isRu} />}

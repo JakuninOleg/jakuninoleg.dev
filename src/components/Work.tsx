@@ -8,7 +8,7 @@ export async function Work() {
   const t = await getTranslations("Work");
   const p = await getTranslations("Portfolio");
   const project = projectsMeta.find((item) => item.id === "aokemz")!;
-  const more = ["vne-shablona", "oj-cms", "okhana"].map((id) => projectsMeta.find((item) => item.id === id)!);
+  const more = ["gorodickaya", "vne-shablona", "oj-cms", "okhana"].map((id) => projectsMeta.find((item) => item.id === id)!);
 
   return (
     <section id="work" className="section work-preview" aria-labelledby="work-heading">
@@ -38,7 +38,7 @@ export async function Work() {
             return (
               <Link key={item.id} href={`/${locale}/work/${item.id}`} className="work-preview__small reveal-item" style={{ ["--reveal-delay" as string]: `${index * 0.06}s` }}>
                 <div className={`work-preview__small-image${item.imageFit === "contain" ? " work-preview__small-image--contain" : ""}${item.id === "vne-shablona" ? " work-preview__small-image--paper" : ""}`}>
-                  <Image src={item.image} alt={t.has(`projects.${item.id}.imageAlt`) ? t(`projects.${item.id}.imageAlt`) : t("screenshotAlt", { title })} width={1280} height={800} sizes="(max-width: 819px) 100vw, 33vw" />
+                  <Image src={item.image} alt={t.has(`projects.${item.id}.imageAlt`) ? t(`projects.${item.id}.imageAlt`) : t("screenshotAlt", { title })} width={1280} height={800} sizes="(max-width: 819px) 100vw, 50vw" />
                 </div>
                 <div className="work-preview__small-copy">
                   <span>{t(`projects.${item.id}.tag`)}</span>

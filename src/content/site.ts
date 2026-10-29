@@ -23,6 +23,15 @@ export type ProjectMeta = {
 
 export const projectsMeta: ProjectMeta[] = [
   {
+    id: "gorodickaya",
+    title: "Наталья Городицкая",
+    stack: ["Astro", "TypeScript", "SEO", "GEO", "Brand design"],
+    image: "/projects/gorodickaya/desktop.webp",
+    href: "https://gorodickaya.ru/",
+    accent: "#D1AD64",
+    imageFit: "cover",
+  },
+  {
     id: "vne-shablona",
     title: "ВНЕ ШАБЛОНА",
     stack: ["HTML", "CSS", "JavaScript", "S3"],
