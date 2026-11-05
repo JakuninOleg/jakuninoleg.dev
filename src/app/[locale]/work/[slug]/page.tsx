@@ -14,7 +14,7 @@ import { projectStories } from "@/content/project-stories";
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export function generateStaticParams() {
-  return ["ru", "en"].flatMap((locale) => projectsMeta.filter((project) => !["aokemz", "vne-shablona", "gorodickaya"].includes(project.id)).map((project) => ({ locale, slug: project.id })));
+  return ["ru", "en"].flatMap((locale) => projectsMeta.filter((project) => !["aokemz", "vne-shablona", "gorodickaya", "el-bebe"].includes(project.id)).map((project) => ({ locale, slug: project.id })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

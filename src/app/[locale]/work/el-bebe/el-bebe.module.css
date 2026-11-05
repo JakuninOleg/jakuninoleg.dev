@@ -1,0 +1,273 @@
+@font-face {
+  font-family: "El Bebe Nunito";
+  src: url("/projects/el-bebe/nunito-cyrillic.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;
+}
+
+@font-face {
+  font-family: "El Bebe Nunito";
+  src: url("/projects/el-bebe/nunito-common.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+}
+
+.page :global(.topbar),
+.page :global(.topbar.is-scrolled:not(.is-hidden)) {
+  background: #101620;
+}
+
+.case {
+  --paper: #fffdf7;
+  --plum: #6d2194;
+  --ink: #48334f;
+  --muted: #684f70;
+  --coral: #bb3045;
+  --mint: #def2eb;
+  background: var(--paper);
+  color: var(--ink);
+  color-scheme: light;
+  font: 500 1.125rem/1.65 "El Bebe Nunito", sans-serif;
+}
+
+.case ::selection {
+  background: #ffe3a1;
+  color: var(--plum);
+}
+
+.case a:focus-visible {
+  outline: 3px solid var(--plum);
+  outline-offset: 5px;
+}
+
+.hero {
+  padding: 6.5rem 0 3rem;
+  background: #fbf3e7;
+}
+
+.hero nav {
+  margin-bottom: 0;
+  color: var(--muted);
+  font: 650 .94rem/1.5 "El Bebe Nunito", sans-serif;
+}
+
+.hero nav a:hover,
+.hero nav a:focus-visible,
+.hero nav [aria-current="page"] {
+  color: var(--plum);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template: "title art" auto "lead art" auto "action art" 1fr / minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: clamp(2rem, 5vw, 5rem);
+  padding-block: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.case h1,
+.case h2 {
+  color: var(--plum);
+  line-height: 1.06;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+
+.case h1 {
+  grid-area: title;
+  margin: 0 0 1.15rem;
+  font-size: clamp(2.65rem, 4.5vw, 5rem);
+  font-weight: 880;
+}
+
+.case h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3.5vw, 3.75rem);
+  font-weight: 820;
+}
+
+.lead {
+  grid-area: lead;
+  margin: 0;
+  max-width: 43ch;
+  font-size: clamp(1.125rem, 1.7vw, 1.35rem);
+  line-height: 1.5;
+}
+
+.heroAction {
+  grid-area: action;
+  justify-self: start;
+  margin-top: 1.45rem;
+}
+
+.cover {
+  grid-area: art;
+  align-self: center;
+  position: relative;
+  isolation: isolate;
+}
+
+.cover::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 7% -2% -5% 12%;
+  border-radius: 22% 9% 25% 15%;
+  background: #bee8d9;
+}
+
+.cover img,
+.screen img,
+.phone img,
+.office {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cover img {
+  border-radius: 10% 5% 14% 6%;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1fr;
+  gap: 1.2rem 2.5rem;
+  border-top: 1px solid #e0cbdc;
+  padding-top: 1.4rem;
+  margin: 0;
+}
+
+.facts dt,
+.case figcaption {
+  color: var(--muted);
+  font-size: .94rem;
+}
+
+.facts dd {
+  margin: .2rem 0 0;
+  color: var(--plum);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.section,
+.design,
+.cms {
+  padding-block: clamp(3rem, 7vw, 6rem);
+}
+
+.intro,
+.pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: 1.5rem clamp(2rem, 7vw, 7rem);
+}
+
+.intro p,
+.copy p,
+.invitation p {
+  max-width: 65ch;
+  margin: 0;
+}
+
+.copy p {
+  margin-top: 1rem;
+}
+
+.screen {
+  margin: clamp(1.7rem, 4vw, 3.5rem) 0 0;
+}
+
+.screen img,
+.phone img {
+  border: 1px solid #dbc7de;
+  border-radius: 16px;
+}
+
+.case figcaption {
+  margin-top: .7rem;
+}
+
+.design {
+  background: var(--mint);
+}
+
+.phone {
+  width: min(100%, 330px);
+  justify-self: center;
+  margin: 0;
+}
+
+.cms {
+  background: #f5eaf7;
+}
+
+.office {
+  border-radius: 6% 12% 7% 9%;
+}
+
+.contact {
+  padding-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.invitation {
+  background: #fce4d7;
+  padding: clamp(1.75rem, 5vw, 4.5rem);
+  border-radius: 16px;
+}
+
+.invitation p {
+  margin: 1rem 0 1.4rem;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .85rem;
+  min-height: 48px;
+  padding: .65rem 1.3rem;
+  border-radius: 999px;
+  background: var(--coral);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.cta:hover {
+  background: #982439;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding-top: 5.25rem;
+  }
+
+  .heroGrid {
+    grid-template: "title" "art" "lead" "action" / minmax(0, 1fr);
+    row-gap: 1.25rem;
+  }
+
+  .case h1 {
+    margin: 0;
+    font-size: clamp(2.6rem, 8vw, 4rem);
+  }
+
+  .cover {
+    margin-bottom: .4rem;
+  }
+
+  .heroAction {
+    margin-top: 0;
+  }
+
+  .facts,
+  .intro,
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

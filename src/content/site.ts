@@ -1,3 +1,5 @@
+import { elBebeSiteUrl } from "./el-bebe-case";
+
 export const site = {
   name: "Jakunin Oleg",
   shortName: "Jakunin",
@@ -22,6 +24,15 @@ export type ProjectMeta = {
 };
 
 export const projectsMeta: ProjectMeta[] = [
+  {
+    id: "el-bebe",
+    title: "El Bebe",
+    stack: ["Astro", "EmDash", "TypeScript", "SQLite"],
+    image: "/projects/el-bebe/desktop.webp",
+    href: elBebeSiteUrl,
+    accent: "#D68ACB",
+    imageFit: "cover",
+  },
   {
     id: "gorodickaya",
     title: "Наталья Городицкая",

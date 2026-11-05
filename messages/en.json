@@ -49,6 +49,13 @@
     "title": "Products already in use",
     "screenshotAlt": "Screenshot of {title}",
     "projects": {
+      "el-bebe": {
+        "title": "El Bebe preschool",
+        "tag": "Private preschool · Astro and EmDash",
+        "summary": "A website for families and a workspace for the director. Parents can compare groups, check fees and arrange a visit. The director can update programs and fees in EmDash.",
+        "result": "Open elbebe.ru",
+        "imageAlt": "Live El Bebe preschool homepage with a photo collage and visit button"
+      },
       "gorodickaya": {
         "title": "Natalia Goroditskaya",
         "tag": "financial advisory · Astro",
