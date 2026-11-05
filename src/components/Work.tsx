@@ -8,7 +8,7 @@ export async function Work() {
   const t = await getTranslations("Work");
   const p = await getTranslations("Portfolio");
   const project = projectsMeta.find((item) => item.id === "aokemz")!;
-  const more = ["gorodickaya", "vne-shablona", "oj-cms", "okhana"].map((id) => projectsMeta.find((item) => item.id === id)!);
+  const more = projectsMeta.filter((item) => item.id !== project.id);
 
   return (
     <section id="work" className="section work-preview" aria-labelledby="work-heading">
