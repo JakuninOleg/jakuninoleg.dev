@@ -160,6 +160,10 @@
   padding-block: clamp(3rem, 7vw, 6rem);
 }
 
+.case section[id] {
+  scroll-margin-top: 4rem;
+}
+
 .intro,
 .pair {
   display: grid;
@@ -209,6 +213,112 @@
 
 .office {
   border-radius: 6% 12% 7% 9%;
+}
+
+.groupList,
+.documentLinks {
+  list-style: none;
+  padding: 0;
+}
+
+.groupList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem 2rem;
+  margin: 2.1rem 0 0;
+}
+
+.groupList li {
+  border-top: 1px solid #dbc7de;
+  padding-top: .8rem;
+}
+
+.groupList p,
+.examples p,
+.printGrid p {
+  margin: .45rem 0 0;
+}
+
+.groupList a,
+.examples a,
+.documentLinks a {
+  color: var(--plum);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+.innerPages {
+  background: #eaf4f4;
+}
+
+.examples,
+.printGrid {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.examples {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.examples img,
+.printGrid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #d9c9db;
+  border-radius: 12px;
+}
+
+.examples h3,
+.printGrid h3 {
+  color: var(--plum);
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  line-height: 1.2;
+  margin: 0;
+  font-weight: 820;
+}
+
+.examples h3 {
+  margin-top: 1rem;
+}
+
+.printSamples {
+  margin: clamp(1.7rem, 4vw, 3rem) 0 0;
+}
+
+.printGrid {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.1fr);
+}
+
+.printGrid img {
+  margin-top: 1rem;
+}
+
+.printNote {
+  max-width: 65ch;
+  margin: 1.25rem 0 0;
+}
+
+.documents {
+  background: #f7efdd;
+}
+
+.documents .intro {
+  align-items: start;
+}
+
+.documents .copy p:first-child {
+  margin-top: 0;
+}
+
+.documentLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem 1.2rem;
+  margin: 1.2rem 0 0;
 }
 
 .contact {
@@ -267,7 +377,10 @@
 
   .facts,
   .intro,
-  .pair {
+  .pair,
+  .groupList,
+  .examples,
+  .printGrid {
     grid-template-columns: minmax(0, 1fr);
   }
 }

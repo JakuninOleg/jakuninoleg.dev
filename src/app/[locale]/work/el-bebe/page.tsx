@@ -10,6 +10,7 @@ import styles from "./el-bebe.module.css";
 
 type Props = { params: Promise<{ locale: string }> };
 const assets = "/projects/el-bebe";
+const groupPaths = ["gruppy/mladshaya/", "gruppy/srednyaya/", "gruppy/starshaya/"] as const;
 
 export function generateStaticParams() {
   return [{ locale: "ru" }, { locale: "en" }];
@@ -80,6 +81,43 @@ export default async function ElBebePage({ params }: Props) {
           </div>
         </section>
 
+        <section id="groups" className={`shell ${styles.section}`}>
+          <div className={styles.intro}>
+            <h2>{c.groups}</h2>
+            <p>{c.groupsText}</p>
+          </div>
+          <ul className={styles.groupList}>
+            {groupPaths.map((path, index) => (
+              <li key={path}>
+                <a href={`${elBebeSiteUrl}${path}`}>{c.groupNames[index]} <span aria-hidden>↗</span></a>
+                <p>{c.groupPrograms[index]}</p>
+              </li>
+            ))}
+          </ul>
+          <figure className={styles.screen}>
+            <Image src={`${assets}/group-schedule.webp`} alt={c.scheduleAlt} width={1265} height={712} sizes="(max-width: 760px) 92vw, 1200px" />
+            <figcaption>{c.scheduleCaption}</figcaption>
+          </figure>
+        </section>
+
+        <section id="inner-pages" className={styles.innerPages}>
+          <div className={`shell ${styles.section}`}>
+            <h2>{c.inner}</h2>
+            <div className={styles.examples}>
+              <article>
+                <Image src={`${assets}/day-map.webp`} alt={c.dayAlt} width={1265} height={712} sizes="(max-width: 760px) 92vw, 50vw" />
+                <h3><a href={`${elBebeSiteUrl}den-v-sadu/`}>{c.day} <span aria-hidden>↗</span></a></h3>
+                <p>{c.dayText}</p>
+              </article>
+              <article>
+                <Image src={`${assets}/gallery.webp`} alt={c.galleryAlt} width={1265} height={712} sizes="(max-width: 760px) 92vw, 50vw" />
+                <h3><a href={`${elBebeSiteUrl}prostranstvo/`}>{c.gallery} <span aria-hidden>↗</span></a></h3>
+                <p>{c.galleryText}</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section className={`shell ${styles.section}`}>
           <div className={styles.intro}>
             <h2>{c.astro}</h2>
@@ -95,6 +133,44 @@ export default async function ElBebePage({ params }: Props) {
               <p>{c.accessText}</p>
             </div>
             <Image className={styles.office} src={`${assets}/office.webp`} alt={c.officeAlt} width={1672} height={941} sizes="(max-width: 760px) 92vw, 50vw" />
+          </div>
+        </section>
+
+        <section id="print" className={`shell ${styles.section}`}>
+          <div className={styles.intro}>
+            <h2>{c.print}</h2>
+            <p>{c.printText}</p>
+          </div>
+          <figure className={styles.printSamples}>
+            <div className={styles.printGrid}>
+              <div>
+                <h3>{c.printWeek}</h3>
+                <p>{c.printWeekText}</p>
+                <Image src={`${assets}/print-week.webp`} alt={c.printWeek} width={1123} height={794} sizes="(max-width: 760px) 92vw, 56vw" />
+              </div>
+              <div>
+                <h3>{c.printBirthdays}</h3>
+                <p>{c.printBirthdaysText}</p>
+                <Image src={`${assets}/print-birthdays.webp`} alt={c.printBirthdays} width={794} height={1123} sizes="(max-width: 760px) 92vw, 32vw" />
+              </div>
+            </div>
+            <figcaption>{c.printCaption}</figcaption>
+          </figure>
+          <p className={styles.printNote}>{c.printExtra}</p>
+        </section>
+
+        <section id="documents" className={styles.documents}>
+          <div className={`shell ${styles.section} ${styles.intro}`}>
+            <h2>{c.documents}</h2>
+            <div className={styles.copy}>
+              <p>{c.documentsText}</p>
+              <p>{c.dataText}</p>
+              <ul className={styles.documentLinks}>
+                <li><a href={`${elBebeSiteUrl}dokumenty/`}>{c.documentsLink}</a></li>
+                <li><a href={`${elBebeSiteUrl}privacy/`}>{c.privacyLink}</a></li>
+                <li><a href={`${elBebeSiteUrl}soglasie/`}>{c.consentLink}</a></li>
+              </ul>
+            </div>
           </div>
         </section>
 
